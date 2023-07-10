@@ -13,7 +13,6 @@ const config: HardhatUserConfig = {
   },
   typechain: {
     outDir: './test/typechain-types', // Specify your custom directory here
-    target: 'hardhat',
   },
 };
 
