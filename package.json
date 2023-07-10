@@ -1,6 +1,7 @@
 {
   "name": "ezkl",
   "version": "0.0.1",
+  "node": ">=10.4.0",
   "description": "Javascript bindings for ezkl",
   "main": "index.js",
   "scripts": {
