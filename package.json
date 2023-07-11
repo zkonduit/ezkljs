@@ -12,7 +12,7 @@
     "prepare": "husky install",
     "semantic-release": "semantic-release",
     "test:watch": "jest --watch",
-    "test": "jest --coverage",
+    "test": "jest --coverage --detectOpenHandles",
     "typecheck": "tsc --noEmit"
   },
   "author": "Jason Morton",
@@ -42,10 +42,10 @@
     "ts-node": "^10.2.1",
     "typescript": "^5.1.6",
     "@typechain/hardhat": "^8.0.0",
-    "ethers": "^6.6.2",
     "json-bigint": "^1.0.0"
   },
   "dependencies": {
-    "json-bigint": "^1.0.0"
+    "json-bigint": "^1.0.0",
+    "ethers": "^6.6.2"
   }
 }
