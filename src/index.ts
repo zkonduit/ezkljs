@@ -1,3 +1,4 @@
+import { ethers, Contract } from 'ethers';
 import * as fs from 'fs';
 import * as JSONBig from 'json-bigint';
 
@@ -38,4 +39,17 @@ export function parseProof(proofFilePath: string): [bigint[], string] {
 
   const publicInputs = instances.flat();
   return [publicInputs, '0x' + proof.proof];
+}
+
+export async function simulateVerify(
+  pubInputs: bigint[],
+  proof: string,
+  provider: ethers.Provider,
+  contractAddress: string,
+  abi: ethers.InterfaceAbi
+): Promise<boolean> {
+  // Initialize provider and contract
+  const contract = new Contract(contractAddress, abi, provider);
+  const result: boolean = await contract.verify(pubInputs, proof);
+  return result;
 }

@@ -23,7 +23,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.parseProof = void 0;
+exports.simulateVerify = exports.parseProof = void 0;
+const ethers_1 = require("ethers");
 const fs = __importStar(require("fs"));
 const JSONBig = __importStar(require("json-bigint"));
 function vecu64ToField(b) {
@@ -56,3 +57,10 @@ function parseProof(proofFilePath) {
     return [publicInputs, '0x' + proof.proof];
 }
 exports.parseProof = parseProof;
+async function simulateVerify(pubInputs, proof, provider, contractAddress, abi) {
+    // Initialize provider and contract
+    const contract = new ethers_1.Contract(contractAddress, abi, provider);
+    const result = await contract.verify(pubInputs, proof);
+    return result;
+}
+exports.simulateVerify = simulateVerify;
