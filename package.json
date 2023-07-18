@@ -1,6 +1,6 @@
 {
   "name": "ezkl",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "node": ">=10.4.0",
   "description": "Javascript bindings for ezkl",
   "main": "index.js",
@@ -14,6 +14,9 @@
     "test:watch": "jest --watch",
     "test": "jest --coverage --detectOpenHandles",
     "typecheck": "tsc --noEmit"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "author": "Jason Morton",
   "license": "Apache-2.0",
