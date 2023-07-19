@@ -126,4 +126,6 @@ dist
 
 # Compiled code
 lib/
+target/
+_karma_webpack_/
 
