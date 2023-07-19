@@ -1,6 +1,6 @@
 import { parseProof, simulateVerify } from '../src';
 import { ethers } from 'hardhat';
-import { Verifier } from '../test/typechain-types/Verifier';
+import { Verifier } from './typechain-types/Verifier';
 import { assert } from 'ethers';
 
 describe('ezkl', () => {
