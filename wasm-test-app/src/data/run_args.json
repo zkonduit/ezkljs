@@ -1,5 +1,5 @@
 {
-    "tolerance":{"val":0.0,"scales":[0,0]},
+    "tolerance":{"val":0.0,"scales":[1,1]},
     "scale":7,
     "bits":16,
     "logrows":17,

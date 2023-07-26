@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 // Don't forget to change the path to your wasm module
 import init, {
-  gen_circuit_settings_wasm,
   gen_pk_wasm,
   gen_vk_wasm,
   prove_wasm,
@@ -9,15 +8,8 @@ import init, {
   poseidon_hash_wasm,
 } from './pkg/ezkl';
 
-function readUploadedFileAsText(inputFileElement: HTMLInputElement) {
+function readUploadedFileAsText(file: File) {
   return new Promise<Uint8ClampedArray>((resolve, reject) => {
-    const files = inputFileElement.files;
-    if (!files) {
-      reject(new Error('No files found in inputFileElement'));
-      return;
-    }
-
-    const file = files[0];
     const reader = new FileReader();
 
     reader.onload = event => {
@@ -38,19 +30,31 @@ function readUploadedFileAsText(inputFileElement: HTMLInputElement) {
 }
 
 const App = () => {
-  const [circuitSettingsResult, setCircuitSettingsResult] = useState<string | null>(null);
   const [pkResult, setPkResult] = useState<string | null>(null);
   const [vkResult, setVkResult] = useState<string | null>(null);
   const [proveResult, setProveResult] = useState<string | null>(null);
   const [verifyResult, setVerifyResult] = useState<string | null>(null);
   const [hashResult, setHashResult] = useState<string | null>(null);
-  const [circuitFile, setCircuitFile] = useState<File | null>(null);
+  const [modelFileGen, setModelFileGen] = useState<File | null>(null);
   const [runArgsFile, setRunArgsFile] = useState<File | null>(null);
+  const [srsFile, setSrsFile] = useState<File | null>(null);
+  const [circuitSettingsFile, setCircuitSettingsFile] = useState<File | null>(null);
+  const [modelFilePk, setModelFilePk] = useState<File | null>(null);
+  const [pkFileVk, setPkFileVk] = useState<File | null>(null);
+  const [circuitSettingsFileVk, setCircuitSettingsFileVk] = useState<File | null>(null);
+  const [dataFileProve, setDataFileProve] = useState<File | null>(null);
+  const [pkFileProve, setPkFileProve] = useState<File | null>(null);
+  const [modelFileProve, setModelFileProve] = useState<File | null>(null);
+  const [circuitSettingsFileProve, setCircuitSettingsFileProve] = useState<File | null>(null);
+  const [srsFileProve, setSrsFileProve] = useState<File | null>(null);
+  const [proofFileVerify, setProofFileVerify] = useState<File | null>(null);
+  const [vkFileVerify, setVkFileVerify] = useState<File | null>(null);
+  const [circuitSettingsFileVerify, setCircuitSettingsFileVerify] = useState<File | null>(null);
+  const [srsFileVerify, setSrsFileVerify] = useState<File | null>(null);
+
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-    // TODO: Initialize WASM and event handlers
     async function run() {
       // Initialize the WASM module
       await init();
@@ -58,68 +62,45 @@ const App = () => {
     run();
   });
 
-  useEffect(() => {
-    const circuitInput = document.getElementById("circuit_ser_gen") as HTMLInputElement;
-    const runArgsInput = document.getElementById("run_args_ser_gen") as HTMLInputElement;
-
-    setCircuitFile(circuitInput?.files?.item(0) || null);
-    setRunArgsFile(runArgsInput?.files?.item(0) || null);
-  }, []);
-
-const handleCircuitSettingsButton = async () => {
-  // TODO: Add your event handler logic here
-  try {
-    const circuit_ser_gen = document.getElementById("circuit_ser_gen") as HTMLInputElement;
-    const run_args_ser_gen = document.getElementById("run_args_ser_gen") as HTMLInputElement;
-
-    if (circuit_ser_gen && run_args_ser_gen) {
-      const circuit_ser = await readUploadedFileAsText(circuit_ser_gen);
-      const run_args_ser = await readUploadedFileAsText(run_args_ser_gen);
-      const result_cp = gen_circuit_settings_wasm(circuit_ser, run_args_ser);
-      // Creating a blob and a URL for it from the result
-      const blob = new Blob([result_cp.buffer], { type: 'application/octet-stream' });
-      const url = URL.createObjectURL(blob);
-
-      // Creating a hidden anchor element, adding it to the document,
-      // clicking it to download the file and then removing the element
-      const g = document.createElement("a");
-      g.href = url;
-      g.download = 'circuit';
-      g.style.display = 'none';
-      document.body.appendChild(g);
-      g.click();
-      setTimeout(() => {
-        URL.revokeObjectURL(url);
-        document.body.removeChild(g);
-      }, 0);
-      // Rest of your code here...
-    } else {
-      console.error('Required HTMLInputElement(s) are null');
-    }
-  } catch (error) {
-    console.error("An error occurred generating circuit parameters:", error);
-  }
-};
-
 const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  if (event.target.id === 'circuit_ser_gen') {
-    setCircuitFile(event.target.files?.item(0) || null);
-  } else if (event.target.id === 'run_args_ser_gen') {
-    setRunArgsFile(event.target.files?.item(0) || null);
+  if (event.target.id === 'srs_ser_pk') {
+    setSrsFile(event.target.files?.item(0) || null);
+  } else if (event.target.id === 'circuit_settings_ser_pk') {
+    setCircuitSettingsFile(event.target.files?.item(0) || null);
+  } else if (event.target.id === 'model_ser_pk') {
+    setModelFilePk(event.target.files?.item(0) || null);
+  } else if (event.target.id === 'data_prove') {
+    setDataFileProve(event.target.files?.item(0) || null);
+  } else if (event.target.id === 'pk_prove') {
+    setPkFileProve(event.target.files?.item(0) || null);
+  } else if (event.target.id === 'model_ser_prove') {
+    setModelFileProve(event.target.files?.item(0) || null);
+  } else if (event.target.id === 'circuit_settings_ser_prove') {
+    setCircuitSettingsFileProve(event.target.files?.item(0) || null);
+  } else if (event.target.id === 'srs_ser_prove') {
+    setSrsFileProve(event.target.files?.item(0) || null);
+  } else if (event.target.id == 'pk_ser_vk') {
+    setPkFileVk(event.target.files?.item(0) || null);
+  } else if (event.target.id == 'circuit_settings_ser_vk') {
+    setCircuitSettingsFileVk(event.target.files?.item(0) || null);
+  } else if (event.target.id == 'proof_js') {
+    setProofFileVerify(event.target.files?.item(0) || null);
+  } else if (event.target.id == 'vk') {
+    setVkFileVerify(event.target.files?.item(0) || null);
+  } else if (event.target.id == 'circuit_settings_ser_verify') {
+    setCircuitSettingsFileVerify(event.target.files?.item(0) || null);
+  } else if (event.target.id == 'srs_ser_verify') {
+    setSrsFileVerify(event.target.files?.item(0) || null);
   }
 };
 
 const handleGenPkButton = async () => {
   try {
-    const circuit_ser_pk = document.getElementById("circuit_ser_pk") as HTMLInputElement;
-    const params_ser_pk = document.getElementById("params_ser_pk") as HTMLInputElement;
-    const circuit_params_ser_pk = document.getElementById("circuit_params_ser_pk") as HTMLInputElement;
-
-    if (circuit_ser_pk && params_ser_pk && circuit_params_ser_pk) {
-      const circuit_ser = await readUploadedFileAsText(circuit_ser_pk);
-      const params_ser = await readUploadedFileAsText(params_ser_pk);
-      const circuit_params_ser = await readUploadedFileAsText(circuit_params_ser_pk);
-      const result_pk = gen_pk_wasm(circuit_ser, params_ser, circuit_params_ser);
+    if (modelFilePk && srsFile && circuitSettingsFile) {
+      const model_ser = await readUploadedFileAsText(modelFilePk);
+      const srs_ser = await readUploadedFileAsText(srsFile);
+      const circuit_settings_ser = await readUploadedFileAsText(circuitSettingsFile);
+      const result_pk = gen_pk_wasm(model_ser, srs_ser, circuit_settings_ser);
       // Creating a blob and a URL for it from the result
       const blob = new Blob([result_pk.buffer], { type: 'application/octet-stream' });
       const url = URL.createObjectURL(blob);
@@ -146,13 +127,10 @@ const handleGenPkButton = async () => {
 
 const handleGenVkButton = async () => {
   try {
-    const pk_ser = document.getElementById("pk_ser") as HTMLInputElement;
-    const circuit_params_ser_vk = document.getElementById("circuit_params_ser_vk") as HTMLInputElement;
-
-    if (pk_ser && circuit_params_ser_vk) {
-      const pk_ser_file = await readUploadedFileAsText(pk_ser);
-      const circuit_params_ser_vk_file = await readUploadedFileAsText(circuit_params_ser_vk);
-      const result_vk = gen_vk_wasm(pk_ser_file, circuit_params_ser_vk_file);
+    if (pkFileVk && circuitSettingsFileVk) {
+      const pk_ser_vk_file = await readUploadedFileAsText(pkFileVk);
+      const circuit_settings_ser_vk_file = await readUploadedFileAsText(circuitSettingsFileVk);
+      const result_vk = gen_vk_wasm(pk_ser_vk_file, circuit_settings_ser_vk_file);
       // Creating a blob and a URL for it from the result
       const blob = new Blob([result_vk.buffer], { type: 'application/octet-stream' });
       const url = URL.createObjectURL(blob);
@@ -179,20 +157,15 @@ const handleGenVkButton = async () => {
 
 const handleGenProofButton = async () => {
   try {
-    const data_prove = document.getElementById("data_prove") as HTMLInputElement;
-    const pk_prove = document.getElementById("pk_prove") as HTMLInputElement;
-    const circuit_ser_prove = document.getElementById("circuit_ser_prove") as HTMLInputElement;
-    const circuit_params_ser_prove = document.getElementById("circuit_params_ser_prove") as HTMLInputElement;
-    const params_ser_prove = document.getElementById("params_ser_prove") as HTMLInputElement;
 
-    if (data_prove && pk_prove && circuit_ser_prove && circuit_params_ser_prove && params_ser_prove) {
-      const data_prove_file = await readUploadedFileAsText(data_prove);
-      const pk_prove_file = await readUploadedFileAsText(pk_prove);
-      const circuit_ser_prove_file = await readUploadedFileAsText(circuit_ser_prove);
+    if (dataFileProve && pkFileProve &&  modelFileProve && circuitSettingsFileProve && srsFileProve) {
+      const data_prove_file = await readUploadedFileAsText(dataFileProve);
+      const pk_prove_file = await readUploadedFileAsText(pkFileProve);
+      const model_ser_prove_file = await readUploadedFileAsText(modelFileProve);
       
-      const circuit_params_ser_prove_file = await readUploadedFileAsText(circuit_params_ser_prove);
-      const params_ser_prove_file = await readUploadedFileAsText(params_ser_prove);
-      const result_proof = prove_wasm(data_prove_file, pk_prove_file, circuit_ser_prove_file, circuit_params_ser_prove_file, params_ser_prove_file);
+      const circuit_settings_ser_prove_file = await readUploadedFileAsText(circuitSettingsFileProve);
+      const srs_ser_prove_file = await readUploadedFileAsText(srsFileProve);
+      const result_proof = prove_wasm(data_prove_file, pk_prove_file, model_ser_prove_file, circuit_settings_ser_prove_file, srs_ser_prove_file);
 
       // Creating a blob and a URL for it from the result
       const blob = new Blob([result_proof.buffer], { type: 'application/octet-stream' });
@@ -220,19 +193,13 @@ const handleGenProofButton = async () => {
 
 const handleVerifyButton = async () => {
   try {
-    const proof_js = document.getElementById("proof_js") as HTMLInputElement;
-    const vk = document.getElementById("vk") as HTMLInputElement;
-    const circuit_params_ser_verify = document.getElementById("circuit_params_ser_verify") as HTMLInputElement;
-    const params_ser_verify = document.getElementById("params_ser_verify") as HTMLInputElement;
-    
-    if (proof_js && vk && circuit_params_ser_verify && params_ser_verify) {
-      const proof_js_file = await readUploadedFileAsText(proof_js);
-      const vk_file = await readUploadedFileAsText(vk);
-      const circuit_params_ser_verify_file = await readUploadedFileAsText(circuit_params_ser_verify);
-      const params_ser_verify_file = await readUploadedFileAsText(params_ser_verify);
-      const result = verify_wasm(proof_js_file, vk_file, circuit_params_ser_verify_file, params_ser_verify_file);
-      const doc = document.getElementById("verifyResult") as HTMLInputElement;
-      doc.innerText = result ? 'True' : 'False';
+    if (proofFileVerify && vkFileVerify && circuitSettingsFileVerify && srsFileVerify) {
+      const proof_js_file = await readUploadedFileAsText(proofFileVerify);
+      const vk_file = await readUploadedFileAsText(vkFileVerify);
+      const circuit_settings_ser_verify_file = await readUploadedFileAsText(circuitSettingsFileVerify);
+      const srs_ser_verify_file = await readUploadedFileAsText(srsFileVerify);
+      const result = verify_wasm(proof_js_file, vk_file, circuit_settings_ser_verify_file, srs_ser_verify_file);
+      setVerifyResult(result ? 'True' : 'False');
     } else {
       console.error('Required HTMLInputElement(s) are null');
     }
@@ -245,15 +212,54 @@ const handleVerifyButton = async () => {
 
 return (
   <div className="App">
-    <h1>Generate Circuit Settings</h1>
-    <label htmlFor="circuit_ser_gen">Circuit (.onnx):</label>
-    <input id="circuit_ser_gen" type="file" onChange={handleFileChange} placeholder="circuit_ser_gen" />
-    <label htmlFor="run_args_ser_gen">Run Args:</label>
-    <input id="run_args_ser_gen" type="file" onChange={handleFileChange} placeholder="run_args_ser_gen" />
-    <button id="genCircuitSettingsButton" onClick={handleCircuitSettingsButton} disabled={!circuitFile || !runArgsFile}>Generate Circuit Settings</button>
+
+    <h1>Generate Proving Key</h1>
+    <label htmlFor="model_ser_pk">Model (.onnx):</label>
+    <input id="model_ser_pk" type="file" onChange={handleFileChange} placeholder="model_ser_pk" />
+    <label htmlFor="srs_ser_pk">SRS:</label>
+    <input id="srs_ser_pk" type="file" onChange={handleFileChange} placeholder="srs_ser_pk" />
+    <label htmlFor="circuit_settings_ser_pk">Circuit settings:</label>
+    <input id="circuit_settings_ser_pk" type="file" onChange={handleFileChange} placeholder="circuit_settings_ser_pk" />
+    <button id="genPkButton" onClick={handleGenPkButton} disabled={!modelFilePk || !srsFile || !circuitSettingsFile}>Generate</button>
     <h2>Result:</h2>
-    <div>{circuitSettingsResult}</div>
-    {/* Similarly, add the other sections here... */}
+    <div>{pkResult}</div>
+
+    <h1>Generate Verification Key</h1>
+    <label htmlFor="pk_ser_vk">Proving key:</label>
+    <input id="pk_ser_vk" type="file" onChange={handleFileChange} placeholder="pk_ser_vk" />
+    <label htmlFor="circuit_settings_ser_vk">Circuit settings:</label>
+    <input id="circuit_settings_ser_vk" type="file" onChange={handleFileChange} placeholder="circuit_settings_ser_vk" />
+    <button id="genVkButton" onClick={handleGenVkButton} disabled={!pkFileVk || !circuitSettingsFileVk}>Generate</button>
+    <h2>Result:</h2>
+    <div>{vkResult}</div>
+
+    <h1>Prove</h1>
+    <label htmlFor="data_prove">Input Data:</label>
+    <input id="data_prove" type="file" onChange={handleFileChange} placeholder="data_prove" />
+    <label htmlFor="pk_prove">Proving key:</label>
+    <input id="pk_prove" type="file" onChange={handleFileChange} placeholder="pk_prove" />
+    <label htmlFor="model_ser_prove">Model (.onnx):</label>
+    <input id="model_ser_prove" type="file" onChange={handleFileChange} placeholder="model_ser" />
+    <label htmlFor="circuit_settings_ser_prove">Circuit settings:</label>
+    <input id="circuit_settings_ser_prove" type="file" onChange={handleFileChange} placeholder="circuit_settings_ser_prove" />
+    <label htmlFor="srs_ser_prove">SRS:</label>
+    <input id="srs_ser_prove" type="file" onChange={handleFileChange} placeholder="srs_ser_prove" />
+    <button id="proveButton" onClick={handleGenProofButton} disabled={!dataFileProve || !pkFileProve || !circuitSettingsFileProve || !srsFileProve}>Prove</button>
+    <h2>Result:</h2>
+    <div>{proveResult}</div>
+
+    <h1>Verify</h1>
+    <label htmlFor="proof_js">Proof:</label>
+    <input id="proof_js" type="file" onChange={handleFileChange} placeholder="proof_js" />
+    <label htmlFor="vk">Verification key:</label>
+    <input id="vk" type="file" onChange={handleFileChange} placeholder="vk" />
+    <label htmlFor="circuit_settings_ser_verify">Circuit settings:</label>
+    <input id="circuit_settings_ser_verify" type="file" onChange={handleFileChange} placeholder="circuit_settings_ser_verify" />
+    <label htmlFor="srs_ser_verify">SRS:</label>
+    <input id="srs_ser_verify" type="file" onChange={handleFileChange} placeholder="srs_ser_verify" />
+    <button id="verifyButton" onClick={handleVerifyButton} disabled={!proofFileVerify || !vkFileVerify || !circuitSettingsFileVerify || !srsFileVerify}>Verify</button>
+    <h2>Result:</h2>
+    <div>{verifyResult}</div>
   </div>
 );
 };
