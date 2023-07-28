@@ -36,6 +36,17 @@ function vecu64ToField(b) {
         // Note the conversion to BigInt for the shift operation
         result += BigInt(b[i]) << (BigInt(i) * BigInt(64));
     }
+    return result.toString();
+}
+function fieldToVecu64(s) {
+    const inputBigInt = BigInt(s);
+    const mask = BigInt('0xFFFFFFFFFFFFFFFF'); // Mask to get the least significant 64 bits
+    let result = [];
+    for (let i = 0; i < 4; i++) {
+        // Extract the least significant 64 bits, and then right-shift
+        const value = (inputBigInt >> (BigInt(i) * BigInt(64))) & mask;
+        result.push(value.toString());
+    }
     return result;
 }
 function parseProof(proofFilePath) {
