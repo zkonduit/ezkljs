@@ -57,7 +57,7 @@ export function parseProof(proofFilePath: string): [string[], string] {
 }
 
 export async function simulateVerify(
-  pubInputs: bigint[],
+  pubInputs: string[],
   proof: string,
   provider: ethers.Provider,
   contractAddress: string,

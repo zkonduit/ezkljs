@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "node": ">=10.4.0",
   "description": "Javascript bindings for ezkl",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "clean": "rm -rf ./lib/",

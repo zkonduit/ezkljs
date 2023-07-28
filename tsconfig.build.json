@@ -1,7 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": [
-    "test/**/*.spec.ts",
-    "./hardhat.config.ts",
-  ]
+  "exclude": ["test", "./hardhat.config.ts"]
 }

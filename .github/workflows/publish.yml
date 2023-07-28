@@ -1,26 +1,31 @@
 name: Publish
 on:
   push:
-    branches: "main"
+    branches: 'main'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-jobs: 
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Use pnpm 8
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js 16.x
       - uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
-          cache: "npm"
-      
-      - run: npm install --frozen-lockfile
+          node-version: '16.x'
+          cache: 'pnpm'
+      - name: Install npm dependencies
+      - run: pnpm install --frozen-lockfile
       - name: Create Release Pull Requets or Publish
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npm run build
+          publish: pnpm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
