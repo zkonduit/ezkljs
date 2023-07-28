@@ -19,20 +19,20 @@ function vecu64ToField(b: string[]): string {
   return result.toString();
 }
 
-function fieldToVecu64(s: string): string[] {
-  const inputBigInt = BigInt(s);
-  const mask = BigInt('0xFFFFFFFFFFFFFFFF'); // Mask to get the least significant 64 bits
+// function fieldToVecu64(s: string): string[] {
+//   const inputBigInt = BigInt(s);
+//   const mask = BigInt('0xFFFFFFFFFFFFFFFF'); // Mask to get the least significant 64 bits
 
-  let result: string[] = [];
+//   const result: string[] = [];
 
-  for (let i = 0; i < 4; i++) {
-      // Extract the least significant 64 bits, and then right-shift
-      const value = (inputBigInt >> (BigInt(i) * BigInt(64))) & mask;
-      result.push(value.toString());
-  }
+//   for (let i = 0; i < 4; i++) {
+//       // Extract the least significant 64 bits, and then right-shift
+//       const value = (inputBigInt >> (BigInt(i) * BigInt(64))) & mask;
+//       result.push(value.toString());
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
 
 export function parseProof(proofFilePath: string): [string[], string] {
