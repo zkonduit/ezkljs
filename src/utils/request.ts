@@ -1,11 +1,11 @@
-export default async function request<TResponse>(
+export default async function request<TData>(
   url: string,
   options: RequestInit = {}
-): Promise<TResponse> {
+): Promise<TData> {
   try {
     const response = await fetch(url, options);
-    const data = await response.json();
-    return data as TResponse;
+    const { data } = await response.json();
+    return data as TData;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message);
