@@ -16,7 +16,7 @@ async function artifacts() {
     },
     body: JSON.stringify({
       query: `
-        query {
+        query Artifacts {
           artifacts {
             name
             description
