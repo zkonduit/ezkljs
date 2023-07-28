@@ -49,6 +49,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.17",
     "ethers": "^6.6.2",
     "graphql": "^16.7.1",
     "graphql-request": "^6.1.0",
