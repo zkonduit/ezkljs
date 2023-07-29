@@ -50,29 +50,11 @@ async function prove(id: string, input: Buffer) {
     input: ['variables.input'],
   };
 
-  // todo: need to investigate eslint type error
+  const body = new FormData();
+  body.append('operations', JSON.stringify(operations));
+  body.append('map', JSON.stringify(map));
+  body.append('input', new Blob([input]));
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-
-  // const someBlob = new Blob([await readFile(inputPath)]);
-
-  // console.log('rawData', rawData);
-  // return;
-  // Prepare form data
-  const someBlob = new Blob([input]);
-  const formData = new FormData();
-  formData.append('operations', JSON.stringify(operations));
-  formData.append('map', JSON.stringify(map));
-  formData.append(
-    'input',
-    someBlob
-    // new Blob([JSON.stringify(input)], { type: 'application/json' }),
-    // 'input.json'
-  );
-
-  console.log('formData', formData);
-
-  // const resp = await request(URL, {
   const { prove: proofStatus } = await request<{
     prove: {
       taskId: string;
@@ -80,27 +62,14 @@ async function prove(id: string, input: Buffer) {
     };
   }>(URL, {
     method: 'POST',
-    body: formData,
+    body,
   });
 
-  // console.log(
-  //   'status~!',
-  //   resp.status,
-  //   '\nContent-Type~!',
-  //   resp.headers.get('content-type')
-  // );
-
-  // const proofStatus = await resp.json();
-
   console.log('resp', proofStatus);
-  // console.log(resp.status, resp.headers.get('content-type'));
-  // const proofStatus = resp.prove;
-
-  // console.log('proofStatus', proofStatus);
-  // return proofStatus;
 }
 async function callProve() {
   const inputPath = path.resolve(__dirname, '../dist/public/input.json');
+  // todo: need to investigate eslint type error
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   const input = await readFile(inputPath);
   void prove('4cd02d5f-3499-4c4a-8e82-e0e8c7c367bd', input);
