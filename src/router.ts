@@ -33,8 +33,7 @@ async function artifacts() {
   console.log(response);
 }
 
-// async function prove(id: string, input: ProveInput) {
-async function prove(id: string, input: any) {
+async function prove(id: string, input: Buffer) {
   const operations = {
     query: `mutation Prove($id: String!, $input: Upload!) {
       prove(id: $id, input: $input) { 
@@ -51,20 +50,16 @@ async function prove(id: string, input: any) {
     input: ['variables.input'],
   };
 
-  const inputPath = path.resolve(__dirname, '../dist/public/input.json');
-  console.log('inputPath', inputPath);
-
   // todo: need to investigate eslint type error
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  const rawData = await readFile(inputPath);
-  // console.log('rawData', rawData);
-  const someBlob = new Blob([rawData]);
+
   // const someBlob = new Blob([await readFile(inputPath)]);
 
   // console.log('rawData', rawData);
   // return;
   // Prepare form data
+  const someBlob = new Blob([input]);
   const formData = new FormData();
   formData.append('operations', JSON.stringify(operations));
   formData.append('map', JSON.stringify(map));
@@ -102,12 +97,13 @@ async function prove(id: string, input: any) {
   // console.log('proofStatus', proofStatus);
   // return proofStatus;
 }
+async function callProve() {
+  const inputPath = path.resolve(__dirname, '../dist/public/input.json');
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  const input = await readFile(inputPath);
+  void prove('4cd02d5f-3499-4c4a-8e82-e0e8c7c367bd', input);
+}
 
-// Usage
-void prove('4cd02d5f-3499-4c4a-8e82-e0e8c7c367bd', {
-  input_data: [[1.5417295, 0.5346153, 1.2172532]],
-  input_shapes: [[1, 3]],
-  output_data: [[0.28125, 0.6484375, 0.0, 0.0]],
-});
+callProve();
 
 export default { artifacts };
