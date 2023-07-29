@@ -1,3 +1,6 @@
+// import path
+import path from 'path';
+import { readFile } from 'node:fs/promises';
 import request from './utils/request';
 
 const URL = 'http://127.0.0.1:5000/graphql';
@@ -48,26 +51,45 @@ async function prove(id: string, input: any) {
     input: ['variables.input'],
   };
 
+  const inputPath = path.resolve(__dirname, '../dist/public/input.json');
+  console.log('inputPath', inputPath);
+  const rawData = await readFile(inputPath);
+  const someBlob = new Blob([rawData]);
+
+  // console.log('rawData', rawData);
+  // return;
   // Prepare form data
   const formData = new FormData();
   formData.append('operations', JSON.stringify(operations));
   formData.append('map', JSON.stringify(map));
   formData.append(
     'input',
-    new Blob([JSON.stringify(input)], { type: 'application/json' }),
+    someBlob,
+    // new Blob([JSON.stringify(input)], { type: 'application/json' }),
     'input.json'
   );
 
-  const { prove: proofStatus } = await request<{
-    // better types
-    prove: { taskId: string; status: string };
-  }>(URL, {
+  // const { prove: proofStatus } = await request<{
+  const resp = await fetch(URL, {
     method: 'POST',
     body: formData,
   });
 
-  console.log('proofStatus', proofStatus);
-  return proofStatus;
+  console.log(
+    'status~!',
+    resp.status,
+    '\nContent-Type~!',
+    resp.headers.get('content-type')
+  );
+
+  const proofStatus = await resp.json();
+
+  console.log('resp', proofStatus);
+  // console.log(resp.status, resp.headers.get('content-type'));
+  // const proofStatus = resp.prove;
+
+  // console.log('proofStatus', proofStatus);
+  // return proofStatus;
 }
 
 // Usage

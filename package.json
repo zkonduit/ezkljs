@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "dev": "ts-node-dev --respawn src/index.ts",
+    "dev:dirty": "ts-node-dev -T --respawn src/index.ts",
     "clean": "rm -rf ./lib/",
     "cm": "cz",
     "lint": "eslint ./src/ --fix",

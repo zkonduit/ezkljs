@@ -17,7 +17,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'warn',
     'node/no-missing-import': 'off',
-    "node/no-unsupported-features/es-builtins": "off",
+    'node/no-unsupported-features/es-builtins': 'off',
     'node/no-empty-function': 'off',
     'node/no-unsupported-features/es-syntax': 'off',
     'node/no-missing-require': 'off',
@@ -29,5 +29,11 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'node/no-unsupported-features/node-builtins': [
+      'error',
+      {
+        version: '>=14.0.0',
+      },
+    ],
   },
 };
