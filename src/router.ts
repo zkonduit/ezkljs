@@ -65,10 +65,12 @@ async function prove(id: string, input: Buffer) {
   formData.append('map', JSON.stringify(map));
   formData.append(
     'input',
-    someBlob,
+    someBlob
     // new Blob([JSON.stringify(input)], { type: 'application/json' }),
-    'input.json'
+    // 'input.json'
   );
+
+  console.log('formData', formData);
 
   // const resp = await request(URL, {
   const { prove: proofStatus } = await request<{
