@@ -1,9 +1,13 @@
 export default async function request<TData>(
   url: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  logs = false
 ): Promise<TData> {
   try {
     const response = await fetch(url, options);
+    if (logs) {
+      console.log(response);
+    }
     const { data } = await response.json();
     return data as TData;
   } catch (error) {

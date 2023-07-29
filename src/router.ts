@@ -53,8 +53,14 @@ async function prove(id: string, input: any) {
 
   const inputPath = path.resolve(__dirname, '../dist/public/input.json');
   console.log('inputPath', inputPath);
+
+  // todo: need to investigate eslint type error
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   const rawData = await readFile(inputPath);
+  // console.log('rawData', rawData);
   const someBlob = new Blob([rawData]);
+  // const someBlob = new Blob([await readFile(inputPath)]);
 
   // console.log('rawData', rawData);
   // return;
@@ -69,20 +75,25 @@ async function prove(id: string, input: any) {
     'input.json'
   );
 
-  // const { prove: proofStatus } = await request<{
-  const resp = await fetch(URL, {
+  // const resp = await request(URL, {
+  const { prove: proofStatus } = await request<{
+    prove: {
+      taskId: string;
+      status: string;
+    };
+  }>(URL, {
     method: 'POST',
     body: formData,
   });
 
-  console.log(
-    'status~!',
-    resp.status,
-    '\nContent-Type~!',
-    resp.headers.get('content-type')
-  );
+  // console.log(
+  //   'status~!',
+  //   resp.status,
+  //   '\nContent-Type~!',
+  //   resp.headers.get('content-type')
+  // );
 
-  const proofStatus = await resp.json();
+  // const proofStatus = await resp.json();
 
   console.log('resp', proofStatus);
   // console.log(resp.status, resp.headers.get('content-type'));
