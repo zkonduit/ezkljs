@@ -1,6 +1,3 @@
-// import path
-import path from 'path';
-import { readFile } from 'node:fs/promises';
 import request from './utils/request';
 import isValidHexString from './utils/isValidHexString';
 
@@ -34,6 +31,13 @@ async function artifacts() {
   console.log(response);
 }
 
+interface ProveResponse {
+  prove: {
+    taskId: string;
+    status: string;
+  };
+}
+
 async function prove(id: string, input: Buffer) {
   const operations = {
     query: `mutation Prove($id: String!, $input: Upload!) {
@@ -56,17 +60,10 @@ async function prove(id: string, input: Buffer) {
   body.append('map', JSON.stringify(map));
   body.append('input', new Blob([input]));
 
-  const { prove: proofStatus } = await request<{
-    prove: {
-      taskId: string;
-      status: string;
-    };
-  }>(URL, {
+  const { prove: proofStatus } = await request<ProveResponse>(URL, {
     method: 'POST',
     body,
   });
-
-  // console.log('resp', proofStatus);
 
   return proofStatus;
 }
@@ -115,19 +112,7 @@ async function getProof(taskId: string) {
     throw new Error('Invalid proof');
   }
 
-  console.log(proofDetails);
   return proofDetails;
 }
 
-async function callProve() {
-  const inputPath = path.resolve(__dirname, '../dist/public/input.json');
-  // todo: need to investigate eslint type error
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  const input = await readFile(inputPath);
-  const { taskId } = await prove('4cd02d5f-3499-4c4a-8e82-e0e8c7c367bd', input);
-  void getProof(taskId);
-}
-
-callProve();
-
-export default { artifacts };
+export default { artifacts, prove, getProof };
