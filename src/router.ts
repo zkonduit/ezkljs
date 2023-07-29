@@ -30,6 +30,79 @@ async function artifacts() {
   console.log(response);
 }
 
-void artifacts();
+// void artifacts();
+
+// async function prove() {
+//   const response = await request<{ prove: string }>(URL, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       query: `
+//         mutation Prove($artifactId: String!) {
+//           prove(artifactId: $artifactId)
+//         }
+//       `,
+//       variables: {
+//         artifactId: '1',
+//       },
+//     }),
+//   });
+
+//   console.log(response);
+// }
+
+// async function prove(id: string, input: ProveInput) {
+async function prove(id: string, input: any) {
+  const operations = {
+    query: `mutation($id: String!, $input: Upload!) {
+      prove(id: $id, input: $input) { 
+        taskId 
+        status 
+      }}`,
+    variables: {
+      id,
+      input,
+    },
+  };
+
+  const map = {
+    input: ['variables.input'],
+  };
+
+  // Prepare form data
+  const formData = new FormData();
+  formData.append('operations', JSON.stringify(operations));
+  formData.append('map', JSON.stringify(map));
+  formData.append(
+    'input',
+    new Blob([JSON.stringify(input)], { type: 'application/json' }),
+    'input.json'
+  );
+
+  // console.log(formData);
+
+  // Make the request
+  const response = await fetch(URL, {
+    method: 'POST',
+    // headers: {
+    //   'Content-Type': 'multipart/form-data; boundary=X-INSOMNIA-BOUNDARY',
+    // },
+    body: formData,
+  });
+
+  // Parse the response
+  const data = await response.json();
+
+  console.log(data);
+}
+
+// Usage
+void prove('4cd02d5f-3499-4c4a-8e82-e0e8c7c367bd', {
+  input_data: [[1.5417295, 0.5346153, 1.2172532]],
+  input_shapes: [[1, 3]],
+  output_data: [[0.28125, 0.6484375, 0.0, 0.0]],
+});
 
 export default { artifacts };
