@@ -30,33 +30,10 @@ async function artifacts() {
   console.log(response);
 }
 
-// void artifacts();
-
-// async function prove() {
-//   const response = await request<{ prove: string }>(URL, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       query: `
-//         mutation Prove($artifactId: String!) {
-//           prove(artifactId: $artifactId)
-//         }
-//       `,
-//       variables: {
-//         artifactId: '1',
-//       },
-//     }),
-//   });
-
-//   console.log(response);
-// }
-
 // async function prove(id: string, input: ProveInput) {
 async function prove(id: string, input: any) {
   const operations = {
-    query: `mutation($id: String!, $input: Upload!) {
+    query: `mutation Prove($id: String!, $input: Upload!) {
       prove(id: $id, input: $input) { 
         taskId 
         status 
@@ -81,21 +58,16 @@ async function prove(id: string, input: any) {
     'input.json'
   );
 
-  // console.log(formData);
-
-  // Make the request
-  const response = await fetch(URL, {
+  const { prove: proofStatus } = await request<{
+    // better types
+    prove: { taskId: string; status: string };
+  }>(URL, {
     method: 'POST',
-    // headers: {
-    //   'Content-Type': 'multipart/form-data; boundary=X-INSOMNIA-BOUNDARY',
-    // },
     body: formData,
   });
 
-  // Parse the response
-  const data = await response.json();
-
-  console.log(data);
+  console.log('proofStatus', proofStatus);
+  return proofStatus;
 }
 
 // Usage
