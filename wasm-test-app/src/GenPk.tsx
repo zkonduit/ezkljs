@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FC } from 'react';
 import { gen_pk_wasm } from './pkg/ezkl';
-import { readUploadedFileAsText, useFileDownload } from './Utils';
+import { readUploadedFileAsText, fileDownload } from './Utils';
 
 interface GenPKProps {
     modelFile: File | null;
@@ -19,8 +19,8 @@ const GenPK: FC<GenPKProps> = ({ modelFile, srsFile, circuitSettingsFile, handle
                 const srs_ser = await readUploadedFileAsText(srsFile);
                 const circuit_settings_ser = await readUploadedFileAsText(circuitSettingsFile);
                 const result_pk = gen_pk_wasm(model_ser, srs_ser, circuit_settings_ser);
-                setPkResult(result_pk ? 'Pk Generation successful' : 'Pk Generation failed');
-                useFileDownload('pk.key', result_pk);
+                setPkResult(result_pk ? 'Pk Generation Successful' : 'Pk Generation failed');
+                fileDownload('pk.key', result_pk);
             } else {
                 console.error('Required HTMLInputElement(s) are null');
             }

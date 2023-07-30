@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FC } from 'react';
 import { poseidon_hash_wasm } from './pkg/ezkl';
-import { readUploadedFileAsText, useFileDownload } from './Utils';
+import { readUploadedFileAsText, fileDownload } from './Utils';
 
 interface HashProps {
     message: File | null;
@@ -16,7 +16,7 @@ const Hash: FC<HashProps> = ({ message, handleFileChange }) => {
                 const messageText = await readUploadedFileAsText(message);
                 const result = poseidon_hash_wasm(messageText);
                 setHashResult(result? `Hash: ${result}` : 'Hash Generation failed');
-                useFileDownload('hash.txt', result);
+                fileDownload('hash.txt', result);
             } else {
                 console.error('Required HTMLInputElement is null');
             }

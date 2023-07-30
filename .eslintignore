@@ -1,1 +1,4 @@
 dist
+.eslintrc
+wasm-test-app/src/pkg/ezkl.js
+wasm-test-app/src/pkg/snippets/

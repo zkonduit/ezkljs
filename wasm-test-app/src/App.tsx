@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// Don't forget to change the path to your wasm module
+
 import init from './pkg/ezkl';
 
 import GenPK from './GenPk';
@@ -25,6 +25,7 @@ const App = () => {
   const [vkFileVerify, setVkFileVerify] = useState<File | null>(null);
   const [circuitSettingsFileVerify, setCircuitSettingsFileVerify] = useState<File | null>(null);
   const [srsFileVerify, setSrsFileVerify] = useState<File | null>(null);
+  const [messageFile, setMessageFile] = useState<File | null>(null);
 
 
   // Similar to componentDidMount and componentDidUpdate:
@@ -51,6 +52,7 @@ const fileSetters: any = {
   'vk': setVkFileVerify,
   'circuit_settings_ser_verify': setCircuitSettingsFileVerify,
   'srs_ser_verify': setSrsFileVerify,
+  'message_hash': setMessageFile,
 };
 
 const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +98,7 @@ return (
       handleFileChange={handleFileChange}
     />
     <Hash
-      message={dataFileProve}
+      message={messageFile}
       handleFileChange={handleFileChange}
     />
   </div>

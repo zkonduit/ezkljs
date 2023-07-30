@@ -19,7 +19,7 @@ export function readUploadedFileAsText(file: File) {
     });
 }
 // Custom hook for file download
-export const useFileDownload = (fileName: string, buffer: ArrayBufferLike) => {
+export const fileDownload = (fileName: string, buffer: ArrayBufferLike) => {
     if (buffer) {
         const blob = new Blob([buffer], { type: 'application/octet-stream' });
         const url = URL.createObjectURL(blob);

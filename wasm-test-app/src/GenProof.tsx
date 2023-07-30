@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FC } from 'react';
 import { prove_wasm } from './pkg/ezkl';
-import { readUploadedFileAsText, useFileDownload } from './Utils';
+import { readUploadedFileAsText, fileDownload } from './Utils';
 
 interface GenProofProps {
     dataFile: File | null;
@@ -24,7 +24,7 @@ const GenProof: FC<GenProofProps> = ({ dataFile, pkFile, modelFile, circuitSetti
                 const srs_ser_prove_file = await readUploadedFileAsText(srsFile);
                 const result_proof = prove_wasm(data_prove_file, pk_prove_file, model_ser_prove_file, circuit_settings_ser_prove_file, srs_ser_prove_file);
                 setProofResult(result_proof ? 'Proof generation successful' : 'Proof generation failed');
-                useFileDownload('network.proof', result_proof);
+                fileDownload('network.proof', result_proof);
             } else {
                 console.error('Required HTMLInputElement(s) are null');
             }

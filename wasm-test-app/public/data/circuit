@@ -1,11 +1,9 @@
 {
     "run_args": {
         "tolerance": {
-            "val": 0.0,
-            "scales": [
-                1,
-                1
-            ]
+            "Abs": {
+                "val": 0
+            }
         },
         "scale": 0,
         "bits": 5,
@@ -16,11 +14,7 @@
         "param_visibility": "Private",
         "allocated_constraints": null
     },
-    "version": "0.0.0-git",
     "num_constraints": 24,
-    "model_output_scales": [
-        7
-    ],
     "model_instance_shapes": [
         [
             1,

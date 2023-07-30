@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FC } from 'react';
 import { gen_vk_wasm } from './pkg/ezkl';
-import { readUploadedFileAsText, useFileDownload } from './Utils';
+import { readUploadedFileAsText, fileDownload } from './Utils';
 
 interface GenVKProps {
     pkFile: File | null;
@@ -18,7 +18,7 @@ const GenVk: FC<GenVKProps> = ({ pkFile, circuitSettingsFile, handleFileChange }
                 const circuit_settings_ser_vk_file = await readUploadedFileAsText(circuitSettingsFile);
                 const result_vk = gen_vk_wasm(pk_ser_vk_file, circuit_settings_ser_vk_file);
                 setVkResult(result_vk ? 'Vk Generation successful' : 'Vk Generation failed');
-                useFileDownload('vk.key', result_vk)
+                fileDownload('vk.key', result_vk)
             } else {
                 console.error('Required HTMLInputElement(s) are null');
             }
