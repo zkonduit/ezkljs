@@ -38,4 +38,5 @@ jobs:
           pnpm install --no-frozen-lockfile
           REACT_APP_ENTRY_POINT=index_test.tsx pnpm run build
         env:
+          CI: false
           NODE_ENV: development
