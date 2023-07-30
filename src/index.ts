@@ -6,17 +6,22 @@ import Verifier from './verifier';
 
 async function callProve() {
   const inputPath = path.resolve(__dirname, '../dist/public/input.json');
-  // todo: need to investigate eslint type error
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   const input = await readFile(inputPath);
   const { taskId } = await Router.prove(
-    '4cd02d5f-3499-4c4a-8e82-e0e8c7c367bd',
+    '44f2d71d-3ef8-455d-ba5c-636abc3513f8',
     input
   );
   const details = await Router.getProof(taskId);
   console.log(details);
 }
 
-callProve();
+void callProve();
+
+// async function callArficats() {
+//   const artifacts = await Router.artifacts();
+//   console.log(artifacts);
+// }
+
+// void callArficats();
 
 export { Router, Verifier };

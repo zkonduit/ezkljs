@@ -8,7 +8,12 @@ export default async function request<TData>(
     if (logs) {
       console.log(response);
     }
+
     const { data } = await response.json();
+
+    if (!data) {
+      throw new Error('No data');
+    }
     return data as TData;
   } catch (error) {
     if (error instanceof Error) {

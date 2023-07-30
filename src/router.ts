@@ -1,7 +1,9 @@
 import request from './utils/request';
 import isValidHexString from './utils/isValidHexString';
 
-const URL = 'http://127.0.0.1:5000/graphql';
+// const URL = 'http://127.00.1:5000/graphql';
+// const URL = 'http://131.153.242.209:5000/graphql ';
+const URL = 'https://hub.ezkl.xyz/graphql ';
 
 type Artifact = {
   name: string;
