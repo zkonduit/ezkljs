@@ -147,42 +147,7 @@ const TestScript = () => {
             throw new Error('GenHash test failed');
         }
     };
-    // Run test when files are loaded
-    // useEffect(() => {
 
-    //     // if (proofFile && vkFile && circuitSettingsFile && srsFile) {
-    //     //     // Simulate Verify button click
-    //     //     const verifyButton = document.getElementById('verifyButton') as HTMLButtonElement;
-    //     //     verifyButton.click();
-
-    //     //     // Wait for Verify result
-    //     //     setTimeout(() => {
-    //     //         const resultElement = document.getElementById('verifyResult');
-    //     //         if (resultElement?.textContent === 'True') {
-    //     //             setVerifyResult('Test passed');
-    //     //         } else {
-    //     //             setVerifyResult('Test failed');
-    //     //             throw new Error('Test failed');
-    //     //         }
-    //     //     }, 1000); // adjust timeout as necessary
-    //     // }
-    //     // if (messageFile) {
-    //     //     // Simulate GenHash button click
-    //     //     const genHashButton = document.getElementById('genHashButton') as HTMLButtonElement;
-    //     //     genHashButton.click();
-
-    //     //     // Wait for GenHash result
-    //     //     setTimeout(() => {
-    //     //         const resultElement = document.getElementById('hashResult');
-    //     //         if (resultElement?.textContent?.startsWith('Hash:')) {
-    //     //             setHashResult('Test passed');
-    //     //         } else {
-    //     //             setHashResult('Test failed');
-    //     //             throw new Error('Test failed');
-    //     //         }
-    //     //     }, 1000); // adjust timeout as necessary
-    //     // }
-    // }, [modelFile, srsFile, circuitSettingsFile, pkFile, dataFile, vkFile, proofFile, messageFile]);
 
     useEffect(() => {
         if (modelFile && srsFile && circuitSettingsFile) {
@@ -238,10 +203,6 @@ const TestScript = () => {
             <div>{proofResult}</div>
             <h2>Verify Test result:</h2>
             <div id="verifyResult">{verifyResult}</div>
-            <Hash
-                message={messageFile}
-                handleFileChange={handleFileChange}
-            />
             <h2>Hash Test result:</h2>
             <div id="hashResult">{hashResult}</div>
         </div>
