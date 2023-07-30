@@ -1,0 +1,14 @@
+{
+  "name": "ezkl",
+  "version": "0.0.0",
+  "files": [
+    "ezkl_bg.wasm",
+    "ezkl.js",
+    "ezkl.d.ts"
+  ],
+  "module": "ezkl.js",
+  "types": "ezkl.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
