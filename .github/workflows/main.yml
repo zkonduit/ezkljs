@@ -31,7 +31,7 @@ jobs:
       - name: Run helper func tests
         run: pnpm run test
       - name: Move into the wasm test app directory
-        run: cd .examples/wasm-test-app
+        run: cd ./examples/wasm-test-app
       - name: Install dependencies and run wasm tests
         run: |
           cd ./examples/wasm-test-app
