@@ -12,7 +12,8 @@ function renameExports(filePath, renameMappings) {
   
     // Replace the function names
     for (const [oldName, newName] of Object.entries(renameMappings)) {
-      const regex = new RegExp(oldName, 'g');
+      // Use a negative lookbehind to ensure that "wasm." does not precede the old name
+      const regex = new RegExp(`(?<!wasm\\.)${oldName}`, 'g');
       result = result.replace(regex, newName);
     }
   
@@ -37,8 +38,8 @@ const renameMappings = {
 };
 
 // Define file paths
-const typeDefFile = path.resolve(__dirname, '../../examples/wasm-test-app/src/pkg/ezkl.d.ts');
-const jsFile = path.resolve(__dirname, '../../examples/wasm-test-app/src/pkg/ezkl.js');
+const typeDefFile = path.resolve(__dirname, '../../examples/wasm-test-app/pkg/ezkl.d.ts');
+const jsFile = path.resolve(__dirname, '../../examples/wasm-test-app/pkg/ezkl.js');
 
 // Rename exports in both files
 renameExports(typeDefFile, renameMappings);

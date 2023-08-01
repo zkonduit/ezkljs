@@ -36,7 +36,7 @@ jobs:
         run: |
           cd ./examples/wasm-test-app
           pnpm install --no-frozen-lockfile
-          REACT_APP_ENTRY_POINT=index_test.tsx pnpm run build
+          NEXT_PUBLIC_REACT_APP_ENTRY_POINT=test pnpm run build
         env:
           CI: false
           NODE_ENV: development
