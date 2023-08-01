@@ -14,13 +14,13 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Use Node.js 16.x
-      - uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '16.x'
           cache: 'pnpm'
-      - name: Install npm dependencies
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
       - name: Create Release Pull Requets or Publish
         id: changesets
         uses: changesets/action@v1
