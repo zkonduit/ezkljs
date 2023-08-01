@@ -22,7 +22,21 @@ jobs:
           cache: 'pnpm'
       - name: Install npm dependencies
         run: pnpm install --frozen-lockfile
+      - name: Compile contracts
+        run: pnpm hardhat compile
       - name: Run linter
         run: pnpm run lint
       - name: Build package
         run: pnpm run build
+      - name: Run helper func tests
+        run: pnpm run test
+      - name: Move into the wasm test app directory
+        run: cd ./wasm-test-app
+      - name: Install dependencies and run wasm tests
+        run: |
+          cd ./examples/wasm-test-app
+          pnpm install --no-frozen-lockfile
+          REACT_APP_ENTRY_POINT=index_test.tsx pnpm run build
+        env:
+          CI: false
+          NODE_ENV: development

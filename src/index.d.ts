@@ -31,6 +31,7 @@ declare const Router: {
   getProof: typeof getProof
 }
 
-import Wasm from './wasm'
+import { Lib } from '../src'
+import { Helper } from '../src'
 
-export { Router, Wasm }
+export { Router, Helper, Lib }

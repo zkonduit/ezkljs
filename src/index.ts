@@ -1,4 +1,25 @@
 import { Router } from './submodules/router'
-import { Wasm } from './submodules/wasm'
+import { Helper } from './submodules/helper'
 
-export { Router, Wasm }
+import init, { 
+    poseidonHash,
+    elgamalEncrypt,
+    elgamalDecrypt,
+    genPk,
+    genVk,
+    verify,
+    prove
+} from '../examples/wasm-test-app/src/pkg/ezkl'
+
+const Lib = {
+    init,
+    poseidonHash,
+    elgamalEncrypt,
+    elgamalDecrypt,
+    genPk,
+    genVk,
+    verify,
+    prove
+}
+
+export { Router, Helper, Lib }
