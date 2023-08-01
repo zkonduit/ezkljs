@@ -9,7 +9,7 @@ import init, {
     genVk,
     verify,
     prove
-} from '../examples/wasm-test-app/src/pkg/ezkl'
+} from '../examples/wasm-test-app/pkg/ezkl'
 
 const Lib = {
     init,
