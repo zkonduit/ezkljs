@@ -1,7 +1,7 @@
 import request from '../utils/request'
-import isValidHexString from '../utils/isValidHexString'
+import { isValidHexString } from '../utils/stringValidators'
 
-const URL = 'https://hub.ezkl.xyz/graphql '
+const URL = 'https://hub.ezkl.xyz/graphql'
 
 export interface Artifact {
   name: string
@@ -9,7 +9,7 @@ export interface Artifact {
   id: string
 }
 
-async function artifacts() {
+async function getArtifacts() {
   const { artifacts } = await request<{ artifacts: Artifact[] }>(URL, {
     method: 'POST',
     headers: {
@@ -37,7 +37,7 @@ export interface ProveResponse {
   }
 }
 
-async function prove(id: string, input: Buffer) {
+async function initiateProof(id: string, input: Buffer) {
   const operations = {
     query: `mutation Prove($id: String!, $input: Upload!) {
       prove(id: $id, input: $input) { 
@@ -114,4 +114,4 @@ async function getProof(taskId: string) {
   return proofDetails
 }
 
-export const Router = { artifacts, prove, getProof }
+export const Router = { getArtifacts, initiateProof, getProof }
