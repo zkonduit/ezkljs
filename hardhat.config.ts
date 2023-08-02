@@ -1,7 +1,6 @@
 import { HardhatUserConfig } from 'hardhat/config'
 import '@nomicfoundation/hardhat-toolbox'
 import '@typechain/hardhat'
-import '@nomicfoundation/hardhat-ethers'
 
 const config: HardhatUserConfig = {
   solidity: '0.8.20',
@@ -9,6 +8,7 @@ const config: HardhatUserConfig = {
     artifacts: './test/artifacts',
     cache: './test/cache',
     sources: './test/contracts',
+    tests: './test/hardhat',
   },
   typechain: {
     outDir: './test/typechain-types', // Specify your custom directory here

@@ -8,7 +8,7 @@ import init, {
   genPk,
   genVk,
   verify,
-  prove,
+  prove
 } from '../examples/wasm-test-app/pkg/ezkl'
 
 const Lib = {

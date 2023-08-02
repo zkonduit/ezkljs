@@ -1,6 +1,10 @@
 const fs = require('fs')
 const path = require('path')
 
+/**
+ * @param {fs.PathOrFileDescriptor} filePath
+ * @param {{ [s: string]: any; } | ArrayLike<any>} renameMappings
+ */
 function renameExports(filePath, renameMappings) {
   fs.readFile(filePath, 'utf8', function (err, data) {
     if (err) {

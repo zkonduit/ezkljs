@@ -1,17 +1,17 @@
-import { Helper } from '../src/submodules/helper'
+import { Helper } from '../../src/submodules/helper'
 const { parseProof, simulateVerify } = Helper
 import { ethers } from 'hardhat'
-import { Verifier } from './typechain-types/Verifier'
+import { Verifier } from '../typechain-types'
 import { assert } from 'ethers'
 import * as fs from 'fs'
 
 describe('ezkl', () => {
-  let Verifier: Verifier
+  let verifier: Verifier 
   let proofPath: string = './test/data/test.pf'
   let rpc_url: string = 'http://127.0.0.1:8545/'
   beforeAll(async () => {
     // Instantiate contract
-    Verifier = await ethers.deployContract('Verifier')
+    verifier = (await ethers.deployContract('Verifier')) as any
   })
   describe('parseProof', () => {
     it('should return pubInputs and proof from test.pf file', async () => {
@@ -23,14 +23,14 @@ describe('ezkl', () => {
       console.info('proof: ', proof)
 
       // Call verify function and return results
-      const result = await Verifier.verify(pubInputs, proof)
+      const result = await verifier.verify(pubInputs, proof)
 
       assert(result == true, 'Proof parsing worked', 'BAD_DATA')
     })
   })
   describe('simulateVerify', () => {
     it('should return true for test.pf file', async () => {
-      let address = await Verifier.getAddress()
+      let address = await verifier.getAddress()
       // get provider
       let provider = ethers.provider
       let abi = [
