@@ -1,69 +1,74 @@
-import { Helper } from '../src/submodules/helper';
-const { parseProof, simulateVerify } = Helper;
-import { ethers } from 'hardhat';
-import { Verifier } from './typechain-types/Verifier';
-import { assert } from 'ethers';
-import * as fs from 'fs';
+import { Helper } from '../src/submodules/helper'
+const { parseProof, simulateVerify } = Helper
+import { ethers } from 'hardhat'
+import { Verifier } from './typechain-types/Verifier'
+import { assert } from 'ethers'
+import * as fs from 'fs'
 
 describe('ezkl', () => {
-  let Verifier: Verifier;
-  let proofPath: string = "./test/data/test.pf"
-  let rpc_url: string = "http://127.0.0.1:8545/"
+  let Verifier: Verifier
+  let proofPath: string = './test/data/test.pf'
+  let rpc_url: string = 'http://127.0.0.1:8545/'
   beforeAll(async () => {
     // Instantiate contract
-    Verifier = await ethers.deployContract("Verifier");
-  });
+    Verifier = await ethers.deployContract('Verifier')
+  })
   describe('parseProof', () => {
-    it('should return pubInputs and proof from test.pf file', async() => {
+    it('should return pubInputs and proof from test.pf file', async () => {
+      let proofContent = fs.readFileSync(proofPath, 'utf-8') // Read file content
 
-      let proofContent = fs.readFileSync(proofPath, 'utf-8'); // Read file content
+      let [pubInputs, proof] = parseProof(proofContent)
 
-      let [pubInputs, proof] = parseProof(proofContent);
+      console.info('publicInputs: ', pubInputs)
+      console.info('proof: ', proof)
 
-      console.info("publicInputs: ", pubInputs);
-      console.info("proof: ", proof);
-  
       // Call verify function and return results
-      const result = await Verifier.verify(pubInputs, proof);
+      const result = await Verifier.verify(pubInputs, proof)
 
-      assert(result == true, "Proof parsing worked", "BAD_DATA");
-    });
-  });
+      assert(result == true, 'Proof parsing worked', 'BAD_DATA')
+    })
+  })
   describe('simulateVerify', () => {
-    it('should return true for test.pf file', async() => {
-      let address = await Verifier.getAddress();
+    it('should return true for test.pf file', async () => {
+      let address = await Verifier.getAddress()
       // get provider
-      let provider = ethers.provider;
+      let provider = ethers.provider
       let abi = [
         {
-          "inputs": [
+          inputs: [
             {
-              "internalType": "uint256[]",
-              "name": "pubInputs",
-              "type": "uint256[]"
+              internalType: 'uint256[]',
+              name: 'pubInputs',
+              type: 'uint256[]',
             },
             {
-              "internalType": "bytes",
-              "name": "proof",
-              "type": "bytes"
-            }
+              internalType: 'bytes',
+              name: 'proof',
+              type: 'bytes',
+            },
           ],
-          "name": "verify",
-          "outputs": [
+          name: 'verify',
+          outputs: [
             {
-              "internalType": "bool",
-              "name": "",
-              "type": "bool"
-            }
+              internalType: 'bool',
+              name: '',
+              type: 'bool',
+            },
           ],
-          "stateMutability": "view",
-          "type": "function"
-        }
+          stateMutability: 'view',
+          type: 'function',
+        },
       ]
-      let proofContent = fs.readFileSync(proofPath, 'utf-8'); // Read file content
-      let [pubInputs, proof] = parseProof(proofContent);
-      let result = await simulateVerify(pubInputs, proof, provider, address, abi);
-      assert(result == true, "Simulate verify worked", "BAD_DATA");
-    });
+      let proofContent = fs.readFileSync(proofPath, 'utf-8') // Read file content
+      let [pubInputs, proof] = parseProof(proofContent)
+      let result = await simulateVerify(
+        pubInputs,
+        proof,
+        provider,
+        address,
+        abi,
+      )
+      assert(result == true, 'Simulate verify worked', 'BAD_DATA')
+    })
   })
-});
+})

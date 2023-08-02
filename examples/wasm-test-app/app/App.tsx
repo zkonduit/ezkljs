@@ -1,43 +1,42 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client'
+import React, { useEffect, useState } from 'react'
 
-import init from '../pkg/ezkl';
+import init from '../pkg/ezkl'
 
-import GenPK from './GenPk';
-import GenVk from './GenVk';
-import GenProof from './GenProof';
-import Verify from './Verify';
-import Hash from './Hash';
+import GenPK from './GenPk'
+import GenVk from './GenVk'
+import GenProof from './GenProof'
+import Verify from './Verify'
+import Hash from './Hash'
 
 interface Files {
-  [key: string]: File | null;
+  [key: string]: File | null
 }
 
 export default function Home() {
-  const [files, setFiles] = useState<Files>({});
+  const [files, setFiles] = useState<Files>({})
 
   useEffect(() => {
     async function run() {
       // Initialize the WASM module
-      await init();
+      await init()
     }
-    run();
-  });
+    run()
+  })
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const id = event.target.id;
-    const file = event.target.files?.item(0) || null;
-    setFiles(prevFiles => ({ ...prevFiles, [id]: file }));
-  };
-
+    const id = event.target.id
+    const file = event.target.files?.item(0) || null
+    setFiles((prevFiles) => ({ ...prevFiles, [id]: file }))
+  }
 
   return (
-    <div className="App">
+    <div className='App'>
       <GenPK
         files={{
           model: files['model_ser_pk'],
           srs: files['srs_ser_pk'],
-          circuitSettings: files['circuit_settings_ser_pk']
+          circuitSettings: files['circuit_settings_ser_pk'],
         }}
         handleFileChange={handleFileChange}
       />
@@ -76,5 +75,5 @@ export default function Home() {
         handleFileChange={handleFileChange}
       />
     </div>
-  );
+  )
 }

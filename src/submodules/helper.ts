@@ -1,5 +1,5 @@
-import { ethers, Contract } from 'ethers';
-import * as JSONBig from 'json-bigint';
+import { ethers, Contract } from 'ethers'
+import * as JSONBig from 'json-bigint'
 
 interface Snark {
   instances: Array<Array<Array<string>>>
@@ -25,15 +25,14 @@ function vecu64ToField(b: string[]): string {
 
 function fieldToVecU64(s: string): string[] {
   const inputBigInt = BigInt(s)
-  const arr = new Array(4).fill("0")
+  const arr = new Array(4).fill('0')
   for (let i = 0; i < 4; i++) {
-    const mask = BigInt("0xFFFFFFFFFFFFFFFF") << BigInt(i * 64)
+    const mask = BigInt('0xFFFFFFFFFFFFFFFF') << BigInt(i * 64)
     const val = (inputBigInt & mask) >> BigInt(i * 64)
     arr[3 - i] = val.toString()
   }
   return arr
 }
-
 
 function parseProof(proofFileContent: string): [string[], string] {
   // Parse proofFileContent into Snark object using JSONBig
@@ -81,5 +80,5 @@ export const Helper = {
   parseProof,
   simulateVerify,
   vecu64ToField,
-  fieldToVecU64
+  fieldToVecU64,
 }
