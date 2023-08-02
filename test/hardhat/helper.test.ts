@@ -6,7 +6,7 @@ import { assert } from 'ethers'
 import * as fs from 'fs'
 
 describe('ezkl', () => {
-  let verifier: Verifier 
+  let verifier: Verifier
   let proofPath: string = './test/data/test.pf'
   let rpc_url: string = 'http://127.0.0.1:8545/'
   beforeAll(async () => {

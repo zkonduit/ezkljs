@@ -42,14 +42,8 @@ const renameMappings = {
 }
 
 // Define file paths
-const typeDefFile = path.resolve(
-  __dirname,
-  '../../examples/wasm-test-app/pkg/ezkl.d.ts',
-)
-const jsFile = path.resolve(
-  __dirname,
-  '../../examples/wasm-test-app/pkg/ezkl.js',
-)
+const typeDefFile = path.resolve(__dirname, '../pkg/ezkl.d.ts')
+const jsFile = path.resolve(__dirname, '../pkg/ezkl.js')
 
 // Rename exports in both files
 renameExports(typeDefFile, renameMappings)

@@ -13,7 +13,7 @@ const { getArtifacts } = Router
 let artifacts: Artifact[]
 let proofStatus: ProveResponse['prove']
 
-jest.setTimeout(10000); // Set a default timeout of 10 seconds for all tests in this file
+jest.setTimeout(10000) // Set a default timeout of 10 seconds for all tests in this file
 
 describe('router', () => {
   it('get artifacts', async () => {

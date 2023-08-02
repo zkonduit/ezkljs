@@ -21,9 +21,15 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
-    },
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.cjs", "src/**/*.mjs", "hardhat.config.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.cjs",
+    "src/**/*.mjs",
+    "hardhat.config.ts"
+  ],
   "exclude": ["node_modules"],
   // NEW: Options for file/directory watching
   "watchOptions": {
