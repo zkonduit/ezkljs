@@ -53,13 +53,13 @@ async function simulateVerify(
   proof: string,
   provider: ethers.Provider,
   contractAddress: string,
-  abi: ethers.InterfaceAbi
+  abi: ethers.InterfaceAbi,
 ): Promise<boolean> {
   // Initialize provider and contract
   const contract = new Contract(
     contractAddress,
     abi,
-    provider
+    provider,
   ) as VerifierContract
   const result: boolean = await contract.verify(pubInputs, proof)
   return result
