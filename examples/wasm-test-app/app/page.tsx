@@ -2,7 +2,7 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
 
-const App = dynamic(() => import('./App'));
+const App = dynamic(() => import('./App'), { ssr: false });
 const TestScript = dynamic(() => import('./WASMTests'), { ssr: false }); // Assuming this component uses browser-only APIs
 
 function Home() {

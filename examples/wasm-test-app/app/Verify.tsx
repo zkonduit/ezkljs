@@ -1,34 +1,19 @@
-import { useState, ChangeEvent, FC } from 'react';
-import { verify } from '../pkg/ezkl';
-import { readUploadedFileAsText } from './Utils';
+import { useState, ChangeEvent } from 'react';
+import { handleVerifyButton } from './Utils';
 
-interface Verify {
-    proofFile: File | null;
-    vkFile: File | null;
-    circuitSettingsFile: File | null;
-    srsFile: File | null;
+interface VerifyProps {
+    files: {
+        proof: File | null;
+        vk: File | null;
+        circuitSettings: File | null;
+        srs: File | null;
+    }
     handleFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Verify: FC<Verify> = ({ proofFile, vkFile, circuitSettingsFile, srsFile, handleFileChange }) => {
+export default function Verify({ files, handleFileChange }: VerifyProps) {
     const [verifyResult, setVerifyResult] = useState('');
 
-    const handleVerifyButton = async () => {
-        try {
-            if (proofFile && vkFile && circuitSettingsFile && srsFile) {
-                const proof_js_file = await readUploadedFileAsText(proofFile);
-                const vk_file = await readUploadedFileAsText(vkFile);
-                const circuit_settings_ser_verify_file = await readUploadedFileAsText(circuitSettingsFile);
-                const srs_ser_verify_file = await readUploadedFileAsText(srsFile);
-                const result = verify(proof_js_file, vk_file, circuit_settings_ser_verify_file, srs_ser_verify_file);
-                setVerifyResult(result ? 'True' : 'False');
-            } else {
-                console.error('Required HTMLInputElement(s) are null');
-            }
-        } catch (error) {
-            console.error("An error occurred verifying proof:", error);
-        }
-    };
     return (
         <div>
             <h1>Verify</h1>
@@ -40,10 +25,17 @@ const Verify: FC<Verify> = ({ proofFile, vkFile, circuitSettingsFile, srsFile, h
             <input id="circuit_settings_ser_verify" type="file" onChange={handleFileChange} placeholder="circuit_settings_ser_verify" />
             <label htmlFor="srs_ser_verify">SRS:</label>
             <input id="srs_ser_verify" type="file" onChange={handleFileChange} placeholder="srs_ser_verify" />
-            <button id="verifyButton" onClick={handleVerifyButton} disabled={!proofFile || !vkFile || !circuitSettingsFile || !srsFile}>Verify</button>
+            <button
+                id="verifyButton"
+                onClick={async () => {
+                    if (Object.values(files).every(file => file instanceof File)) {
+                        const result = await handleVerifyButton(files as { [key: string]: File })
+                        setVerifyResult(result ? 'True' : 'False');
+                    }
+                }}
+                disabled={!Object.values(files).every(file => file instanceof File)}>Verify</button>
             <h2>Result:</h2>
             <div>{verifyResult}</div>
         </div>
     )
 }
-export default Verify;

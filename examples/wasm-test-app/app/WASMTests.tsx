@@ -1,186 +1,143 @@
-import { useState, useEffect } from "react";
-import init, { 
-    genPk, 
-    genVk, 
-    prove,
-    verify,
-    poseidonHash
- } from '../pkg/ezkl';
-import { readUploadedFileAsText } from './Utils';
+import { useState, useEffect, FC } from "react";
+import init from '../pkg/ezkl';
+import {
+    handleGenPkButton,
+    handleGenVkButton,
+    handleGenProofButton,
+    handleVerifyButton,
+    handleGenHashButton
+} from './Utils';
 
-const TestScript = () => {
-    const [modelFile, setModelFile] = useState<File | null>(null);
-    const [srsFile, setSrsFile] = useState<File | null>(null);
-    const [circuitSettingsFile, setCircuitSettingsFile] = useState<File | null>(null);
-    const [pkFile, setPkFile] = useState<File | null>(null);
-    const [dataFile, setDataFile] = useState<File | null>(null);
-    const [pkResult, setPkResult] = useState<string | null>(null);
-    const [vkResult, setVkResult] = useState<string | null>(null);
-    const [proofResult, setProofResult] = useState<string | null>(null);
-    const [proofFile, setProofFile] = useState<File | null>(null);
-    const [vkFile, setVkFile] = useState<File | null>(null);
-    const [verifyResult, setVerifyResult] = useState<string | null>(null);
-    const [messageFile, setMessageFile] = useState<File | null>(null);
-    const [hashResult, setHashResult] = useState<string | null>(null);
+const filesNames = [
+    'test.onnx',
+    'kzg',
+    'settings.json',
+    'test.provekey',
+    'test.witness.json',
+    'test.proof',
+    'test.key',
+    'message'
+];
 
-    // Similar to componentDidMount and componentDidUpdate:
+interface IFiles {
+    [key: string]: File;
+}
+
+interface IResults {
+    [key: string]: string;
+}
+
+const TestScript: FC = () => {
+    const [files, setFiles] = useState<IFiles>({});
+    const [results, setResults] = useState<IResults>({});
+
     useEffect(() => {
         async function run() {
-        // Initialize the WASM module
-        await init();
+            // Initialize the WASM module
+            await init();
+
+            // Load files
+            filesNames.forEach(fileName => {
+                fetch(`/data/${fileName}`)
+                    .then(res => res.blob())
+                    .then(blob => setFiles(prevFiles => ({
+                        ...prevFiles,
+                        [fileName]: new File([blob], fileName)
+                    })));
+            });
         }
         run();
-    });
-      
-
-    // Load files
-    useEffect(() => {
-        fetch('/data/test.onnx')
-            .then(res => res.blob())
-            .then(blob => setModelFile(new File([blob], 'test.onnx')));
-
-        fetch('/data/kzg')
-            .then(res => res.blob())
-            .then(blob => setSrsFile(new File([blob], 'kzg')));
-
-        fetch('/data/settings.json')
-            .then(res => res.blob())
-            .then(blob => setCircuitSettingsFile(new File([blob], 'settings.json')));
-
-        fetch('/data/test.provekey')
-            .then(res => res.blob())
-            .then(blob => setPkFile(new File([blob], 'test.provekey')));
-
-        fetch('/data/test.witness.json') // replace 'data' with your actual file name
-            .then(res => res.blob())
-            .then(blob => setDataFile(new File([blob], 'test.witness.json')));
-
-        fetch('/data/test.proof')
-            .then(res => res.blob())
-            .then(blob => setProofFile(new File([blob], 'test.proof')));
-
-        fetch('/data/test.key')
-            .then(res => res.blob())
-            .then(blob => setVkFile(new File([blob], 'test.key')));
-
-        fetch('/data/message')
-            .then(res => res.blob())
-            .then(blob => setMessageFile(new File([blob], 'message')));
     }, []);
-    const handleGenPkButton = async (modelFile: File, srsFile: File, circuitSettingsFile: File) => {
-        try {
-            const model_ser = await readUploadedFileAsText(modelFile);
-            const srs_ser = await readUploadedFileAsText(srsFile);
-            const circuit_settings_ser = await readUploadedFileAsText(circuitSettingsFile);
-            const result_pk = genPk(model_ser, srs_ser, circuit_settings_ser);
-            console.log(result_pk)
-            setPkResult(`Test passed, ${result_pk}`);
-        } catch (error) {
-            setPkResult('GenPk test failed');
-            console.error(error);
-            throw new Error('GenPk test failed');
-        }
-    };
-    const handleGenVkButton = async (pkFile: File, circuitSettingsFile: File) => {
-        try {
-            const pk_ser = await readUploadedFileAsText(pkFile);
-            const circuit_settings_ser = await readUploadedFileAsText(circuitSettingsFile);
-            const result_vk = genVk(pk_ser, circuit_settings_ser);
-            console.log(result_vk)
-            setVkResult(`Test passed, ${result_vk}`);
-        } catch (error) {
-            setVkResult('GenVk test failed');
-            console.error(error);
-            throw new Error('GenVk test failed');
-        }
-    };
-
-    const handleGenProofButton = async (dataFile: File, pkFile: File, modelFile: File, circuitSettingsFile: File, srsFile: File) => {
-        try {
-            const data_prove_file = await readUploadedFileAsText(dataFile);
-            const pk_prove_file = await readUploadedFileAsText(pkFile);
-            const model_ser_prove_file = await readUploadedFileAsText(modelFile);
-            const circuit_settings_ser_prove_file = await readUploadedFileAsText(circuitSettingsFile);
-            const srs_ser_prove_file = await readUploadedFileAsText(srsFile);
-            const result_proof = prove(data_prove_file, pk_prove_file, model_ser_prove_file, circuit_settings_ser_prove_file, srs_ser_prove_file);
-            console.log(result_proof)
-            setProofResult(`Test passed, ${result_proof}`);
-        } catch (error) {
-            setProofResult('GenProof test failed');
-            console.error(error);
-            throw new Error('GenProof test failed');
-        }
-    };
-
-    const handleVerifyButton = async (proofFile: File, vkFile: File, circuitSettingsFile: File, srsFile: File) => {
-        try {
-            const proof_ser = await readUploadedFileAsText(proofFile);
-            const vk_ser = await readUploadedFileAsText(vkFile);
-            const circuit_settings_ser = await readUploadedFileAsText(circuitSettingsFile);
-            const srs_ser = await readUploadedFileAsText(srsFile);
-            const result_verify = verify(proof_ser, vk_ser, circuit_settings_ser, srs_ser);
-            console.log(result_verify)
-            setVerifyResult(`Test passed, ${result_verify}`);
-        } catch (error) {
-            setVerifyResult('Verify test failed');
-            console.error(error);
-            throw new Error('Verify test failed');
-        }
-    };
-
-    const handleGenHashButton = async (messageFile: File) => {
-        try {
-            const message_ser = await readUploadedFileAsText(messageFile);
-            const result_hash = poseidonHash(message_ser);
-            console.log(result_hash)
-            setHashResult(`Test passed, ${result_hash}`);
-        } catch (error) {
-            setHashResult('GenHash test failed');
-            console.error(error);
-            throw new Error('GenHash test failed');
-        }
-    };
 
 
     useEffect(() => {
-        if (modelFile && srsFile && circuitSettingsFile) {
-            setTimeout(() => {
-                handleGenPkButton(modelFile, srsFile, circuitSettingsFile);
-            }, 1000); 
+        if (files['test.onnx'] && files['kzg'] && files['settings.json']) {
+            try {
+                const result = handleGenPkButton({
+                    modelFile: files['test.onnx'],
+                    srsFile: files['kzg'],
+                    circuitSettingsFile: files['settings.json']
+                });
+                setResults(prevResults => ({ ...prevResults, pkResult: `Test passed, ${result}` }));
+            } catch (error) {
+                console.error(error);
+                setResults(prevResults => ({ ...prevResults, pkResult: 'GenPk test failed' }));
+            }
         }
-    }, [modelFile, srsFile, circuitSettingsFile]);
+    }, [files]);
 
     useEffect(() => {
-        if (pkFile && circuitSettingsFile) {
-            setTimeout(() => {
-                handleGenVkButton(pkFile, circuitSettingsFile);
-            }, 1000); 
+        if (files['test.provekey'] && files['settings.json']) {
+            try {
+                const result = handleGenVkButton({
+                    pkFile: files['test.provekey'],
+                    circuitSettingsFile: files['settings.json']
+                });
+                setResults(prevResults => ({ ...prevResults, vkResult: `Test passed, ${result}` }));
+            } catch (error) {
+                console.error(error);
+                setResults(prevResults => ({ ...prevResults, vkResult: 'GenProof test failed' }));
+            }
         }
-    }, [pkFile, circuitSettingsFile]);
+    }, [files]);
 
     useEffect(() => {
-        if (dataFile && pkFile && modelFile && circuitSettingsFile && srsFile) {
-            setTimeout(() => {
-                handleGenProofButton(dataFile, pkFile, modelFile, circuitSettingsFile, srsFile);
-            }, 1000); 
+        if (
+            files['test.witness.json'] &&
+            files['test.provekey'] &&
+            files['test.onnx'] &&
+            files['settings.json'] &&
+            files['kzg']
+        ) {
+            try {
+                const result = handleGenProofButton({
+                    dataFile: files['test.witness.json'],
+                    pkFile: files['test.provekey'],
+                    modelFile: files['test.onnx'],
+                    circuitSettingsFile: files['settings.json'],
+                    srsFile: files['kzg'],
+                });
+                setResults(prevResults => ({ ...prevResults, proofResult: `Test passed, ${result}` }));
+            } catch (error) {
+                console.error(error);
+                setResults(prevResults => ({ ...prevResults, proofResult: 'GenProof test failed' }));
+            }
         }
-    }, [dataFile, pkFile, modelFile, circuitSettingsFile, srsFile]);
+    }, [files]);
 
     useEffect(() => {
-        if (proofFile && vkFile && circuitSettingsFile && srsFile) {
-            setTimeout(() => {
-                handleVerifyButton(proofFile, vkFile, circuitSettingsFile, srsFile);
-            }, 1000); 
+        if (
+            files['test.proof'] &&
+            files['test.key'] &&
+            files['settings.json'] &&
+            files['kzg']
+        ) {
+            try {
+                const result = handleVerifyButton({
+                    proofFile: files['test.proof'],
+                    vkFile: files['test.key'],
+                    circuitSettingsFile: files['settings.json'],
+                    srsFile: files['kzg'],
+                });
+                setResults(prevResults => ({ ...prevResults, verifyResult: `Test passed, ${result}` }));
+            } catch (error) {
+                console.error(error);
+                setResults(prevResults => ({ ...prevResults, verifyResult: 'Verify test failed' }));
+            }
         }
-    }, [proofFile, vkFile, circuitSettingsFile, srsFile]);
+    }, [files]);
 
     useEffect(() => {
-        if (messageFile) {
-            setTimeout(() => {
-                handleGenHashButton(messageFile);
-            }, 1000); 
+        if (files['message']) {
+            try {
+                const result = handleGenHashButton(files['message']);
+                setResults(prevResults => ({ ...prevResults, hashResult: `Test passed, ${result}` }));
+            } catch (error) {
+                console.error(error);
+                setResults(prevResults => ({ ...prevResults, hashResult: 'GenHash test failed' }));
+            }
         }
-    }, [messageFile]);
+    }, [files]);
 
 
 
@@ -189,15 +146,15 @@ const TestScript = () => {
         <div>
             <h1>Test script</h1>
             <h2>GenPK Test result:</h2>
-            <div>{pkResult}</div>
+            <div>{results.pkResult}</div>
             <h2>GenVK Test result:</h2>
-            <div>{vkResult}</div>
+            <div>{results.vkResult}</div>
             <h2>GenProof Test result:</h2>
-            <div>{proofResult}</div>
+            <div>{results.proofResult}</div>
             <h2>Verify Test result:</h2>
-            <div id="verifyResult">{verifyResult}</div>
+            <div id="verifyResult">{results.verifyResult}</div>
             <h2>Hash Test result:</h2>
-            <div id="hashResult">{hashResult}</div>
+            <div id="hashResult">{results.hashResult}</div>
         </div>
     );
 };

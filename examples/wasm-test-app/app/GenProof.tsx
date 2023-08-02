@@ -1,37 +1,20 @@
-import { useState, ChangeEvent, FC } from 'react';
-import { prove } from '../pkg/ezkl';
-import { readUploadedFileAsText, fileDownload } from './Utils';
+import { useState, ChangeEvent } from 'react';
+import { handleGenProofButton, FileDownload } from './Utils';
 
 interface GenProofProps {
-    dataFile: File | null;
-    pkFile: File | null;
-    modelFile: File | null;
-    circuitSettingsFile: File | null;
-    srsFile: File | null;
+    files: {
+        data: File | null;
+        pk: File | null;
+        model: File | null;
+        circuitSettings: File | null;
+        srs: File | null;
+    }
     handleFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const GenProof: FC<GenProofProps> = ({ dataFile, pkFile, modelFile, circuitSettingsFile, srsFile, handleFileChange }) => {
+export default function GenProof({ files, handleFileChange }: GenProofProps) {
     const [proofResult, setProofResult] = useState('');
-    const handleGenProofButton = async () => {
-        try {
-            if (dataFile && pkFile && modelFile && circuitSettingsFile && srsFile) {
-                const data_prove_file = await readUploadedFileAsText(dataFile);
-                const pk_prove_file = await readUploadedFileAsText(pkFile);
-                const model_ser_prove_file = await readUploadedFileAsText(modelFile);
-
-                const circuit_settings_ser_prove_file = await readUploadedFileAsText(circuitSettingsFile);
-                const srs_ser_prove_file = await readUploadedFileAsText(srsFile);
-                const result_proof = prove(data_prove_file, pk_prove_file, model_ser_prove_file, circuit_settings_ser_prove_file, srs_ser_prove_file);
-                setProofResult(result_proof ? 'Proof generation successful' : 'Proof generation failed');
-                fileDownload('network.proof', result_proof);
-            } else {
-                console.error('Required HTMLInputElement(s) are null');
-            }
-        } catch (error) {
-            console.error("An error occurred generating proof:", error);
-        }
-    };
+    const [buffer, setBuffer] = useState<Uint8Array | null>(null);
     return (
         <div>
             <h1>Prove</h1>
@@ -45,10 +28,19 @@ const GenProof: FC<GenProofProps> = ({ dataFile, pkFile, modelFile, circuitSetti
             <input id="circuit_settings_ser_prove" type="file" onChange={handleFileChange} placeholder="circuit_settings_ser_prove" />
             <label htmlFor="srs_ser_prove">SRS:</label>
             <input id="srs_ser_prove" type="file" onChange={handleFileChange} placeholder="srs_ser_prove" />
-            <button id="proveButton" onClick={handleGenProofButton} disabled={!dataFile || !pkFile || !circuitSettingsFile || !srsFile}>Prove</button>
+            <button
+                id="genProofButton"
+                onClick={async () => {
+                    if (Object.values(files).every(file => file instanceof File)) {
+                        const result = await handleGenProofButton(files as { [key: string]: File })
+                        setBuffer(result)
+                        setProofResult(result ? 'Proof generation successful' : 'Proof generation failed');
+                    }
+                }}
+                disabled={!Object.values(files).every(file => file instanceof File)}>Prove</button>
+            {buffer && <FileDownload fileName="proof.proof" buffer={buffer} />}
             <h2>Result:</h2>
             <div>{proofResult}</div>
         </div>
     );
 }
-export default GenProof;

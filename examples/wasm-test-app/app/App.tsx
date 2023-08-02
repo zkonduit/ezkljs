@@ -9,25 +9,13 @@ import GenProof from './GenProof';
 import Verify from './Verify';
 import Hash from './Hash';
 
+interface Files {
+  [key: string]: File | null;
+}
+
 export default function Home() {
-  const [srsFile, setSrsFile] = useState<File | null>(null);
-  const [circuitSettingsFile, setCircuitSettingsFile] = useState<File | null>(null);
-  const [modelFilePk, setModelFilePk] = useState<File | null>(null);
-  const [pkFileVk, setPkFileVk] = useState<File | null>(null);
-  const [circuitSettingsFileVk, setCircuitSettingsFileVk] = useState<File | null>(null);
-  const [dataFileProve, setDataFileProve] = useState<File | null>(null);
-  const [pkFileProve, setPkFileProve] = useState<File | null>(null);
-  const [modelFileProve, setModelFileProve] = useState<File | null>(null);
-  const [circuitSettingsFileProve, setCircuitSettingsFileProve] = useState<File | null>(null);
-  const [srsFileProve, setSrsFileProve] = useState<File | null>(null);
-  const [proofFileVerify, setProofFileVerify] = useState<File | null>(null);
-  const [vkFileVerify, setVkFileVerify] = useState<File | null>(null);
-  const [circuitSettingsFileVerify, setCircuitSettingsFileVerify] = useState<File | null>(null);
-  const [srsFileVerify, setSrsFileVerify] = useState<File | null>(null);
-  const [messageFile, setMessageFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<Files>({});
 
-
-  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     async function run() {
       // Initialize the WASM module
@@ -36,75 +24,57 @@ export default function Home() {
     run();
   });
 
-type FileSetterFunctions = {
-    [key: string]: (file: File | null) => void;
-};
-  
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const id = event.target.id;
+    const file = event.target.files?.item(0) || null;
+    setFiles(prevFiles => ({ ...prevFiles, [id]: file }));
+  };
 
-const fileSetters: FileSetterFunctions = {
-  'srs_ser_pk': setSrsFile,
-  'circuit_settings_ser_pk': setCircuitSettingsFile,
-  'model_ser_pk': setModelFilePk,
-  'data_prove': setDataFileProve,
-  'pk_prove': setPkFileProve,
-  'model_ser_prove': setModelFileProve,
-  'circuit_settings_ser_prove': setCircuitSettingsFileProve,
-  'srs_ser_prove': setSrsFileProve,
-  'pk_ser_vk': setPkFileVk,
-  'circuit_settings_ser_vk': setCircuitSettingsFileVk,
-  'proof_js': setProofFileVerify,
-  'vk': setVkFileVerify,
-  'circuit_settings_ser_verify': setCircuitSettingsFileVerify,
-  'srs_ser_verify': setSrsFileVerify,
-  'message_hash': setMessageFile,
-};
 
-const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const id = event.target.id;
-  const file = event.target.files?.item(0) || null;
-  const setFileFn = fileSetters[id];
-  if (setFileFn) {
-    setFileFn(file);
-  } else {
-    console.warn(`Unexpected file input id: ${id}`);
-  }
-};
+  return (
+    <div className="App">
+      <GenPK
+        files={{
+          model: files['model_ser_pk'],
+          srs: files['srs_ser_pk'],
+          circuitSettings: files['circuit_settings_ser_pk']
+        }}
+        handleFileChange={handleFileChange}
+      />
 
-return (
-  <div className="App">
-    <GenPK 
-      modelFile={modelFilePk} 
-      srsFile={srsFile} 
-      circuitSettingsFile={circuitSettingsFile} 
-      handleFileChange={handleFileChange} 
-    />
+      <GenVk
+        files={{
+          pk: files['pk_ser_vk'],
+          circuitSettings: files['circuit_settings_ser_vk'],
+        }}
+        handleFileChange={handleFileChange}
+      />
 
-    <GenVk
-      pkFile={pkFileVk}
-      circuitSettingsFile={circuitSettingsFileVk}
-      handleFileChange={handleFileChange}
-    />
+      <GenProof
+        files={{
+          data: files['data_prove'],
+          pk: files['pk_prove'],
+          model: files['model_ser_prove'],
+          circuitSettings: files['circuit_settings_ser_prove'],
+          srs: files['srs_ser_prove'],
+        }}
+        handleFileChange={handleFileChange}
+      />
 
-    <GenProof
-      dataFile={dataFileProve}
-      pkFile={pkFileProve}
-      modelFile={modelFileProve}
-      circuitSettingsFile={circuitSettingsFileProve}
-      srsFile={srsFileProve} 
-      handleFileChange={handleFileChange}   
-    />
-    
-    <Verify
-      proofFile={proofFileVerify}
-      vkFile={vkFileVerify}
-      circuitSettingsFile={circuitSettingsFileVerify}
-      srsFile={srsFileVerify}
-      handleFileChange={handleFileChange}
-    />
-    <Hash
-      message={messageFile}
-      handleFileChange={handleFileChange}
-    />
-  </div>
-);
+      <Verify
+        files={{
+          proof: files['proof_js'],
+          vk: files['vk'],
+          circuitSettings: files['circuit_settings_ser_verify'],
+          srs: files['srs_ser_verify'],
+        }}
+        handleFileChange={handleFileChange}
+      />
+
+      <Hash
+        message={files['message_hash']}
+        handleFileChange={handleFileChange}
+      />
+    </div>
+  );
 }

@@ -1,40 +1,31 @@
-import { useState, ChangeEvent, FC } from 'react';
-import { poseidonHash } from '../pkg/ezkl';
-import { readUploadedFileAsText, fileDownload } from './Utils';
+import { useState, ChangeEvent } from 'react';
+import { handleGenHashButton, FileDownload } from './Utils';
 
 interface HashProps {
     message: File | null;
     handleFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Hash: FC<HashProps> = ({ message, handleFileChange }) => {
+export default function Hash({ message, handleFileChange }: HashProps) {
+    const [buffer, setBuffer] = useState<Uint8Array | null>(null);
     const [hashResult, setHashResult] = useState<string | null>(null);
-
-    const handleHashButton = async () => {
-        try {
-            if (message) {
-                const messageText = await readUploadedFileAsText(message);
-                const result = poseidonHash(messageText);
-                setHashResult(result? `Hash: ${result}` : 'Hash Generation failed');
-                fileDownload('hash.txt', result);
-            } else {
-                console.error('Required HTMLInputElement is null');
-            }
-        } catch (error) {
-            console.error("An error occurred generating hash:", error);
-        }
-    };
 
     return (
         <div>
             <h1>Generate Hash</h1>
             <label htmlFor="message_hash">Message:</label>
             <input id="message_hash" type="file" onChange={handleFileChange} placeholder="Message" />
-            <button id="genHashButton" onClick={handleHashButton} disabled={!message}>Generate</button>
+            <button 
+                id="genHashButton" 
+                onClick={async () => {
+                    const result = await handleGenHashButton(message as File) // 'as' cast should be safe b/c of disabled button
+                    setBuffer(result)
+                    setHashResult(result ? `Hash: ${result}` : 'Hash Generation failed');
+                }} 
+                disabled={!message}>Generate</button>
+            {buffer && <FileDownload fileName="hash.key" buffer={buffer}/>}
             <h2>Result:</h2>
             <div>{hashResult}</div>
         </div>
     );
 };
-
-export default Hash;
