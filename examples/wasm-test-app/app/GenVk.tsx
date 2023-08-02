@@ -29,7 +29,7 @@ export default function GenVk({ files, handleFileChange}: GenVKProps) {
                     }
                 }}
                 disabled={!Object.values(files).every(file => file instanceof File)}>Generate</button>
-            {buffer && <FileDownload fileName="vk.key" buffer={buffer}/>}
+            {buffer && <FileDownload fileName="vk.key" buffer={buffer} handleDownloadCompleted={function (): void {setBuffer(null)}}/>}
             <h2>Result:</h2>
             <div>{vkResult}</div>
         </div>

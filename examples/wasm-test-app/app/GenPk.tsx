@@ -10,6 +10,7 @@ interface GenPKProps {
     handleFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
+
 export default function GenPK({ files, handleFileChange }: GenPKProps) {
     const [buffer, setBuffer] = useState<Uint8Array | null>(null);
     const [pkResult, setPkResult] = useState<string>("");
@@ -33,7 +34,7 @@ export default function GenPK({ files, handleFileChange }: GenPKProps) {
                     }
                 }}
                 disabled={!Object.values(files).every(file => file instanceof File)}>Generate</button>
-            {buffer && <FileDownload fileName="pk.key" buffer={buffer}/>}
+            {buffer && <FileDownload fileName="pk.key" buffer={buffer} handleDownloadCompleted={function (): void {setBuffer(null)}}/> }
             <h2>Result:</h2>
             <div>{pkResult}</div>
         </div>

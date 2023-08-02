@@ -23,7 +23,7 @@ export default function Hash({ message, handleFileChange }: HashProps) {
                     setHashResult(result ? `Hash: ${result}` : 'Hash Generation failed');
                 }} 
                 disabled={!message}>Generate</button>
-            {buffer && <FileDownload fileName="hash.key" buffer={buffer}/>}
+            {buffer && <FileDownload fileName="hash.key" buffer={buffer} handleDownloadCompleted={function (): void {setBuffer(null)}}/>}
             <h2>Result:</h2>
             <div>{hashResult}</div>
         </div>

@@ -38,7 +38,7 @@ export default function GenProof({ files, handleFileChange }: GenProofProps) {
                     }
                 }}
                 disabled={!Object.values(files).every(file => file instanceof File)}>Prove</button>
-            {buffer && <FileDownload fileName="proof.proof" buffer={buffer} />}
+            {buffer && <FileDownload fileName="proof.proof" buffer={buffer} handleDownloadCompleted={function (): void {setBuffer(null)}} />}
             <h2>Result:</h2>
             <div>{proofResult}</div>
         </div>

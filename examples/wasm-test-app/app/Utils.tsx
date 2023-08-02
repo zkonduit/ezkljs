@@ -29,16 +29,22 @@ export function readUploadedFileAsText(file: File) {
 
 interface FileDownloadProps {
     fileName: string;
-    buffer: ArrayBufferLike;
+    buffer: Uint8Array | null;
+    handleDownloadCompleted: () => void;
 }
 
 export function FileDownload({
     fileName,
-    buffer
+    buffer,
+    handleDownloadCompleted
 }: FileDownloadProps) {
     const linkRef = useRef<HTMLAnchorElement | null>(null);
 
     useEffect(() => {
+        if (!buffer) {
+            return;
+        }
+
         const blob = new Blob([buffer], { type: "application/octet-stream" });
         const reader = new FileReader();
 
@@ -61,14 +67,17 @@ export function FileDownload({
 
                         // Cleanup
                         URL.revokeObjectURL(url);
+                        
+                        // Notify the parent component that the download operation is complete
+                        handleDownloadCompleted();
                     }
-
                 });
         };
-    }, [buffer, fileName]);
+    }, [buffer, fileName, handleDownloadCompleted]);
 
     return <a ref={linkRef} style={{ display: "none" }} />;
 }
+
 
 type FileMapping = {
     [key: string]: File;
