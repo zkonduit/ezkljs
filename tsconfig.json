@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
     "target": "es2017",
     "outDir": "dist",
     "declaration": true,
@@ -24,7 +23,13 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.cjs", "src/**/*.mjs"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.cjs",
+    "src/**/*.mjs",
+    "hardhat.config.ts"
+  ],
   "exclude": ["node_modules"],
   // NEW: Options for file/directory watching
   "watchOptions": {
