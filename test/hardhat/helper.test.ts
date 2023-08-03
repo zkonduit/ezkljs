@@ -11,7 +11,7 @@ describe('ezkl', () => {
   let rpc_url: string = 'http://127.0.0.1:8545/'
   beforeAll(async () => {
     // Instantiate contract
-    verifier = (await ethers.deployContract('Verifier')) as any
+    verifier = await ethers.deployContract('Verifier')
   })
   describe('parseProof', () => {
     it('should return pubInputs and proof from test.pf file', async () => {
@@ -19,8 +19,8 @@ describe('ezkl', () => {
 
       let [pubInputs, proof] = parseProof(proofContent)
 
-      console.info('publicInputs: ', pubInputs)
-      console.info('proof: ', proof)
+      console.debug('publicInputs: ', pubInputs)
+      console.debug('proof: ', proof)
 
       // Call verify function and return results
       const result = await verifier.verify(pubInputs, proof)

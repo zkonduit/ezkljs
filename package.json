@@ -1,14 +1,14 @@
 {
   "name": "ezkl",
   "version": "1.0.0",
-  "node": ">=10.4.0",
+  "node": "18.12.1",
   "description": "Javascript bindings for ezkl",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "jest --config jest.config.ts --detectOpenHandles",
+    "test": "pnpm hardhat compile && jest --config jest.config.ts --detectOpenHandles",
     "test:w": "jest --config jest.config.ts --watch",
     "lint": "eslint ./src/",
     "lint:fix": "eslint ./src/ --fix",

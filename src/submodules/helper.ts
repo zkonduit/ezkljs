@@ -1,5 +1,5 @@
 import { ethers, Contract } from 'ethers'
-import * as JSONBig from 'json-bigint'
+import JSONBig from 'json-bigint'
 
 interface Snark {
   instances: Array<Array<Array<string>>>

@@ -9,7 +9,7 @@ import init, {
   genVk,
   verify,
   prove,
-} from './pkg/ezkl'
+} from '../pkg/ezkl'
 
 const Lib = {
   init,

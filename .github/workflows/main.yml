@@ -22,8 +22,6 @@ jobs:
           cache: 'pnpm'
       - name: Install npm dependencies
         run: pnpm install --frozen-lockfile
-      - name: Compile contracts
-        run: pnpm hardhat compile
       - name: Run linter
         run: pnpm run lint
       - name: Run Prettier
