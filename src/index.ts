@@ -1,4 +1,4 @@
 import { Router } from './submodules/router'
-import { Wasm } from './submodules/wasm'
+// import { Wasm } from './submodules/wasm'
 
-export { Router, Wasm }
+export { Router }

@@ -3,44 +3,128 @@ import { isValidHexString } from '../utils/stringValidators'
 
 const URL = 'https://hub.ezkl.xyz/graphql'
 
+const healthyStatus = {
+  res: "Welcome to the ezkl hub's backend!",
+  status: 'ok',
+} as const
+
+type HealthCheckResponse = typeof healthyStatus
+
+// void healthCheck()
+// void getArtifacts()
+
+async function healthCheck() {
+  try {
+    const data = await request<HealthCheckResponse>('https://hub.ezkl.xyz/')
+    if (data.status !== 'ok') {
+      throw new Error('Health check failed')
+    }
+    return data
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 export interface Artifact {
   name: string
   description: string
   id: string
 }
 
-async function getArtifacts() {
-  const { artifacts } = await request<{ artifacts: Artifact[] }>(URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+async function uploadArtifact(
+  model: Buffer | File,
+  settings: Buffer | File,
+  pk: Buffer | File,
+) {
+  const operations = {
+    query: `mutation($model: Upload!, $settings: Upload!, $pk: Upload!) {
+      uploadArtifact(
+        name: "test"
+        description: "test"
+        srs: perpetual_powers_of_tau_11 
+        model: $model
+        settings: $settings
+        pk: $pk 
+      ) {
+         id
+      }
+    }`,
+    variables: {
+      model,
+      settings,
+      pk,
     },
-    body: JSON.stringify({
-      query: `
-        query Artifacts {
-          artifacts {
-            name
-            description
-            id
-          }
-        }
-      `,
-    }),
-  })
-  return artifacts
+  }
+
+  const map = {
+    model: ['variables.model'],
+    settings: ['variables.settings'],
+    pk: ['variables.pk'],
+  }
+
+  const body = new FormData()
+  body.append('operations', JSON.stringify(operations))
+  body.append('map', JSON.stringify(map))
+  body.append('model', new Blob([model]))
+  body.append('settings', new Blob([settings]))
+  body.append('pk', new Blob([pk]))
+
+  try {
+    // const resp = await fetch('https://hub.ezkl.xyz/graphql', options)
+    // const data = await resp.json()
+    const data = await request<{ uploadArtifact: { id: string } }>(URL, {
+      unwrapData: true,
+      method: 'POST',
+      body,
+    })
+
+    return data
+  } catch (e) {
+    console.error(e)
+  }
 }
 
-export interface ProveResponse {
-  prove: {
+async function getArtifacts() {
+  try {
+    const { artifacts } = await request<{ artifacts: Artifact[] }>(URL, {
+      unwrapData: true,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
+          query Artifacts($first: Int, $skip: Int) {
+            artifacts(first: $first, skip: $skip) {
+              name
+              description
+              id
+            }
+          }
+        `,
+        variables: {
+          first: 100, // replace with the value you want
+          skip: 0, // replace with the value you want
+        },
+      }),
+    })
+    return artifacts
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+export interface InitiateProofResponse {
+  initiateProof: {
     taskId: string
     status: string
   }
 }
 
-async function initiateProof(id: string, input: Buffer) {
+async function initiateProof(id: string, input: Buffer | File) {
   const operations = {
-    query: `mutation Prove($id: String!, $input: Upload!) {
-      prove(id: $id, input: $input) { 
+    query: `mutation InitiateProof($id: String!, $input: Upload!) {
+      initiateProof(id: $id, input: $input) { 
         taskId 
         status 
       }}`,
@@ -59,12 +143,17 @@ async function initiateProof(id: string, input: Buffer) {
   body.append('map', JSON.stringify(map))
   body.append('input', new Blob([input]))
 
-  const { prove: proofStatus } = await request<ProveResponse>(URL, {
-    method: 'POST',
-    body,
-  })
+  try {
+    const { initiateProof } = await request<InitiateProofResponse>(URL, {
+      unwrapData: true,
+      method: 'POST',
+      body,
+    })
 
-  return proofStatus
+    return initiateProof
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 export interface Witness {
@@ -81,37 +170,50 @@ export interface ProofDetails {
 }
 
 async function getProof(taskId: string) {
-  const { proof: proofDetails } = await request<{ proof: ProofDetails }>(URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: `
-        query GetProof($taskId: String!){
-          proof(taskId: $taskId) {
-            taskId
-            status
-            proof
-            witness {
-              inputs
-              outputs
-              maxLookupInputs
-            }
-          }
-        }
-      `,
-      variables: {
-        taskId,
+  console.log('taskId!!!', taskId)
+  try {
+    const { getProof: proofDetails } = await request<{
+      getProof: ProofDetails
+    }>(URL, {
+      unwrapData: true,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    }),
-  })
+      body: JSON.stringify({
+        query: `query GetProof($taskId: String!){
+            getProof(taskId: $taskId) {
+              taskId
+              status
+              proof
+              witness {
+                inputs
+                outputs
+                maxLookupInputs
+              }
+            }
+          }`,
+        variables: {
+          taskId,
+        },
+      }),
+    })
 
-  if (!isValidHexString(proofDetails.proof)) {
-    throw new Error('Invalid proof')
+    if (!isValidHexString(proofDetails.proof)) {
+      // throw new Error('Invalid proof')
+      console.error('Invalid proof')
+    }
+
+    return proofDetails
+  } catch (e) {
+    console.error(e)
   }
-
-  return proofDetails
 }
 
-export const Router = { getArtifacts, initiateProof, getProof }
+export const Router = {
+  healthCheck,
+  uploadArtifact,
+  getArtifacts,
+  initiateProof,
+  getProof,
+}
