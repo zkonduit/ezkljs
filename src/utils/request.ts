@@ -15,6 +15,7 @@ export default async function request<TData>(
     if (logs) {
       console.log(response)
     }
+
     const result = await response.json()
 
     if (unwrapData) {

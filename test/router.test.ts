@@ -1,20 +1,26 @@
-import {
-  Router,
-  Artifact,
-  // ProveResponse,
-  InitiateProofResponse,
-  ProofDetails,
-} from '../src/submodules/router'
+import { router } from '../dist'
+
 import path from 'path'
 import fs from 'node:fs/promises'
-import { isValidV4UUID, isValidHexString } from '../src/utils/stringValidators'
+import { isValidV4UUID, isValidHexString } from '../dist/utils/stringValidators'
+import {
+  Artifact,
+  GetProofDetails,
+  InitiateProofResponse,
+} from '../dist/utils/parsers'
 
-const { getArtifacts } = Router
+const { getArtifacts } = router
 
 let artifacts: Artifact[] | undefined
-let proofStatus: InitiateProofResponse['initiateProof'] | undefined
+let initiatedProof: InitiateProofResponse['initiateProof'] | undefined
 
 describe('router', () => {
+  it('checks health', async () => {
+    expect(router.healthCheck).toBeDefined()
+    const health = await router.healthCheck()
+    expect(health?.status).toEqual('ok')
+    expect(health?.res).toEqual("Welcome to the ezkl hub's backend!")
+  })
   it('get artifacts', async () => {
     expect(getArtifacts).toBeDefined()
     artifacts = await getArtifacts()
@@ -40,12 +46,16 @@ describe('router', () => {
       const artifact = artifacts[0]
       if (artifact) {
         const artifactId = artifact.id
-        const filePath = path.resolve(__dirname, 'input.json')
+        const filePath = path.resolve(
+          __dirname,
+          'proof_artifacts',
+          'input.json',
+        )
         const file = await fs.readFile(filePath)
-        proofStatus = await Router.initiateProof(artifactId, file)
+        initiatedProof = await router.initiateProof(artifactId, file)
 
-        if (!proofStatus) {
-          throw new Error('No proofStatus returned')
+        if (!initiatedProof) {
+          throw new Error('No initiatedProof returned')
         }
       } else {
         throw new Error('No first artifact found')
@@ -53,38 +63,37 @@ describe('router', () => {
     })
 
     it('initiate proof', async () => {
-      if (!proofStatus) {
-        throw new Error('proofStatus undefined')
+      if (!initiatedProof) {
+        throw new Error('initiatedProof undefined')
       }
 
-      expect(Router.initiateProof).toBeDefined()
-      expect(proofStatus).toBeDefined()
+      expect(router.initiateProof).toBeDefined()
+      expect(initiatedProof).toBeDefined()
 
-      expect(proofStatus.status).toEqual('PENDING')
-      expect(isValidV4UUID(proofStatus.taskId)).toEqual(true)
+      expect(initiatedProof.status).toEqual('PENDING')
+      expect(isValidV4UUID(initiatedProof.taskId)).toEqual(true)
     })
 
     it('retrieve proof', async () => {
-      if (!proofStatus) {
-        throw new Error('proofStatus undefined')
+      if (!initiatedProof) {
+        throw new Error('initiatedProof undefined')
       }
 
       await new Promise((resolve) => setTimeout(resolve, 5000)) // wait for 5 seconds
-      const proof: ProofDetails | undefined = await Router.getProof(
-        proofStatus.taskId,
-      )
+      const getProofDetails: GetProofDetails | undefined =
+        await router.getProof(initiatedProof.taskId)
 
-      if (!proof) {
-        throw new Error('No proof returned')
+      if (!getProofDetails) {
+        throw new Error('No getProofDetails returned')
       }
 
-      expect(isValidHexString(proof.proof)).toEqual(true)
+      expect(isValidHexString(getProofDetails.proof)).toEqual(true)
 
-      expect(proof.status).toEqual('SUCCESS')
-      expect(proof.taskId).toEqual(proofStatus.taskId)
+      expect(getProofDetails.status).toEqual('SUCCESS')
+      expect(getProofDetails.taskId).toEqual(initiatedProof.taskId)
 
-      expect(proof.witness.inputs).toBeDefined()
-      expect(proof.witness.outputs).toBeDefined()
+      expect(getProofDetails.witness.inputs).toBeDefined()
+      expect(getProofDetails.witness.outputs).toBeDefined()
     }, 10000)
   })
 })
