@@ -1,7 +1,3 @@
 node_modules
 dist
 *.tsbuildinfo
-/test/artifacts
-/test/cache
-/test/typechain-types
-/coverage

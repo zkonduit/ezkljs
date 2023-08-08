@@ -28,5 +28,5 @@ jobs:
         run: pnpm run prettier:check
       - name: Build package
         run: pnpm run build
-      - name: Run helper func tests
+      - name: Run tests
         run: pnpm run test

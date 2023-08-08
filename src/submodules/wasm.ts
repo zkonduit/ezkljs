@@ -6,7 +6,7 @@ interface Snark {
   proof: string
 }
 
-function vecu64ToField(b: string[]): string {
+function vecu64ToField(b: string[]): bigint {
   if (b.length !== 4) {
     throw new Error('Input should be an array of 4 big integers.')
   }
@@ -20,29 +20,18 @@ function vecu64ToField(b: string[]): string {
     // Note the conversion to BigInt for the shift operation
     result += BigInt(val) << (BigInt(i) * BigInt(64))
   }
-  return result.toString()
+  return result
 }
 
-function fieldToVecU64(s: string): string[] {
-  const inputBigInt = BigInt(s)
-  const arr = new Array(4).fill('0')
-  for (let i = 0; i < 4; i++) {
-    const mask = BigInt('0xFFFFFFFFFFFFFFFF') << BigInt(i * 64)
-    const val = (inputBigInt & mask) >> BigInt(i * 64)
-    arr[3 - i] = val.toString()
-  }
-  return arr
-}
-
-function parseProof(proofFileContent: string): [string[], string] {
+function parseProof(proofFileContent: string): [bigint[], string] {
   // Parse proofFileContent into Snark object using JSONBig
   const proof: Snark = JSONBig.parse(proofFileContent)
   console.log(proof.instances)
   // Parse instances to public inputs
-  const instances: string[][] = []
+  const instances: bigint[][] = []
 
   for (const val of proof.instances) {
-    const inner_array: string[] = []
+    const inner_array: bigint[] = []
     for (const inner of val) {
       inner_array.push(vecu64ToField(inner))
     }
@@ -54,13 +43,13 @@ function parseProof(proofFileContent: string): [string[], string] {
 }
 
 type VerifyMethod = {
-  verify: (pubInputs: string[], proof: string) => Promise<boolean>
+  verify: (pubInputs: bigint[], proof: string) => Promise<boolean>
 }
 
 type VerifierContract = ethers.Contract & VerifyMethod
 
 async function simulateVerify(
-  pubInputs: string[],
+  pubInputs: bigint[],
   proof: string,
   provider: ethers.Provider,
   contractAddress: string,
@@ -76,9 +65,7 @@ async function simulateVerify(
   return result
 }
 
-export const Helper = {
+export const Wasm = {
   parseProof,
   simulateVerify,
-  vecu64ToField,
-  fieldToVecU64,
 }

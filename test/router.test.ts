@@ -13,8 +13,6 @@ const { getArtifacts } = Router
 let artifacts: Artifact[]
 let proofStatus: ProveResponse['prove']
 
-jest.setTimeout(10000) // Set a default timeout of 10 seconds for all tests in this file
-
 describe('router', () => {
   it('get artifacts', async () => {
     expect(getArtifacts).toBeDefined()
@@ -38,7 +36,7 @@ describe('router', () => {
       const artifact = artifacts[0]
       if (artifact) {
         const artifactId = artifact.id
-        const filePath = path.resolve(__dirname, './data/input.json')
+        const filePath = path.resolve(__dirname, 'input.json')
         const file = await fs.readFile(filePath)
         proofStatus = await Router.initiateProof(artifactId, file)
       } else {
@@ -67,6 +65,6 @@ describe('router', () => {
       expect(proof.witness).toBeDefined()
       expect(proof.witness.inputs).toBeDefined()
       expect(proof.witness.outputs).toBeDefined()
-    })
+    }, 10000)
   })
 })
