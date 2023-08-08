@@ -15,8 +15,8 @@
     "prettier:write": "prettier --write ."
   },
   "keywords": [],
-  "author": "Casey Siebel",
-  "license": "ISC",
+  "author": "Jason Morton",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@jest/types": "^29.6.1",
     "@types/jest": "^29.5.3",
