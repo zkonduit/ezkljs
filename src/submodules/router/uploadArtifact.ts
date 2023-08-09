@@ -63,11 +63,6 @@ export default async function uploadArtifact(
       uploadArtifactResponse,
     )
 
-    console.log(
-      'validatedUploadArtifactResponse',
-      validatedUploadArtifactResponse,
-    )
-
     return validatedUploadArtifactResponse.uploadArtifact
   } catch (e) {
     throwError(e)
