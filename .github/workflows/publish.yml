@@ -25,6 +25,8 @@ jobs:
         run: pnpm run lint
       - name: Run Prettier
         run: pnpm run prettier:check
+      - name: Build package
+        run: pnpm run build
       - name: Run tests
         run: pnpm run test
       - name: Create Release Pull Requets or Publish
