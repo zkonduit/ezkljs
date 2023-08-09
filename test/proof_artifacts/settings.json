@@ -1,0 +1,20 @@
+{
+  "run_args": {
+    "tolerance": { "val": 0.0, "scales": [1, 1] },
+    "scale": 4,
+    "bits": 10,
+    "logrows": 11,
+    "batch_size": 1,
+    "input_visibility": "Private",
+    "output_visibility": "Public",
+    "param_visibility": "Private",
+    "allocated_constraints": null
+  },
+  "num_constraints": 27,
+  "model_instance_shapes": [[1, 4]],
+  "model_output_scales": [4],
+  "module_sizes": { "poseidon": [0, [0]], "elgamal": [0, [0]] },
+  "required_lookups": [{ "ReLU": { "scale": 16 } }],
+  "check_mode": "SAFE",
+  "version": "0.0.0"
+}

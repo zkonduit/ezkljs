@@ -1,21 +1,26 @@
-import {
-  Router,
-  Artifact,
-  ProveResponse,
-  ProofDetails,
-} from '../src/submodules/router'
+import { router } from '../dist'
+
 import path from 'path'
 import fs from 'node:fs/promises'
-import { isValidV4UUID, isValidHexString } from '../src/utils/stringValidators'
+import { isValidV4UUID, isValidHexString } from '../dist/utils/stringValidators'
+import {
+  Artifact,
+  GetProofDetails,
+  InitiateProofResponse,
+} from '../dist/utils/parsers'
 
-const { getArtifacts } = Router
+const { getArtifacts } = router
 
-let artifacts: Artifact[]
-let proofStatus: ProveResponse['prove']
-
-jest.setTimeout(10000) // Set a default timeout of 10 seconds for all tests in this file
+let artifacts: Artifact[] | undefined
+let initiatedProof: InitiateProofResponse['initiateProof'] | undefined
 
 describe('router', () => {
+  it('checks health', async () => {
+    expect(router.healthCheck).toBeDefined()
+    const health = await router.healthCheck()
+    expect(health?.status).toEqual('ok')
+    expect(health?.res).toEqual("Welcome to the ezkl hub's backend!")
+  })
   it('get artifacts', async () => {
     expect(getArtifacts).toBeDefined()
     artifacts = await getArtifacts()
@@ -35,38 +40,60 @@ describe('router', () => {
 
   describe('proof related operations', () => {
     beforeAll(async () => {
+      if (!artifacts || artifacts.length === 0) {
+        throw new Error('No artifacts')
+      }
       const artifact = artifacts[0]
       if (artifact) {
         const artifactId = artifact.id
-        const filePath = path.resolve(__dirname, './data/input.json')
+        const filePath = path.resolve(
+          __dirname,
+          'proof_artifacts',
+          'input.json',
+        )
         const file = await fs.readFile(filePath)
-        proofStatus = await Router.initiateProof(artifactId, file)
+        initiatedProof = await router.initiateProof(artifactId, file)
+
+        if (!initiatedProof) {
+          throw new Error('No initiatedProof returned')
+        }
       } else {
         throw new Error('No first artifact found')
       }
     })
 
     it('initiate proof', async () => {
-      expect(Router.initiateProof).toBeDefined()
-      expect(proofStatus).toBeDefined()
-      expect(proofStatus.taskId).toBeDefined()
-      expect(proofStatus.status).toBeDefined()
-      expect(proofStatus.status).toEqual('PENDING')
-      expect(isValidV4UUID(proofStatus.taskId)).toEqual(true)
+      if (!initiatedProof) {
+        throw new Error('initiatedProof undefined')
+      }
+
+      expect(router.initiateProof).toBeDefined()
+      expect(initiatedProof).toBeDefined()
+
+      expect(initiatedProof.status).toEqual('PENDING')
+      expect(isValidV4UUID(initiatedProof.taskId)).toEqual(true)
     })
 
     it('retrieve proof', async () => {
+      if (!initiatedProof) {
+        throw new Error('initiatedProof undefined')
+      }
+
       await new Promise((resolve) => setTimeout(resolve, 5000)) // wait for 5 seconds
-      const proof: ProofDetails = await Router.getProof(proofStatus.taskId)
-      expect(proof).toBeDefined()
-      expect(proof.proof).toBeDefined()
-      expect(proof.proof).toEqual(expect.any(String))
-      expect(isValidHexString(proof.proof)).toEqual(true)
-      expect(proof.status).toEqual('SUCCESS')
-      expect(proof.taskId).toEqual(proofStatus.taskId)
-      expect(proof.witness).toBeDefined()
-      expect(proof.witness.inputs).toBeDefined()
-      expect(proof.witness.outputs).toBeDefined()
-    })
+      const getProofDetails: GetProofDetails | undefined =
+        await router.getProof(initiatedProof.taskId)
+
+      if (!getProofDetails) {
+        throw new Error('No getProofDetails returned')
+      }
+
+      expect(isValidHexString(getProofDetails.proof)).toEqual(true)
+
+      expect(getProofDetails.status).toEqual('SUCCESS')
+      expect(getProofDetails.taskId).toEqual(initiatedProof.taskId)
+
+      expect(getProofDetails.witness.inputs).toBeDefined()
+      expect(getProofDetails.witness.outputs).toBeDefined()
+    }, 10000)
   })
 })
