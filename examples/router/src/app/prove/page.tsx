@@ -64,7 +64,7 @@ export default function Prove() {
   const [proof, setProof] = useState<GetProof>()
 
   const handleSubmitInitiateProof = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
   ) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -87,7 +87,7 @@ export default function Prove() {
     try {
       const initiatedProofResp = await router.initiateProof(
         result.data.artifactId,
-        result.data.inputFile
+        result.data.inputFile,
       )
 
       const validInitiatedProof = intiateProofSchema.parse(initiatedProofResp)

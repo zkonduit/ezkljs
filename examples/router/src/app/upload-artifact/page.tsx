@@ -63,7 +63,7 @@ export default function UploadArtifact() {
     const uploadArtifactResp = await router.uploadArtifact(
       result.data.model,
       result.data.settings,
-      result.data.pk
+      result.data.pk,
     )
     setFetching(false)
 

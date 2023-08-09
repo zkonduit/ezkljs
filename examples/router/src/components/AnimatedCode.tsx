@@ -30,7 +30,7 @@ const decodeHtmlEntity = (str: string) => {
 
   return str.replace(
     new RegExp(Object.keys(entities).join('|'), 'g'),
-    (match) => entities[match as EntityKeys]
+    (match) => entities[match as EntityKeys],
   )
 }
 

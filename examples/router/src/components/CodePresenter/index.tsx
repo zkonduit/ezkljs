@@ -27,7 +27,7 @@ function decodeHtmlEntity(str: string) {
 
   return str.replace(
     new RegExp(Object.keys(ENTITIES).join('|'), 'g'),
-    (match) => ENTITIES[match as EntityKeys]
+    (match) => ENTITIES[match as EntityKeys],
   )
 }
 

@@ -11,7 +11,7 @@ const artifactsSchema = z.array(
     name: z.string(),
     description: z.string(),
     id: z.string().uuid(),
-  })
+  }),
 )
 
 type Artifacts = z.infer<typeof artifactsSchema>
