@@ -1,7 +1,0 @@
-{
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/artifacts/page": "app/artifacts/page.js",
-  "/health-check/page": "app/health-check/page.js",
-  "/upload-artifact/page": "app/upload-artifact/page.js",
-  "/prove/page": "app/prove/page.js"
-}
