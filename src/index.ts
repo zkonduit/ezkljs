@@ -1,7 +1,3 @@
-import { router } from './router'
+import hub from './api'
 
-export { router, loadEngine }
-export default { router, loadEngine }
-
-// export { router }
-// export default { router }
+export default hub
