@@ -14,7 +14,7 @@
     "clean": "rm -r dist || true",
     "bundle": "webpack --config webpack.config.js",
     "post-bundle": "node postBundle.cjs",
-    "build": "pnpm bundle && pnpm postbuild",
+    "build": "pnpm bundle && pnpm post-bundle",
     "test": "node --test test/*",
     "test:w": "node --test --watch test/*",
     "build-and-test": "pnpm run clean && pnpm run build && pnpm run test",
