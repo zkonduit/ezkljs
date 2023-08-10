@@ -1,3 +1,3 @@
 import { router } from './submodules/router'
-
-export { router }
+import wasm from 'ezkl-wasm'
+export { router, wasm }
