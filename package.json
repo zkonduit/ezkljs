@@ -1,6 +1,6 @@
 {
   "name": "@ezkl.js/hub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The EZKL library is a set of tools to make integrating the [EZKL](https://github.com/zkonduit/ezkl) engine into your application easier than ever.",
   "main": "dist/bundle.commonjs.js",
   "module": "dist/bundle.esm.js",
