@@ -31,11 +31,11 @@ import { router } from 'ezkl'
 
 The router exposes useful APIs for interfacting with the EZKL Hub:
 
-- [healthCheck](#health-check)
-- [getArtifacts](#get-artifacts)
-- [uploadArtifact](#upload-artifact)
-- [initiateProof](#initiate-proof)
-- [getProof](#get-proof)
+- [healthCheck](#health-check): Check the health of the EZKL Hub.
+- [getArtifacts](#get-artifacts): Get a list of artifacts currently on the EZKL Hub.
+- [uploadArtifact](#upload-artifact): Upload an artifact to the EZKL Hub.
+- [initiateProof](#initiate-proof): Initiate a proof generation task.
+- [getProof](#get-proof): Get the result of a proof generation task.
 
 ---
 
