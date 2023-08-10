@@ -66,6 +66,13 @@ export const getProofResponseSchema = z.object({
 export const fileOrBufferSchema = z.custom<Buffer | File>()
 export type FileOrBuffer = z.infer<typeof fileOrBufferSchema>
 
+// Upload Artifact
+export const uploadArtifactSchema = z.object({
+  uploadArtifact: z.object({
+    id: z.string().uuid(),
+  }),
+})
+
 // Initiate Proof Input
 export const initiateProofInputSchema = z.object({
   artifactId: uuidSchema,

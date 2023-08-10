@@ -1,17 +1,12 @@
 import { UPLOAD_ARTIFACTE_MUTATION } from '@/graphql/mutations'
 import { GQL_URL } from '@/utils/constants'
+import {
+  FileOrBuffer,
+  fileOrBufferSchema,
+  uploadArtifactSchema,
+} from '@/utils/parsers'
 import request from '@/utils/request'
 import throwError from '@/utils/throwError'
-import { z } from 'zod'
-
-const fileOrBufferSchema = z.custom<Buffer | File>()
-type FileOrBuffer = z.infer<typeof fileOrBufferSchema>
-
-const uploadArtifactSchema = z.object({
-  uploadArtifact: z.object({
-    id: z.string().uuid(),
-  }),
-})
 
 /**
  * Uploads an artifact, consisting of model, settings, and pk files.
