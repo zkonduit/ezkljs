@@ -1,7 +1,7 @@
 {
   "name": "@ezkl.js/hub",
   "version": "1.0.0",
-  "description": "",
+  "description": "The EZKL library is a set of tools to make integrating the [EZKL](https://github.com/zkonduit/ezkl) engine into your application easier than ever.",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -49,5 +49,17 @@
   "dependencies": {
     "json-bigint": "^1.0.0",
     "zod": "^3.21.4"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zkonduit/ezkljs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zkonduit/ezkljs/issues"
+  },
+  "homepage": "https://github.com/zkonduit/ezkljs#readme"
 }
