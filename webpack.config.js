@@ -9,7 +9,12 @@ module.exports = [
       rules: [
         {
           test: /\.tsx?$/,
-          use: 'ts-loader',
+          use: {
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.cjs.json',
+            },
+          },
           include: [path.resolve(__dirname, 'src')],
         },
       ],
@@ -36,7 +41,12 @@ module.exports = [
       rules: [
         {
           test: /\.tsx?$/,
-          use: 'ts-loader',
+          use: {
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.esm.json',
+            },
+          },
           include: [path.resolve(__dirname, 'src')],
         },
       ],
