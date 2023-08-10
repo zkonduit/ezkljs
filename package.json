@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "clean": "rm -r dist || true",
-    "build": "tsc && resolve-tspaths",
+    "build": "tsc && resolve-tspaths && cp -r src/submodules/engine dist/submodules/",
     "test": "node --test test/*",
     "test:w": "node --test --watch test/*",
     "build-and-test": "pnpm run clean && pnpm run build && pnpm run test",
