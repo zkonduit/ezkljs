@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "ezkl",
   "version": "1.0.4",
   "description": "",
@@ -12,10 +13,10 @@
   "scripts": {
     "clean": "rm -r dist || true",
     "build": "tsc && resolve-tspaths",
-    "test": "jest --config jest.config.ts",
+    "test": "node --test test/*",
+    "test:w": "node --test --watch test/*",
     "build-and-test": "pnpm run clean && pnpm run build && pnpm run test",
     "dev": "tsc --watch",
-    "test:w": "jest --config jest.config.ts --watch",
     "lint": "eslint ./src/",
     "lint:fix": "eslint ./src/ --fix",
     "prettier:check": "prettier --check .",
