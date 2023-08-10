@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "clean": "rm -r dist || true",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js && pnpm postbuild",
+    "postbuild": "node postbuild.cjs",
     "test": "node --test test/*",
     "test:w": "node --test --watch test/*",
     "build-and-test": "pnpm run clean && pnpm run build && pnpm run test",

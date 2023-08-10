@@ -1,2 +1,3 @@
+postBuild.cjs
 dist
 webpack.config.js
