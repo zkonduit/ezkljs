@@ -1,33 +1,61 @@
 const path = require('path')
-// const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
-module.exports = {
-  entry: './src/index.ts',
-  devtool: 'inline-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        // exclude: [/node_modules/, path.resolve(__dirname, 'examples')],
-        include: [path.resolve(__dirname, 'src')],
+module.exports = [
+  // CommonJS Configuration
+  {
+    entry: './src/index.ts',
+    devtool: 'inline-source-map',
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          include: [path.resolve(__dirname, 'src')],
+        },
+      ],
+    },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js', '.wasm'],
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
       },
-    ],
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.wasm'],
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
+    },
+    output: {
+      filename: 'bundle.commonjs.js',
+      path: path.resolve(__dirname, 'dist'),
+      libraryTarget: 'commonjs2',
+      globalObject: 'this',
     },
   },
-  output: {
-    publicPath: '/',
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    library: {
-      name: 'ezkl',
-      type: 'umd',
+
+  // ES Modules Configuration
+  {
+    entry: './src/index.ts',
+    devtool: 'inline-source-map',
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          include: [path.resolve(__dirname, 'src')],
+        },
+      ],
     },
-    globalObject: 'this',
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js', '.wasm'],
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
+    },
+    output: {
+      filename: 'bundle.esm.js',
+      path: path.resolve(__dirname, 'dist'),
+      library: {
+        type: 'module',
+      },
+    },
+    experiments: {
+      outputModule: true,
+    },
   },
-}
+]
