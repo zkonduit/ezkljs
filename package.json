@@ -1,6 +1,6 @@
 {
-  "name": "@ezkl.js/hub",
-  "version": "1.0.4",
+  "name": "@ezkljs/hub",
+  "version": "1.0.0",
   "description": "The EZKL library is a set of tools to make integrating the [EZKL](https://github.com/zkonduit/ezkl) engine into your application easier than ever.",
   "main": "dist/bundle.commonjs.js",
   "module": "dist/bundle.esm.js",
@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "clean": "rm -r dist || true",
-    "bundle": "webpack --config webpack.config.js",
+    "bundle": "webpack --config webpack.config.js --mode production",
     "post-bundle": "node postBundle.cjs",
     "build": "pnpm bundle && pnpm post-bundle",
     "test": "node --test test/*",
