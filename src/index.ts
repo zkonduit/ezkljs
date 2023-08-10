@@ -1,25 +1,25 @@
 import { router } from './submodules/router'
 
-import init, {
-  poseidonHash,
-  // elgamalEncrypt,
-  // elgamalDecrypt,
-  genPk,
-  genVk,
-  verify,
-  prove,
-} from './submodules/engine/ezkl'
-
-const engine = {
-  init,
-  poseidonHash,
-  // elgamalEncrypt,
-  // elgamalDecrypt,
-  genPk,
-  genVk,
-  verify,
-  prove,
+async function loadEngine() {
+  if (typeof window !== 'undefined') {
+    const module = await import('./submodules/engine/ezkl')
+    const { default: init, poseidonHash, genPk, genVk, verify, prove } = module
+    const engine = {
+      init,
+      poseidonHash,
+      genPk,
+      genVk,
+      verify,
+      prove,
+    }
+    return engine
+  } else {
+    console.log('Node.js')
+    return null
+  }
 }
+// export { router, loadEngine }
+// export default { router, loadEngine }
 
-export { router, engine }
-export default { router, engine }
+export { router }
+export default { router }

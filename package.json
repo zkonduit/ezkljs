@@ -2,7 +2,7 @@
   "name": "ezkl",
   "version": "1.0.5",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
