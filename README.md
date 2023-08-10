@@ -21,7 +21,7 @@ pnpm add ezkl
 
 ---
 
-## Hub
+## Hub ([example usage in Next.js](https://github.com/zkonduit/ezkljs/tree/main/examples/router))
 
 To get started using EZKL Hub in your appplication you'll want to use the `router` submodule.
 
@@ -30,6 +30,8 @@ import { router } from 'ezkl'
 ```
 
 The router exposes useful APIs for interfacting with the EZKL Hub.
+
+---
 
 ### Health Check
 
@@ -50,9 +52,13 @@ Output:
 }
 ```
 
-### Artifacts
+---
 
-In order to query the artifacts currently available on the EZKL Hub you can use the `artifacts` method:
+### Get Artifacts
+
+In order to query the artifacts currently available on the EZKL Hub you can use the `getArtifacts` method.
+
+This method accepts an options object which allows you to specify the `limit` (the max number of artifacts to return) and `skip` (the number of artifacts to skip). `skip` and `limit` can be used together for effective pagination. If no options are provided, the default values are `skip = 0` and `limit = 20`.
 
 ```typescript
 type Artifact = {
@@ -61,7 +67,19 @@ type Artifact = {
   id: string
 }
 
-const artifacts: Artifact[] = await router.artifacts()
+type PageOptions =
+  | {
+      skip?: number
+      limit?: number
+    }
+  | undefined
+
+const pageOptions: PageOptions = {
+  skip: 0,
+  limit: 2,
+}
+
+const artifacts: Artifact[] = await router.getArtifacts(pageOptions)
 
 console.log(JSON.stringify(artifacts), null, 2)
 ```
@@ -82,6 +100,8 @@ Output:
   }
 ]
 ```
+
+---
 
 ### Upload Artifact
 
@@ -113,9 +133,13 @@ Output:
 }
 ```
 
+---
+
 ### Generate Proof
 
 Once the artifact is on Hub and you have it's `id` and a dataset (`input.json`) you'll be able to use EZKL Hub to generate proofs. This is done in two steps: `initiateProof` and `getProof`.
+
+---
 
 ### Initiate Proof
 
