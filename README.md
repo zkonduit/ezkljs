@@ -29,7 +29,13 @@ To get started using EZKL Hub in your appplication you'll want to use the `route
 import { router } from 'ezkl'
 ```
 
-The router exposes useful APIs for interfacting with the EZKL Hub.
+The router exposes useful APIs for interfacting with the EZKL Hub:
+
+- [healthCheck](#health-check)
+- [getArtifacts](#get-artifacts)
+- [uploadArtifact](#upload-artifact)
+- [initiateProof](#initiate-proof)
+- [getProof](#get-proof)
 
 ---
 
@@ -160,6 +166,8 @@ Output:
   "status": "PENDING"
 }
 ```
+
+---
 
 ### Get Proof
 
