@@ -1,10 +1,9 @@
 import { router } from './submodules/router'
-// import { Helper } from './submodules/helper'
 
 import init, {
   poseidonHash,
-  elgamalEncrypt,
-  elgamalDecrypt,
+  // elgamalEncrypt,
+  // elgamalDecrypt,
   genPk,
   genVk,
   verify,
@@ -14,8 +13,8 @@ import init, {
 const engine = {
   init,
   poseidonHash,
-  elgamalEncrypt,
-  elgamalDecrypt,
+  // elgamalEncrypt,
+  // elgamalDecrypt,
   genPk,
   genVk,
   verify,
@@ -23,3 +22,4 @@ const engine = {
 }
 
 export { router, engine }
+export default { router, engine }
