@@ -1,6 +1,6 @@
 {
-  "name": "ezkl",
-  "version": "1.0.5",
+  "name": "@ezkljs/hub",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "clean": "rm -r dist || true",
-    "build": "tsc && resolve-tspaths && cp -r src/submodules/engine dist/submodules/",
+    "build": "webpack --config webpack.config.js",
     "test": "node --test test/*",
     "test:w": "node --test --watch test/*",
     "build-and-test": "pnpm run clean && pnpm run build && pnpm run test",
