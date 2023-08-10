@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  ezkl-wasm:
+    specifier: ^0.0.2
+    version: 0.0.2
   json-bigint:
     specifier: ^1.0.0
     version: 1.0.0
@@ -1758,6 +1761,10 @@ packages:
       jest-message-util: 29.6.2
       jest-util: 29.6.2
     dev: true
+
+  /ezkl-wasm@0.0.2:
+    resolution: {integrity: sha512-XCMWHC9RxRsek+JwgLPsbO5EhmQxAxQb36Nr5sfKWpTEPrqoq0lznaschWcfSBrRkrmgPw5zOa+DRYl+ah9INA==}
+    dev: false
 
   /fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
