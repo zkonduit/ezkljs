@@ -26,7 +26,7 @@ module.exports = [
       },
     },
     output: {
-      filename: 'bundle.commonjs.js',
+      filename: 'bundle.cjs',
       path: path.resolve(__dirname, 'dist'),
       libraryTarget: 'commonjs2',
       globalObject: 'this',
@@ -58,7 +58,7 @@ module.exports = [
       },
     },
     output: {
-      filename: 'bundle.esm.js',
+      filename: 'bundle.mjs',
       path: path.resolve(__dirname, 'dist'),
       library: {
         type: 'module',
