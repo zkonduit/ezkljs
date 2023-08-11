@@ -48,22 +48,15 @@ export default async function uploadArtifact(
   body.append('pk', new Blob([validatedPkFile]))
 
   try {
-    console.log('6666666666 BEFORE REQUEST')
     const uploadArtifactResponse = await request<unknown>(GQL_URL, {
       unwrapData: true,
       method: 'POST',
       body,
     })
-    console.log('6666666666 AFTER REQUEST')
 
     const validatedUploadArtifactResponse = uploadArtifactSchema.parse(
       uploadArtifactResponse,
     )
-    console.log('')
-    console.log('0000000000000000000000000000000000000000000000000')
-    console.log('uploadArtifactResponse', uploadArtifactResponse)
-    console.log('0000000000000000000000000000000000000000000000000')
-    console.log('')
 
     return validatedUploadArtifactResponse.uploadArtifact
   } catch (e) {
