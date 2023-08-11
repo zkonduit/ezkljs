@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@ezkljs/hub':
-    specifier: ^0.0.1
-    version: 0.0.1
+    specifier: file:../..
+    version: file:../..
   '@fortawesome/fontawesome-svg-core':
     specifier: ^6.4.2
     version: 6.4.2
@@ -1540,13 +1540,6 @@ packages:
   /@eslint/js@8.47.0:
     resolution: {integrity: sha512-P6omY1zv5MItm93kLM8s2vr1HICJH8v0dvddDhysbIuZ+vcjOHg5Zbkf1mTkcmi2JA9oBG2anOkRnW8WJTS8Og==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dev: false
-
-  /@ezkljs/hub@0.0.1:
-    resolution: {integrity: sha512-k8FyUwROl1B7EH3upydY0fcwHDKReUbeJE1BebPYEAgUOwrb/8eVBdzqT+1JLUh9t9S55kwYwYQuG4hck/81lA==}
-    dependencies:
-      json-bigint: 1.0.0
-      zod: 3.21.4
     dev: false
 
   /@floating-ui/core@1.4.1:
@@ -7063,4 +7056,12 @@ packages:
       '@types/react': 18.2.18
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  file:../..:
+    resolution: {directory: ../.., type: directory}
+    name: '@ezkljs/hub'
+    dependencies:
+      json-bigint: 1.0.0
+      zod: 3.21.4
     dev: false

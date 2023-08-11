@@ -17,6 +17,9 @@ export default async function request<TData>(
     }
 
     const result = await response.json()
+    if (result.errors) {
+      throw new Error(result.errors[0].message)
+    }
 
     if (unwrapData) {
       const { data } = result
