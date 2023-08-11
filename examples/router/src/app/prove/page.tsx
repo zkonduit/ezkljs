@@ -12,7 +12,7 @@ import {
 } from 'flowbite-react'
 import { fileSchema } from '../upload-artifact/page'
 import { z } from 'zod'
-import { router } from 'ezkl'
+import hub from '@ezkljs/hub'
 import { useState } from 'react'
 
 // import { useState } from 'react'
@@ -85,7 +85,7 @@ export default function Prove() {
 
     setFetchingInitiateProof(true)
     try {
-      const initiatedProofResp = await router.initiateProof(
+      const initiatedProofResp = await hub.initiateProof(
         result.data.artifactId,
         result.data.inputFile,
       )
@@ -111,7 +111,7 @@ export default function Prove() {
       if (taskId === null || typeof taskId !== 'string') {
         return
       }
-      const getProofResp = await router.getProof(taskId)
+      const getProofResp = await hub.getProof(taskId)
 
       const validProof = getProofSchema.parse(getProofResp)
 
