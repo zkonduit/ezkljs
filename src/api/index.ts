@@ -4,7 +4,7 @@ import healthCheck from './healthCheck'
 import initiateProof from './initiateProof'
 import uploadArtifact from './uploadArtifact'
 
-export type Router = {
+export type Hub = {
   healthCheck: typeof healthCheck
   uploadArtifact: typeof uploadArtifact
   getArtifacts: typeof getArtifacts
@@ -12,10 +12,12 @@ export type Router = {
   getProof: typeof getProof
 }
 
-export const router: Router = {
+const hub: Hub = {
   healthCheck,
   uploadArtifact,
   getArtifacts,
   initiateProof,
   getProof,
 }
+
+export default hub

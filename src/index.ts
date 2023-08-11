@@ -1,3 +1,3 @@
-import { router } from './submodules/router'
+import hub from './api'
 
-export { router }
+export default hub

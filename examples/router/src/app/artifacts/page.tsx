@@ -2,7 +2,7 @@
 import PageTitle from '@/components/PageTitle'
 import Paragraph from '@/components/Paragraph'
 import { Button, Spinner } from 'flowbite-react'
-import { router } from 'ezkl'
+import hub from '@ezkljs/hub'
 import { useState } from 'react'
 import { z } from 'zod'
 
@@ -22,7 +22,7 @@ export default function Artifacts() {
 
   const handleClick = async () => {
     setFetching(true)
-    const artifacts = await router.getArtifacts()
+    const artifacts = await hub.getArtifacts()
     setFetching(false)
 
     const validatedArtifacts = artifactsSchema.parse(artifacts)

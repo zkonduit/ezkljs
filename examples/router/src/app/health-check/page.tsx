@@ -2,22 +2,21 @@
 import { useSpring, animated } from 'react-spring'
 import { useState } from 'react'
 import CodePresenter from '@/components/CodePresenter'
-import { router } from 'ezkl'
+import hub from '@ezkljs/hub'
 import Title from '@/components/PageTitle'
 import Paragraph from '@/components/Paragraph'
-import AnimatedCode from '@/components/AnimatedCode'
 import Button from '@/components/Button'
 
-const healthCheckSnippet = `import { router } from 'ezkl'
+const healthCheckSnippet = `import hub from '@ezkljs/hub'
 
 async function checkHealth() {
-  const health = await router.checkHealth()
+  const health = await hub.checkHealth()
   console.log(health)
 }`
 
-interface HealthStatus {
-  status: 'ok' | 'error'
-  res: string
+type HealthStatus = {
+  res: "Welcome to the ezkl hub's backend!"
+  status: 'ok'
 }
 
 export default function HealthCheck() {
@@ -39,8 +38,19 @@ function TryLive() {
   const handleCheckStatus = async () => {
     handleSpin()
 
-    const healthStatus = await router.healthCheck()
-    setHealthStatus(healthStatus)
+    const healthStatus = await hub.healthCheck()
+
+    if (
+      healthStatus?.res === "Welcome to the ezkl hub's backend!" &&
+      healthStatus?.status === 'ok'
+    ) {
+      const validatedHealthStatus: HealthStatus = {
+        res: healthStatus.res,
+        status: healthStatus.status,
+      }
+
+      setHealthStatus(validatedHealthStatus)
+    }
 
     // Increment animationKey every time new data is fetched
     setAnimationKey((prevKey) => prevKey + 1)
@@ -108,8 +118,6 @@ function TryLive() {
       </div>
       {healthStatus?.status && (
         <CodePresenter
-          // animate={true}ac
-          // callback={() => {}}
           callback={() => setLastHealthyTime(new Date())}
           key={animationKey} // Attach the key here
           input={JSON.stringify(healthStatus, null, 2)}

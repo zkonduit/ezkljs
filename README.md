@@ -26,7 +26,7 @@ pnpm add ezkl
 To get started using EZKL Hub in your appplication you'll want to use the `router` submodule.
 
 ```typescript
-import { router } from 'ezkl'
+import hub from '@ezkljs/hub'
 ```
 
 The router exposes useful APIs for interfacting with the EZKL Hub:
@@ -44,7 +44,7 @@ The router exposes useful APIs for interfacting with the EZKL Hub:
 You can preform a health check on the EZKL Hub by using the `healthCheck` method.
 
 ```typescript
-const healthStatus = await router.healthCheck()
+const healthStatus = await hub.healthCheck()
 
 console.log(JSON.stringify(healthStatus, null, 2))
 ```
@@ -85,7 +85,7 @@ const pageOptions: PageOptions = {
   limit: 2,
 }
 
-const artifacts: Artifact[] = await router.getArtifacts(pageOptions)
+const artifacts: Artifact[] = await hub.artifacts(pageOptions)
 
 console.log(JSON.stringify(artifacts), null, 2)
 ```
@@ -126,7 +126,7 @@ const modelFile: File | Buffer = fs.readFileSync('/path/model.ezkl')
 const settingsFile: File | Buffer = fs.readFileSync('/path/settings.json')
 const pkFile: File | Buffer = fs.readFileSync('/path/pk.key')
 
-const uploadArtifactResponse = await router.uploadArtifact(model, settings, pk)
+const uploadArtifactResponse = await hub.uploadArtifact(model, settings, pk)
 
 console.log(JSON.stringify(uploadArtifactResponse), null, 2)
 ```
@@ -153,7 +153,7 @@ Once the artifact is on Hub and you have it's `id` and a dataset (`input.json`) 
 const artifactId: string = '6017cb49-cdb8-4648-9422-c8568de9a2f5' // uuid
 const input: File | Buffer = fs.readFileSync('/path/input.json')
 
-const initiateProofResponse = await router.initiateProof(artifactId, input)
+const initiateProofResponse = await hub.initiateProof(artifactId, input)
 
 console.log(JSON.stringify(initiateProofResponse), null, 2)
 ```
@@ -176,7 +176,7 @@ Once the Hub as finished building your proof you'll be able to retreive it for u
 ```typescript
 const taskId: string = 'c4b049c3-9770-45cf-b8ec-1bee0efc8347' // uuid
 
-const getProofResponse = await router.getProof(taskId)
+const getProofResponse = await hub.getProof(taskId)
 
 console.log(JSON.stringify(getProofResponse), null, 2)
 ```
