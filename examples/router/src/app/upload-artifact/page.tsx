@@ -10,7 +10,7 @@ import {
   Spinner as _Spinner,
 } from 'flowbite-react'
 import { useState } from 'react'
-import { router } from 'ezkl'
+import hub from '@ezkljs/hub'
 
 export const fileSchema = z.custom<File | null>((value) => {
   if (value === null) return false
@@ -60,7 +60,7 @@ export default function UploadArtifact() {
     }
 
     setFetching(true)
-    const uploadArtifactResp = await router.uploadArtifact(
+    const uploadArtifactResp = await hub.uploadArtifact(
       result.data.model,
       result.data.settings,
       result.data.pk,
