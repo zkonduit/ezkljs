@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const bundlePath = path.resolve(__dirname, 'dist/bundle.commonjs.js')
+const bundlePath = path.resolve(__dirname, 'dist/bundle.cjs')
 
 fs.readFile(bundlePath, 'utf8', (err, content) => {
   if (err) {
