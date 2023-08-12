@@ -31,14 +31,22 @@ export default function Artifacts() {
   }
 
   return (
-    <div className='flex flex-col h-full'>
+    <div className='h-full'>
       <PageTitle>Artifacts</PageTitle>
       <Paragraph>Get the artifacts live on hub.</Paragraph>
       <div className='flex items-center'>
-        <Button onClick={handleClick} className='w-32'>
+        <Button onClick={handleClick} className=''>
           Get Artifacts
         </Button>
-        {fetching && <Spinner size='lg' className='ml-10' />}
+        {fetching && <Spinner size='lg' className='' />}
+      </div>
+      <div className='mt-8 max-w-full'>
+        {artifacts.length > 0 && (
+          <CodePresenter
+            input={JSON.stringify(artifacts, null, 2)}
+            language='json'
+          />
+        )}
       </div>
       <div className='mt-8'>
         {artifacts.length > 0 && (

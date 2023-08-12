@@ -18,7 +18,7 @@ export const useAPINavColumnStore = create<{
 export default function APINavColumn() {
   return (
     <div
-      className={`w-3/12 border-r-2 border-slate-300 md:flex hidden flex-col p-8 h-full text-sm`}
+      className={`bg-white border-r-2 border-slate-300 w-64 pt-8 lg:pl-10 md:pl-6 sm:pl-4 pl-2  fixed z-[100] top-16 left-0 overflow-y-auto h-[calc(100%-4rem)] hidden md:block`}
     >
       <ul className='fixed h-full'>
         <li className='h-14 text-slate-500'>

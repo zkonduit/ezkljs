@@ -1,7 +1,6 @@
 import Header from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import APINavColumn from '@/components/APINavColumn'
 import Main from '@/components/Main'
 
@@ -17,16 +16,30 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className=' grid grid-rows-[auto,1fr] h-screen '>
+      <body className='m-0 h-screen flex flex-col'>
+        {/* <!-- Top Navbar --> */}
         <Header />
-        <div className='flex h-full w-screen p-0 top-20 absolute'>
-          {/* <div className='w-2/12 border-r-2 border-slate-300 flex flex-col p-8 h-full'> */}
+
+        {/* <!-- Content Area --> */}
+        <div className='flex-grow flex flex-row mt-16'>
+          {/* <!-- Left Navigation Column --> */}
           <APINavColumn />
-          {/* </div> */}
+
+          {/* <!-- Main Content Area --> */}
           <Main>{children}</Main>
-          {/* <div className='px-20 pt-8 w-10/12'>{children}</div> */}
         </div>
       </body>
     </html>
   )
 }
+
+// <body className=' grid grid-rows-[5rem,1fr] h-screen '>
+// <Header />
+// <div className='flex w-screen p-0 top-20 absolute'>
+//   {/* <div className='w-2/12 border-r-2 border-slate-300 flex flex-col p-8 h-full'> */}
+//   <APINavColumn />
+//   {/* </div> */}
+//   <Main>{children}</Main>
+//   {/* <div className='px-20 pt-8 w-10/12'>{children}</div> */}
+// </div>
+// </body>
