@@ -79,7 +79,7 @@ function AnimatedCodePresenter({
 }: CodePresenterProps & { callback: () => void }) {
   const [visibleChars, setVisibleChars] = useState(0)
   const highlightedCode = hljs.highlight(input, { language }).value
-  const codeCharRegex = /<span class="(.*?)">([^<]*)<\/span>|([^<]+)/g
+  const codeCharRegex = /<span className="(.*?)">([^<]*)<\/span>|([^<]+)/g
 
   let match
   const codeChars: CodeChar[] = []
