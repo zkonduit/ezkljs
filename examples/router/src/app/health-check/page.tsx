@@ -28,7 +28,7 @@ export default function HealthCheck() {
         server. This is a simple API call that returns a JSON object with the
         status of the hub server.
       </Paragraph>
-      <CodePresenter input={healthCheckSnippet} language='typescript' />
+      {/* <CodePresenter input={healthCheckSnippet} language='typescript' /> */}
       <TryLive />
     </div>
   )
@@ -97,9 +97,9 @@ function TryLive() {
     : null
 
   return (
-    <div>
+    <div className='w-fit'>
       <Paragraph>Try it out</Paragraph>
-      <div className='flex items-center w-full mb-8'>
+      <div className='flex items-center mb-8'>
         <Button onClick={handleCheckStatus}>Check Hub Status</Button>
         {health !== 'hidden' && (
           <div className='relative w-8 h-8 mx-4'>
