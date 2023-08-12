@@ -41,37 +41,21 @@ export default function Artifacts() {
         {fetching && <Spinner size='lg' className='' />}
       </div>
       <div className='mt-8 max-w-full'>
-        {
-          artifacts.length > 0 && (
-            <CodePresenter
-              input={JSON.stringify(artifacts, null, 2)}
-              language='json'
-            />
-          )
-          // artifacts.length > 0 && JSON.stringify(artifacts, null, 2)
-          // <CodePresenter
-          //   input={JSON.stringify(artifacts, null, 2)}
-          //   language='json'
-          // />
-        }
+        {artifacts.length > 0 && (
+          <CodePresenter
+            input={JSON.stringify(artifacts, null, 2)}
+            language='json'
+          />
+        )}
+      </div>
+      <div className='mt-8'>
+        {artifacts.length > 0 && (
+          <CodePresenter
+            input={JSON.stringify(artifacts, null, 2)}
+            language='json'
+          />
+        )}
       </div>
     </div>
   )
 }
-
-/* <PageTitle>Artifacts</PageTitle>
-<Paragraph>Get the artifacts live on hub.</Paragraph>
-<div className='flex items-center'>
-  <Button onClick={handleClick} className=''>
-    Get Artifacts
-  </Button>
-  {fetching && <Spinner size='lg' className='' />}
-</div> */
-// <div className='mt-8'>
-//   {artifacts.length > 0 && (
-//     <CodePresenter
-//       input={JSON.stringify(artifacts, null, 2)}
-//       language='json'
-//     />
-//   )}
-// </div>
