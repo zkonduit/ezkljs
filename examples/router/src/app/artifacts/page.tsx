@@ -5,6 +5,7 @@ import { Button, Spinner } from 'flowbite-react'
 import hub from '@ezkljs/hub'
 import { useState } from 'react'
 import { z } from 'zod'
+import CodePresenter from '@/components/CodePresenter'
 
 const artifactsSchema = z.array(
   z.object({
@@ -39,15 +40,14 @@ export default function Artifacts() {
         </Button>
         {fetching && <Spinner size='lg' className='ml-10' />}
       </div>
-      {artifacts.length > 0 && (
-        <code className='mt-8 hljs overflow-scroll'>
-          {artifacts.map((artifact) => (
-            <div className='mb-10' key={artifact.id}>
-              {JSON.stringify(artifact)}
-            </div>
-          ))}
-        </code>
-      )}
+      <div className='mt-8'>
+        {artifacts.length > 0 && (
+          <CodePresenter
+            input={JSON.stringify(artifacts, null, 2)}
+            language='json'
+          />
+        )}
+      </div>
     </div>
   )
 }

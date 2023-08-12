@@ -11,6 +11,7 @@ interface CodePresenterProps {
   input: string
   language: string
   callback?: () => void
+  speed?: number
 }
 
 const ENTITIES = {
@@ -64,17 +65,24 @@ function StaticCodePresenter({
   )
 }
 
+type CodeChar = {
+  type: 'text' | 'span'
+  class?: string
+  value: string
+}
+
 function AnimatedCodePresenter({
   input,
   language,
   callback,
+  speed = 50,
 }: CodePresenterProps & { callback: () => void }) {
   const [visibleChars, setVisibleChars] = useState(0)
   const highlightedCode = hljs.highlight(input, { language }).value
   const codeCharRegex = /<span class="(.*?)">([^<]*)<\/span>|([^<]+)/g
 
   let match
-  const codeChars: any[] = []
+  const codeChars: CodeChar[] = []
   while ((match = codeCharRegex.exec(highlightedCode))) {
     if (match[3]) {
       codeChars.push({ type: 'text', value: decodeHtmlEntity(match[3]) })
@@ -85,7 +93,7 @@ function AnimatedCodePresenter({
     }
   }
 
-  const TYPING_SPEED = 50
+  const TYPING_SPEED = speed
 
   const [hasCalledback, setHasCalledback] = useState(false)
 
