@@ -12,7 +12,7 @@ export default function Header() {
   // const { open, setOpen } = useAPINavColumnStore()
   const { open, setOpen } = useAPINavColumnStore()
   return (
-    <div className='flex justify-between h-20 border-b-2 border-slate-300 p-8 items-center fixed inset-0 z-10 bg-white'>
+    <div className='bg-white fixed w-full top-0 left-0 z-50 h-16  border-b-2 border-slate-300 flex items-center justify-between'>
       {/* left */}
       <div className='w-full md:w-2/12 flex'>
         {!open ? (

@@ -1,6 +1,6 @@
 export default function Main({ children }: { children: React.ReactNode }) {
   return (
-    <div className='px-4 xs:px-10 sm:px-14 md:px-16 lg:px-20 pt-8 w-full md:w-9/12 overflow-scroll'>
+    <div className='ml-64 p-4 h-[calc(100%-4rem)] lg:pl-40 md:pl-20 sm:pl-10 pl-2'>
       {children}
     </div>
   )
