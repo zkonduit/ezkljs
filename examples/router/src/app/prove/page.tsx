@@ -1,9 +1,7 @@
 'use client'
-import PageTitle from '@/components/PageTitle'
 import Paragraph from '@/components/Paragraph'
 import {
   Button,
-  Checkbox,
   FileInput,
   Label,
   Spinner,
@@ -42,10 +40,6 @@ const getProofSchema = z.object({
   proof: z.string(),
   witness: witnessSchema,
 })
-
-// const getProofSchemaResponse = z.object({
-//   getProof: getProofSchema,
-// })
 
 type GetProof = z.infer<typeof getProofSchema>
 
@@ -135,6 +129,9 @@ export default function Prove() {
           />
         </Tabs.Item>
         <Tabs.Item title='Get Proof'>
+          <Paragraph className='text-sm'>
+            Proving is done in two steps Initiate Proof and Get Proof
+          </Paragraph>
           <GetProof
             fetching={fetchingGetProof}
             defaultTaskId={initiatedProof?.taskId}
@@ -205,7 +202,7 @@ function GetProof({
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div className='mb-8'>
+        <div className='mb-12'>
           <Label htmlFor='taskId' value='Task ID' />
           <TextInput id='taskId' name='taskId' defaultValue={defaultTaskId} />
         </div>
