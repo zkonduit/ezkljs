@@ -48,14 +48,6 @@ export default function Artifacts() {
           />
         )}
       </div>
-      <div className='mt-8'>
-        {artifacts.length > 0 && (
-          <CodePresenter
-            input={JSON.stringify(artifacts, null, 2)}
-            language='json'
-          />
-        )}
-      </div>
     </div>
   )
 }

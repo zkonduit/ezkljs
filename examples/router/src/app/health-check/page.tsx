@@ -28,7 +28,9 @@ export default function HealthCheck() {
         server. This is a simple API call that returns a JSON object with the
         status of the hub server.
       </Paragraph>
-      {/* <CodePresenter input={healthCheckSnippet} language='typescript' /> */}
+      <div className='w-fit'>
+        <CodePresenter input={healthCheckSnippet} language='typescript' />
+      </div>
       <TryLive />
     </div>
   )
@@ -57,7 +59,6 @@ function TryLive() {
 
     if (healthStatus?.status === 'ok') {
       setHealth('green')
-      // setLastHealthyTime(new Date())
     } else {
       setHealth('red')
     }
