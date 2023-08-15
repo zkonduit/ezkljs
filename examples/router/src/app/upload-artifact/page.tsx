@@ -12,7 +12,7 @@ import {
 import { useState } from 'react'
 import hub from '@ezkljs/hub'
 
-export const fileSchema = z.custom<File | null>((value) => {
+const fileSchema = z.custom<File | null>((value) => {
   if (value === null) return false
   return value instanceof File && value.name.trim() !== ''
 }, "File name can't be empty")

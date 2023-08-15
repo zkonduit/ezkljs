@@ -20,21 +20,50 @@ describe('hub', () => {
     expect(health?.status).toEqual('ok')
     expect(health?.res).toEqual("Welcome to the ezkl hub's backend!")
   })
-  it('get artifacts', async () => {
-    expect(getArtifacts).toBeDefined()
-    artifacts = await getArtifacts()
-    if (artifacts && artifacts.length > 0) {
-      const firstArtifact = artifacts[0]
-      if (firstArtifact) {
-        expect(firstArtifact.name).toBeDefined()
-        expect(firstArtifact.description).toBeDefined()
-        expect(firstArtifact.id).toBeDefined()
+  describe('artifact related', () => {
+    it('get artifacts', async () => {
+      expect(getArtifacts).toBeDefined()
+      artifacts = await getArtifacts()
+      if (artifacts && artifacts.length > 0) {
+        const firstArtifact = artifacts[0]
+        if (firstArtifact) {
+          expect(firstArtifact.name).toBeDefined()
+          expect(firstArtifact.description).toBeDefined()
+          expect(firstArtifact.id).toBeDefined()
+        } else {
+          throw new Error('No first artifact found')
+        }
       } else {
-        throw new Error('No first artifact found')
+        throw new Error('No artifacts returned from getArtifacts')
       }
-    } else {
-      throw new Error('No artifacts returned from getArtifacts')
-    }
+    })
+
+    it('uploads an arifact', async () => {
+      const settingsPath = path.resolve(
+        __dirname,
+        'proof_artifacts',
+        'input.json',
+      )
+      const settingsFile = await fs.readFile(settingsPath)
+
+      const modelPath = path.resolve(
+        __dirname,
+        'proof_artifacts',
+        'network.ezkl',
+      )
+      const modelFile = await fs.readFile(modelPath)
+
+      const pkPath = path.resolve(__dirname, 'proof_artifacts', 'pk.key')
+      const pkFile = await fs.readFile(pkPath)
+
+      const uploadArtifactResp = await hub.uploadArtifact(
+        settingsFile,
+        modelFile,
+        pkFile,
+      )
+
+      expect(uploadArtifactResp.id).toBeDefined()
+    }, 10000)
   })
 
   describe('proof related operations', () => {
