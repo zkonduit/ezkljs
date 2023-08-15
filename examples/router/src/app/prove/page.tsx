@@ -8,12 +8,16 @@ import {
   TextInput,
   Tabs,
 } from 'flowbite-react'
-import { fileSchema } from '../upload-artifact/page'
-import { z } from 'zod'
 import hub from '@ezkljs/hub'
 import { useState } from 'react'
+import { z } from 'zod'
 
 // import { useState } from 'react'
+
+const fileSchema = z.custom<File | null>((value) => {
+  if (value === null) return false
+  return value instanceof File && value.name.trim() !== ''
+}, "File name can't be empty")
 
 const formDataSchema = z.object({
   // artifactId: z.string().uuid(),
@@ -105,7 +109,9 @@ export default function Prove() {
       if (taskId === null || typeof taskId !== 'string') {
         return
       }
+      setFetchingGetProof(true)
       const getProofResp = await hub.getProof(taskId)
+      setFetchingGetProof(false)
 
       const validProof = getProofSchema.parse(getProofResp)
 

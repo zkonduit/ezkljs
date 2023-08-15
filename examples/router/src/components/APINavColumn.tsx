@@ -31,7 +31,7 @@ export default function APINavColumn() {
   const pathname = usePathname()
   useEffect(() => {
     setOpen(false)
-  }, [pathname])
+  }, [pathname, setOpen])
   return (
     <>
       <div>
