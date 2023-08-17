@@ -12,8 +12,6 @@ import hub from '@ezkljs/hub'
 import { useState } from 'react'
 import { z } from 'zod'
 
-// import { useState } from 'react'
-
 const fileSchema = z.custom<File | null>((value) => {
   if (value === null) return false
   return value instanceof File && value.name.trim() !== ''
@@ -42,7 +40,9 @@ const getProofSchema = z.object({
   taskId: z.string().uuid(),
   status: z.enum(['SUCCESS']),
   proof: z.string(),
-  witness: witnessSchema,
+  instances: z.array(z.number().nonnegative()),
+  transcriptType: z.literal('EVM'),
+  strategy: z.enum(['single', 'aggregate']),
 })
 
 type GetProof = z.infer<typeof getProofSchema>

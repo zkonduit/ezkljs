@@ -7,7 +7,6 @@ import {
   initiateProofResponseSchema,
 } from '@/utils/parsers'
 import request from '@/utils/request'
-import throwError from '@/utils/throwError'
 
 /**
  * Initiates a proof for a given artifact and input file (dataset).
@@ -59,6 +58,7 @@ export default async function initiateProof(
 
     return validatedInitiateProof.initiateProof
   } catch (e) {
-    throwError(e)
+    console.error(e)
+    throw e
   }
 }

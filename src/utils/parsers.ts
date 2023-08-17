@@ -42,19 +42,19 @@ export const fourElementsArray = z
   .length(4)
 
 // Witness
-const witnessSchema = z.object({
-  inputs: z.array(z.array(fourElementsArray)),
-  outputs: z.array(z.array(fourElementsArray)),
-  maxLookupInputs: z.number().int().nonnegative(),
-})
+// const witnessSchema = z.o
+//   outputs: z.array(z.array(fourElementsArray)),
+//   maxLookupInputs: z.number().int().nonnegative(),
+// })
 
 // Get Proof Details
 export const getProofDetailsSchema = z.object({
   taskId: z.string().uuid(),
   status: z.enum(['SUCCESS']),
   proof: z.string(),
-  transcriptType: z.string(),
-  witness: witnessSchema,
+  instances: z.array(z.number().nonnegative()),
+  transcriptType: z.literal('EVM'),
+  strategy: z.enum(['single', 'aggregate']),
 })
 export type GetProofDetails = z.infer<typeof getProofDetailsSchema>
 
@@ -68,7 +68,7 @@ export type FileOrBuffer = z.infer<typeof fileOrBufferSchema>
 
 // Upload Artifact
 export const uploadArtifactSchema = z.object({
-  uploadArtifact: z.object({
+  uploadArtifactLegacy: z.object({
     id: z.string().uuid(),
   }),
 })

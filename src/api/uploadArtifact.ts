@@ -6,7 +6,6 @@ import {
   uploadArtifactSchema,
 } from '@/utils/parsers'
 import request from '@/utils/request'
-import throwError from '@/utils/throwError'
 
 /**
  * Uploads an artifact, consisting of model, settings, and pk files.
@@ -58,8 +57,9 @@ export default async function uploadArtifact(
       uploadArtifactResponse,
     )
 
-    return validatedUploadArtifactResponse.uploadArtifact
+    return validatedUploadArtifactResponse.uploadArtifactLegacy
   } catch (e) {
-    throwError(e)
+    console.error(e)
+    throw e
   }
 }

@@ -5,7 +5,6 @@ import {
   GetArtifactsInput,
   getArtifactsInputSchema,
 } from '@/utils/parsers'
-import throwError from '@/utils/throwError'
 import { GET_ARTIFACTS_QUERY } from '@/graphql/querties'
 
 /**
@@ -44,6 +43,7 @@ export default async function getArtifacts({
 
     return validatedArtifactsResponse.artifacts
   } catch (e) {
-    throwError(e)
+    console.error(e)
+    throw e
   }
 }

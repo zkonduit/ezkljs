@@ -1,5 +1,5 @@
 import getArtifacts from './getArtifacts'
-import getProof from './getproof'
+import getProof from './getProof'
 import healthCheck from './healthCheck'
 import initiateProof from './initiateProof'
 import uploadArtifact from './uploadArtifact'

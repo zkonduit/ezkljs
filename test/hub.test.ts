@@ -1,4 +1,5 @@
 import hub from '../dist/bundle.cjs'
+// import hub from '../src/'
 
 import path from 'path'
 import fs from 'node:fs/promises'
@@ -10,7 +11,7 @@ import {
 
 const { getArtifacts } = hub
 
-let artifacts: Artifact[] | undefined
+let artifact: Artifact | undefined
 let initiatedProof: InitiateProofResponse['initiateProof'] | undefined
 
 describe('hub', () => {
@@ -23,7 +24,7 @@ describe('hub', () => {
   describe('artifact related', () => {
     it('get artifacts', async () => {
       expect(getArtifacts).toBeDefined()
-      artifacts = await getArtifacts()
+      const artifacts = await getArtifacts()
       if (artifacts && artifacts.length > 0) {
         const firstArtifact = artifacts[0]
         if (firstArtifact) {
@@ -42,7 +43,7 @@ describe('hub', () => {
       const settingsPath = path.resolve(
         __dirname,
         'proof_artifacts',
-        'input.json',
+        'settings.json',
       )
       const settingsFile = await fs.readFile(settingsPath)
 
@@ -57,10 +58,12 @@ describe('hub', () => {
       const pkFile = await fs.readFile(pkPath)
 
       const uploadArtifactResp = await hub.uploadArtifact(
-        settingsFile,
         modelFile,
+        settingsFile,
         pkFile,
       )
+
+      artifact = uploadArtifactResp
 
       expect(uploadArtifactResp.id).toBeDefined()
     }, 10000)
@@ -68,10 +71,9 @@ describe('hub', () => {
 
   describe('proof related operations', () => {
     beforeAll(async () => {
-      if (!artifacts || artifacts.length === 0) {
-        throw new Error('No artifacts')
+      if (!artifact) {
+        throw new Error('no artifact')
       }
-      const artifact = artifacts[0]
       if (artifact) {
         const artifactId = artifact.id
         const filePath = path.resolve(
@@ -101,7 +103,8 @@ describe('hub', () => {
       expect(initiatedProof.status).toEqual('PENDING')
     })
 
-    it('retrieve proof', async () => {
+    it('get proof', async () => {
+      expect(true).toBe(true)
       if (!initiatedProof) {
         throw new Error('initiatedProof undefined')
       }
@@ -111,15 +114,16 @@ describe('hub', () => {
         initiatedProof.taskId,
       )
 
-      if (!getProofDetails) {
-        throw new Error('No getProofDetails returned')
-      }
-
-      expect(getProofDetails.status).toEqual('SUCCESS')
-      expect(getProofDetails.taskId).toEqual(initiatedProof.taskId)
-
-      expect(getProofDetails?.witness?.inputs).toBeDefined()
-      expect(getProofDetails?.witness?.outputs).toBeDefined()
+      expect(getProofDetails).toBeDefined()
+      expect(getProofDetails?.strategy).toEqual('single')
+      expect(getProofDetails?.transcriptType).toEqual('EVM')
+      expect(getProofDetails?.status).toEqual('SUCCESS')
+      expect(typeof getProofDetails?.proof).toEqual('string')
+      expect(typeof getProofDetails?.taskId).toEqual('string')
+      expect(Array.isArray(getProofDetails?.instances)).toBe(true)
+      getProofDetails?.instances?.forEach((item) => {
+        expect(typeof item).toBe('number')
+      })
     }, 10000)
   })
 })

@@ -13,11 +13,8 @@ export const GET_PROOF_QUERY = `query GetProof($taskId: String!){
     taskId
     status
     proof
+    instances
     transcriptType
-    witness {
-      inputs
-      outputs
-      maxLookupInputs
-    }
+    strategy
   }
 }`

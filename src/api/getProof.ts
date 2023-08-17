@@ -2,8 +2,7 @@ import { GET_PROOF_QUERY } from '@/graphql/querties'
 import { GQL_URL } from '@/utils/constants'
 import { UUID, getProofResponseSchema, uuidSchema } from '@/utils/parsers'
 import request from '@/utils/request'
-import { isValidHexString } from '@/utils/stringValidators'
-import throwError from '@/utils/throwError'
+import { isValidProof } from '@/utils/stringValidators'
 
 /**
  * Fetches the proof details for a given task ID.
@@ -28,14 +27,16 @@ export default async function getProof(taskId: UUID) {
         },
       }),
     })
+
     const validatedProofResponse = getProofResponseSchema.parse(response)
 
-    if (!isValidHexString(validatedProofResponse.getProof.proof)) {
+    if (!isValidProof(validatedProofResponse.getProof.proof)) {
       throw new Error('Invalid proof')
     }
 
     return validatedProofResponse.getProof
   } catch (e) {
-    throwError(e)
+    console.error(e)
+    throw e
   }
 }

@@ -1,6 +1,5 @@
 import { healthyHealthCheckResponseSchema } from '@/utils/parsers'
 import request from '@/utils/request'
-import throwError from '@/utils/throwError'
 
 /**
  * Performs a health check on the ezkl hub's backend.
@@ -14,6 +13,7 @@ export default async function healthCheck() {
 
     return data
   } catch (e) {
-    throwError(e)
+    console.error(e)
+    throw e
   }
 }
