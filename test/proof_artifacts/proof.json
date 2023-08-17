@@ -1,0 +1,2376 @@
+{
+  "instances": [
+    [
+      [1, 0, 0, 0],
+      [0, 0, 0, 0],
+      [1, 0, 0, 0],
+      [1, 0, 0, 0]
+    ],
+    [
+      [150, 0, 0, 0],
+      [80, 0, 0, 0],
+      [35, 0, 0, 0]
+    ]
+  ],
+  "proof": "0d90d766ab3ddc3819c3bf52af2929d45006a3225c91179ec3dfdaf2b97e461722bf3b213d9dfd7eacbc14493a94d8fe39d71c516d33b15b4735ea49e8a45de21d72f29a350ba39e396dd7f53d9e157845993e1a2f27207811556a682ee0dea1047adca396c827678a320c5d89e8aff7c0ac14aab04070ae3045b63a76821db0173e58c8979fd7a6ec1bae77bca8283cbb1f4e9ba8006e665b9a0499aa8c124c2d64ac73d5760dc0aee424b2cde626600b69e1332580fb175c1d7c3127403a4302fdc1e75e4bc58828583ac4fcf4b32575a17df6333bd705e4c39738fe5bd8a70f4a0f38fcd4d0a23181da17016abaee751f7882f64f83348dcd8e89cbfd08ad0b59578170733236399ffb267a323210ae3cf9def0ee157c43620fe8dc8f5fb821ca85e1601c45cd8aa2ea5959c8fc0a04acdef48b778837af0d5f82a8d6f0e32d7027fab5c26dfff04a5f9f23774874a14d1476c60f7d29d345f8b4b89603b4257a5da8bf089d60e8904c84183c69db04cf2e9e51f50467431cc23f9e59c09217d5eb57d31dd7dedf1f759c20c5b9ba6e3d32b6b83926fb169487ebb9022dd62968cde1c40a86064ca6ec33b3234a4900eb35c5ef6533badd6b403e8208cebc185b755dafdd744fd00e1b1b227d8e23574700319caf3bc8e7a9936107a7a5e32af685ab32e4f56546764999b0e6d8283d59814d169c504f3a0cb4980bf5cb0320873f0039da2865a02b36cd59c4e16fad6c951ff0b2dbc9e4a1bfc6dee06c3a0f61d5ba3452a0893f5113102ecefad1919198d0a8b468a967564c79060757360a0679dbaffeae00245c79f6c96c74b7e8db52fdf3e91a5d3eda8ce7cdcb552121060f9d772ede4a889e882f4d1c8329802be8d31b7a525ac2234e366dd0dc3b1b824de8d8ae1a50bf771a0c2cda15fc762f52d236176eec21d3e98fe0bc01922d6a4f77384704f0cca3e3f7d6f9e8241f51ae8e17553273762c37d4ed1ac8fd212a2211da48504a661f023d3b9122f31b5b9a41da6b258f2107655c4409e28c0ffd5c1d2da481681d68d261d01e27f159573f67672e92b6afc9d58b0d5718531e7ad245c0b76df9464d49192e6985ce81b56a0fb9e55b629d74f5c4c64fe12a1ffb3150cd431c55a4d0a9fe62b35f6e38ed9ecec3d7faf9106e28c8d7b7549b2f792782626046d74573c87904ee276fbc177dd70a85d40678844bae91784ca51812ef2d2ebe1f258e79c0feb8c9caa6a251505bb501cbe41f065409e5c356b720f3b3c80319eb9f7e4e594dcd446b87aeb25e213c823fb04e816f91281d93e1161b19b8e95dac6e18f25bbf930a7f5fa13a2cdb10f2b3423ce7a13ed4147b20288e6a9302867c334061b0907f8f6dc31e9a2791790605ee23fd0d2279983ec011f6bf537ac4489a3b3c13ded56f2956ee43280686da475390e0983debf778af24c33612cb46d5c8ca231e9897dc23c476139755f6715bb016ddfa8f39f351d311215cea6a31a741e788cc39a63ba82074235cc7ff2f78c6f807e872f1e451d21b0d6d51e887a845e8488d90326f32fd40997c67e1fc684f0364571e65342c8a1a5436ee1a2778a1dbf832b39fc4b1b082cc1c9ef1694b3ccfb52cdb5ad5ea57245636cc21e9a61102fc2986072afb24771bf326860c913d31ac416b8798b8922626034ea1dcc66f4a2c86ab64697bb257bcd93b685b7c1522415744137b900f1c96172e61d6462f4e4f8d2470abc343f7c710ad225e4b9b997bd904c45f8a620e4b48f09770128360d36189e1e4cf7d5e2e107151f3861e211d5589fcade21703379d56b34f563379643f059f29877fc705c471f9b2f75cb8f0af6a8e1fcc070a6522acbea28c2571ffbd3de7a502884c79379f0ad933b75c52b76193e19e620000000000000000000000000000000000000000000000000000000000000000060806b3462d4275ff73f11f4aed9f8f7dac2466b190b9db5b69fe03a85863272e13579a2f5ff47604a7171db11e4c7399e0dd3321d07e8b8abe36dc1d56892107d7d8e3d959fffc272e72b008303f498d4be017862d6946f9bae9691909816020ea1175f509630f61f1384071a61242903379067f8158d8b6d5e70876047ad40adaf3378d08006d46fbfe8a81c3260c8c851ed1caa5ac83a631bbf9b1a8981911ad51b0220e5a981850dda1d58f249e2728f6bfaa3b2fb2d04fc20f03d2114b121d60d61d4656c0f9fbb5cd28a814187dbfcb867bb936175da07bbb4f43eb860fb71ca1103614be135461fed0d8ead1d0780fb1468451a695f5f9aadc4399582932e04db7b608c97a292c8dd1cedf810c1437b8d3466bd3296f7bd4c488142721f1b729d4d7c5f3c66e1929e6de181f4809cc095540cec4bcab27a22a26dac200000000000000000000000000000000000000000000000000000000000000003031e0f1c2250269a9d1a224b35ac876a81a158f02e9e18b26f893e2f304411c1a3e0879a874b612e8018f38aefc9886d4e3491dee2e2f102917f9189f02378e2fc5c3d1d07e5c3ab01df1c36a3ef515abcc0c59f923981c8094867170911f1610c547912084e9a66a3af5d66da1f14007bff25bdcfbad74a40cde2fc9757788291ef8c91ceecc518140be9aaff1cb08fb4fe87d26492852ae2cb8206c5009e70098f4d89c88b4668c44cfebb09c2feef858986a57c046a66f249315fc91a3931c95475f783819bd3cc4027b5b9ff3f487871865d4a3d095577898bc25c3bd701f0cb1986aedebb37da6ac2432ee522d08bd074913c1cbec860da42fce84731c02f4d5b6b848a620f9f9cf10880480557a38ceaa2c1aaa2ed436b4dacbc77f6121e2c4c1016a2b8debc3e19bdd87fa179fead4d2fc1b09ea0881699708dbdcbb17c72cea44a1909bcb27b033491ef724b6e3ce94fe971b3a18761e5fb5a668d92b3f2e2335aa980f7b831fefd7207fc703ecea72d255ee7f299b4dbfdae6140e1ef0f3753f0e5f29ff4db20bdb5647234f2ec813cec5a486e796431e0e2bc9221f3e2c77bee3805c1c769dea1944a3c1bb815d3344d520e1a748fc99dc3150d90bc9c2664f29a74f7bc19adab8e5e9bb6e95c18070f901868dfe694b63f41feb0f0bb76ef165403cb2fa14db002d4a93499de52067f52ae22cc6bfc4e3002a7429e2a4b6a6f314569695e2bbd980ec14be673c31e62b4edba23c5fdbc4170a661fed144f4f5d9f147b1af1850cba436a7f1ae96520499259d27647c8d1a15b1c0aa7c511bd09e20faf0ef8fce6b77d277467adb0396d239f7b9440a42280f3c717b3203e5054367f3e2f5df76315915a1317de15256a9474f359c0dec45150e211fae4cb611e95a6cd100099ca941dc19d1518c28387b7f3382484f26d7821ee16db12e6eddb8a4fe7f92d899279f5143d9d997e148455b24df46ff62c863a213003392fc3224171b6d38c7e6a48be844554a3b4e0a6eb5c444caef55eff56b803496f9fe07d4eb9b53c150f66be52c45af3ba7593b165bc6b820c81cde8799b28d24d509277eca0d5b19f5f5bd599cd3ea2a8f6089b3fbbdb5f6ccd71de4800122493c4c929c493d6885e76534582fb1d8472dc3c7862bedab2453c4a1e84041a1287cf4fd0aab6b0194ebe1fc1abcc9e5b49aba00a68013ab41b9237ce282d0596f6f4ae7c4832aec1124d082baf91183b470c20120555c652b4a5d27f6f592e0db3fe7c4a697acedc9b610223ed01762cc8f1ca78997f9397bb9202833a140de7fc9a9935cb359b92a84a37aa62065ae754c8fd6691083be9186209d684da01a7586a399fd4c578b25a889d245a5a83829811bf60d63d8a0ca32c8386bb5b257554d44aa1c0888c4c9643a4bf59859b5a1f02d04bac99abcaa93005f98be61e263700903aec28df7a73df0a2923fedcbae381468d9a8e22cd22aa625125a60e3e983ca8cbdfeaaa290be4b9551bfdd0081c043c34faf2d2e63783cdf868ac1bb9487a1cbdeadfab33e1a6e37d0e116acee8790692477741f5c80c9b0b67f0",
+  "transcript_type": "EVM",
+  "protocol": {
+    "domain": {
+      "k": 10,
+      "n": 1024,
+      "n_inv": [0, 0, 0, 18014398509481984],
+      "gen": [
+        11338367819501839635, 3740034585862428569, 9914360941292543340,
+        2496945838366253767
+      ],
+      "gen_inv": [
+        559035126084790881, 12123427087958374242, 2949720136027289278,
+        298260759310561979
+      ]
+    },
+    "preprocessed": [
+      { "x": [0, 0, 0, 0], "y": [0, 0, 0, 0] },
+      {
+        "x": [
+          295346754619012954, 4288937847632654819, 5622340820970243166,
+          2302701715642837678
+        ],
+        "y": [
+          1119031117108406967, 8350534814591332998, 16412787516115295604,
+          2263946237941216362
+        ]
+      },
+      {
+        "x": [
+          10036396592585373684, 14281991136020234464, 14656872297744774794,
+          2506946317484204462
+        ],
+        "y": [
+          17394229683214902337, 4277260882611209602, 14140262402576370392,
+          2393288322776307457
+        ]
+      },
+      {
+        "x": [
+          5549116531940308473, 8452765215231624248, 7649130064691692342,
+          490246774941888140
+        ],
+        "y": [
+          4360706464246010444, 10652807443341863969, 6662089217492115201,
+          2784332837382299906
+        ]
+      },
+      {
+        "x": [
+          12683081755578915430, 9962694747976281392, 17780441580329212647,
+          2909247993478319938
+        ],
+        "y": [
+          7418314760746065101, 17442454197537146695, 11420924258366256556,
+          968608781775197627
+        ]
+      },
+      {
+        "x": [
+          4947704517243590558, 11770923926228090953, 12774054684204738867,
+          2639623416256044578
+        ],
+        "y": [
+          7117491168777607177, 11080561573027108552, 16088763547082742095,
+          2338218386206140965
+        ]
+      },
+      {
+        "x": [
+          14869834873903617986, 17278422338074353027, 4926393038741930782,
+          277617436769624861
+        ],
+        "y": [
+          1438813278305269426, 16910831001803986204, 5900757164986846836,
+          2599196065227798262
+        ]
+      },
+      {
+        "x": [
+          1935864767843459766, 2781014750578428619, 12640551938697808992,
+          1427519150813904117
+        ],
+        "y": [
+          6282694154339347327, 3823910986082647546, 12893183003088293409,
+          1108182494621087331
+        ]
+      },
+      {
+        "x": [
+          13373635879495952209, 7821073065785265722, 401544995867209738,
+          149993717016799840
+        ],
+        "y": [
+          15838612248257951042, 2622518218995972036, 18044713120848696634,
+          2459881849610832431
+        ]
+      },
+      {
+        "x": [
+          13317063661142522542, 6045984904249356306, 7700910244507834849,
+          3458489915752377656
+        ],
+        "y": [
+          2036808991961196107, 7332535429728042265, 6407547674522091010,
+          3163895464139099763
+        ]
+      },
+      {
+        "x": [
+          15057802007361560342, 8881097328624379795, 564955362101474501,
+          467518410714973585
+        ],
+        "y": [
+          865193268790444053, 10116522867845089413, 6043024979849823638,
+          2391402689827249497
+        ]
+      },
+      { "x": [0, 0, 0, 0], "y": [0, 0, 0, 0] },
+      {
+        "x": [
+          1854338540817262686, 13900171694456680026, 6096603572848861074,
+          3011376500483612418
+        ],
+        "y": [
+          12792326254016265985, 11617926063679076880, 13812674183885377249,
+          1371255620842067685
+        ]
+      },
+      {
+        "x": [
+          6611913479232441030, 6117441141962046909, 6791699574735670936,
+          753636139879751069
+        ],
+        "y": [
+          7531959846241720303, 15230815574685847795, 13302106858788817020,
+          1947336138905070201
+        ]
+      },
+      {
+        "x": [
+          3866078488614589887, 2615660740629317271, 10655590867780566206,
+          1451240334443355741
+        ],
+        "y": [
+          10991482326037944831, 1158151947720522518, 1812448768138330132,
+          2034656966760552681
+        ]
+      },
+      {
+        "x": [
+          863390436139403901, 5953906322779594428, 3170287578784392751,
+          1377809246565769988
+        ],
+        "y": [
+          7137572862718506466, 5171154377443047223, 11144210602718610291,
+          2899473709388447906
+        ]
+      },
+      {
+        "x": [
+          855697383514307441, 18377490072485924427, 5201584501825400133,
+          2904743841254449547
+        ],
+        "y": [
+          10361546083795174658, 10401738048267466726, 9256309517051825811,
+          2053705157818473936
+        ]
+      },
+      {
+        "x": [
+          14336950971828968410, 16795103468368104455, 16204032195649463967,
+          459382186466862814
+        ],
+        "y": [
+          3533318570999360598, 2788883780639609920, 8283032515496180257,
+          3367962777404548243
+        ]
+      }
+    ],
+    "num_instance": [4, 3],
+    "num_witness": [3, 6, 6],
+    "num_challenge": [1, 2, 1],
+    "evaluations": [
+      { "poly": 20, "rotation": 0 },
+      { "poly": 21, "rotation": 0 },
+      { "poly": 22, "rotation": 0 },
+      { "poly": 22, "rotation": -1 },
+      { "poly": 0, "rotation": 0 },
+      { "poly": 1, "rotation": 0 },
+      { "poly": 2, "rotation": 0 },
+      { "poly": 3, "rotation": 0 },
+      { "poly": 4, "rotation": 0 },
+      { "poly": 5, "rotation": 0 },
+      { "poly": 6, "rotation": 0 },
+      { "poly": 7, "rotation": 0 },
+      { "poly": 8, "rotation": 0 },
+      { "poly": 9, "rotation": 0 },
+      { "poly": 10, "rotation": 0 },
+      { "poly": 11, "rotation": 0 },
+      { "poly": 34, "rotation": 0 },
+      { "poly": 12, "rotation": 0 },
+      { "poly": 13, "rotation": 0 },
+      { "poly": 14, "rotation": 0 },
+      { "poly": 15, "rotation": 0 },
+      { "poly": 16, "rotation": 0 },
+      { "poly": 17, "rotation": 0 },
+      { "poly": 29, "rotation": 0 },
+      { "poly": 29, "rotation": 1 },
+      { "poly": 29, "rotation": -6 },
+      { "poly": 30, "rotation": 0 },
+      { "poly": 30, "rotation": 1 },
+      { "poly": 31, "rotation": 0 },
+      { "poly": 31, "rotation": 1 },
+      { "poly": 23, "rotation": 0 },
+      { "poly": 23, "rotation": -1 },
+      { "poly": 24, "rotation": 0 },
+      { "poly": 32, "rotation": 0 },
+      { "poly": 32, "rotation": 1 },
+      { "poly": 25, "rotation": 0 },
+      { "poly": 25, "rotation": -1 },
+      { "poly": 26, "rotation": 0 },
+      { "poly": 33, "rotation": 0 },
+      { "poly": 33, "rotation": 1 },
+      { "poly": 27, "rotation": 0 },
+      { "poly": 27, "rotation": -1 },
+      { "poly": 28, "rotation": 0 }
+    ],
+    "queries": [
+      { "poly": 20, "rotation": 0 },
+      { "poly": 21, "rotation": 0 },
+      { "poly": 22, "rotation": 0 },
+      { "poly": 22, "rotation": -1 },
+      { "poly": 29, "rotation": 0 },
+      { "poly": 29, "rotation": 1 },
+      { "poly": 30, "rotation": 0 },
+      { "poly": 30, "rotation": 1 },
+      { "poly": 29, "rotation": -6 },
+      { "poly": 31, "rotation": 0 },
+      { "poly": 23, "rotation": 0 },
+      { "poly": 24, "rotation": 0 },
+      { "poly": 23, "rotation": -1 },
+      { "poly": 31, "rotation": 1 },
+      { "poly": 32, "rotation": 0 },
+      { "poly": 25, "rotation": 0 },
+      { "poly": 26, "rotation": 0 },
+      { "poly": 25, "rotation": -1 },
+      { "poly": 32, "rotation": 1 },
+      { "poly": 33, "rotation": 0 },
+      { "poly": 27, "rotation": 0 },
+      { "poly": 28, "rotation": 0 },
+      { "poly": 27, "rotation": -1 },
+      { "poly": 33, "rotation": 1 },
+      { "poly": 0, "rotation": 0 },
+      { "poly": 1, "rotation": 0 },
+      { "poly": 2, "rotation": 0 },
+      { "poly": 3, "rotation": 0 },
+      { "poly": 4, "rotation": 0 },
+      { "poly": 5, "rotation": 0 },
+      { "poly": 6, "rotation": 0 },
+      { "poly": 7, "rotation": 0 },
+      { "poly": 8, "rotation": 0 },
+      { "poly": 9, "rotation": 0 },
+      { "poly": 10, "rotation": 0 },
+      { "poly": 11, "rotation": 0 },
+      { "poly": 12, "rotation": 0 },
+      { "poly": 13, "rotation": 0 },
+      { "poly": 14, "rotation": 0 },
+      { "poly": 15, "rotation": 0 },
+      { "poly": 16, "rotation": 0 },
+      { "poly": 17, "rotation": 0 },
+      { "poly": 35, "rotation": 0 },
+      { "poly": 34, "rotation": 0 }
+    ],
+    "quotient": {
+      "chunk_degree": 1,
+      "num_chunk": 4,
+      "numerator": {
+        "DistributePowers": [
+          [
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 8, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 8, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            6425625360762666998, 7924344314350639699,
+                            14762033076929465436, 2023505479389396574
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 8, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 22, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          {
+                            "Product": [
+                              { "Polynomial": { "poly": 20, "rotation": 0 } },
+                              { "Polynomial": { "poly": 21, "rotation": 0 } }
+                            ]
+                          },
+                          { "Polynomial": { "poly": 22, "rotation": -1 } }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 10, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 10, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            6425625360762666998, 7924344314350639699,
+                            14762033076929465436, 2023505479389396574
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 10, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 22, "rotation": 0 } },
+                    {
+                      "Negated": { "Polynomial": { "poly": 21, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 8, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                6425625360762666998, 7924344314350639699,
+                                14762033076929465436, 2023505479389396574
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 8, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            415066004289224689, 11886516471525959549,
+                            3696305541684646538, 3035258219084094862
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 8, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 22, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          { "Polynomial": { "poly": 20, "rotation": 0 } },
+                          { "Polynomial": { "poly": 21, "rotation": 0 } }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 9, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 9, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            6425625360762666998, 7924344314350639699,
+                            14762033076929465436, 2023505479389396574
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 9, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 22, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Product": [
+                          { "Polynomial": { "poly": 20, "rotation": 0 } },
+                          { "Polynomial": { "poly": 21, "rotation": 0 } }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 8, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 8, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            415066004289224689, 11886516471525959549,
+                            3696305541684646538, 3035258219084094862
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 8, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 22, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          { "Polynomial": { "poly": 20, "rotation": 0 } },
+                          {
+                            "Negated": {
+                              "Polynomial": { "poly": 21, "rotation": 0 }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 9, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                6425625360762666998, 7924344314350639699,
+                                14762033076929465436, 2023505479389396574
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 9, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            415066004289224689, 11886516471525959549,
+                            3696305541684646538, 3035258219084094862
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 9, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 22, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          { "Polynomial": { "poly": 21, "rotation": 0 } },
+                          { "Polynomial": { "poly": 22, "rotation": -1 } }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 9, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 9, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            415066004289224689, 11886516471525959549,
+                            3696305541684646538, 3035258219084094862
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 9, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 22, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Negated": {
+                          "Polynomial": { "poly": 21, "rotation": 0 }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 10, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                6425625360762666998, 7924344314350639699,
+                                14762033076929465436, 2023505479389396574
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 10, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            415066004289224689, 11886516471525959549,
+                            3696305541684646538, 3035258219084094862
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 10, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 21, "rotation": 0 } },
+                    {
+                      "Negated": { "Polynomial": { "poly": 22, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 10, "rotation": 0 } },
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "Polynomial": { "poly": 10, "rotation": 0 }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            415066004289224689, 11886516471525959549,
+                            3696305541684646538, 3035258219084094862
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 10, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                { "Polynomial": { "poly": 21, "rotation": 0 } }
+              ]
+            },
+            {
+              "Product": [
+                { "Polynomial": { "poly": 11, "rotation": 0 } },
+                {
+                  "Product": [
+                    { "Polynomial": { "poly": 21, "rotation": 0 } },
+                    {
+                      "Sum": [
+                        { "Polynomial": { "poly": 21, "rotation": 0 } },
+                        {
+                          "Negated": {
+                            "Constant": [
+                              12436184717236109307, 3962172157175319849,
+                              7381016538464732718, 1011752739694698287
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": 0 } },
+                {
+                  "Sum": [
+                    {
+                      "Constant": [
+                        12436184717236109307, 3962172157175319849,
+                        7381016538464732718, 1011752739694698287
+                      ]
+                    },
+                    {
+                      "Negated": { "Polynomial": { "poly": 29, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": -6 } },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 30, "rotation": 0 } },
+                        { "Polynomial": { "poly": 30, "rotation": 0 } }
+                      ]
+                    },
+                    {
+                      "Negated": { "Polynomial": { "poly": 30, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": 0 } },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 30, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Polynomial": { "poly": 29, "rotation": -6 }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Sum": [
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            12436184717236109307, 3962172157175319849,
+                            7381016538464732718, 1011752739694698287
+                          ]
+                        },
+                        {
+                          "Negated": { "CommonPolynomial": { "Lagrange": -6 } }
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          {
+                            "Sum": [
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "CommonPolynomial": { "Lagrange": -5 }
+                                      },
+                                      { "CommonPolynomial": { "Lagrange": -4 } }
+                                    ]
+                                  },
+                                  { "CommonPolynomial": { "Lagrange": -3 } }
+                                ]
+                              },
+                              { "CommonPolynomial": { "Lagrange": -2 } }
+                            ]
+                          },
+                          { "CommonPolynomial": { "Lagrange": -1 } }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 29, "rotation": 1 } },
+                        {
+                          "Product": [
+                            {
+                              "Product": [
+                                {
+                                  "Sum": [
+                                    {
+                                      "Sum": [
+                                        {
+                                          "Polynomial": {
+                                            "poly": 20,
+                                            "rotation": 0
+                                          }
+                                        },
+                                        {
+                                          "Product": [
+                                            { "Challenge": 1 },
+                                            {
+                                              "Polynomial": {
+                                                "poly": 12,
+                                                "rotation": 0
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    { "Challenge": 2 }
+                                  ]
+                                },
+                                {
+                                  "Sum": [
+                                    {
+                                      "Sum": [
+                                        {
+                                          "Polynomial": {
+                                            "poly": 21,
+                                            "rotation": 0
+                                          }
+                                        },
+                                        {
+                                          "Product": [
+                                            { "Challenge": 1 },
+                                            {
+                                              "Polynomial": {
+                                                "poly": 13,
+                                                "rotation": 0
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    { "Challenge": 2 }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Sum": [
+                                {
+                                  "Sum": [
+                                    {
+                                      "Polynomial": {
+                                        "poly": 22,
+                                        "rotation": 0
+                                      }
+                                    },
+                                    {
+                                      "Product": [
+                                        { "Challenge": 1 },
+                                        {
+                                          "Polynomial": {
+                                            "poly": 14,
+                                            "rotation": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                { "Challenge": 2 }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Product": [
+                          { "Polynomial": { "poly": 29, "rotation": 0 } },
+                          {
+                            "Product": [
+                              {
+                                "Product": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Sum": [
+                                          {
+                                            "Polynomial": {
+                                              "poly": 20,
+                                              "rotation": 0
+                                            }
+                                          },
+                                          {
+                                            "Product": [
+                                              {
+                                                "Product": [
+                                                  { "Challenge": 1 },
+                                                  {
+                                                    "Constant": [
+                                                      12436184717236109307,
+                                                      3962172157175319849,
+                                                      7381016538464732718,
+                                                      1011752739694698287
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              { "CommonPolynomial": "Identity" }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      { "Challenge": 2 }
+                                    ]
+                                  },
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Sum": [
+                                          {
+                                            "Polynomial": {
+                                              "poly": 21,
+                                              "rotation": 0
+                                            }
+                                          },
+                                          {
+                                            "Product": [
+                                              {
+                                                "Product": [
+                                                  { "Challenge": 1 },
+                                                  {
+                                                    "Constant": [
+                                                      11100302345850292309,
+                                                      5109383341788583484,
+                                                      6450182039226333095,
+                                                      2498166472155664813
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              { "CommonPolynomial": "Identity" }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      { "Challenge": 2 }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Polynomial": {
+                                          "poly": 22,
+                                          "rotation": 0
+                                        }
+                                      },
+                                      {
+                                        "Product": [
+                                          {
+                                            "Product": [
+                                              { "Challenge": 1 },
+                                              {
+                                                "Constant": [
+                                                  11922143911221101039,
+                                                  4762855335879493275,
+                                                  9634852812984583437,
+                                                  2104342265551292894
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          { "CommonPolynomial": "Identity" }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  { "Challenge": 2 }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Sum": [
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            12436184717236109307, 3962172157175319849,
+                            7381016538464732718, 1011752739694698287
+                          ]
+                        },
+                        {
+                          "Negated": { "CommonPolynomial": { "Lagrange": -6 } }
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          {
+                            "Sum": [
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "CommonPolynomial": { "Lagrange": -5 }
+                                      },
+                                      { "CommonPolynomial": { "Lagrange": -4 } }
+                                    ]
+                                  },
+                                  { "CommonPolynomial": { "Lagrange": -3 } }
+                                ]
+                              },
+                              { "CommonPolynomial": { "Lagrange": -2 } }
+                            ]
+                          },
+                          { "CommonPolynomial": { "Lagrange": -1 } }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 30, "rotation": 1 } },
+                        {
+                          "Product": [
+                            {
+                              "Product": [
+                                {
+                                  "Sum": [
+                                    {
+                                      "Sum": [
+                                        {
+                                          "Polynomial": {
+                                            "poly": 18,
+                                            "rotation": 0
+                                          }
+                                        },
+                                        {
+                                          "Product": [
+                                            { "Challenge": 1 },
+                                            {
+                                              "Polynomial": {
+                                                "poly": 15,
+                                                "rotation": 0
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    { "Challenge": 2 }
+                                  ]
+                                },
+                                {
+                                  "Sum": [
+                                    {
+                                      "Sum": [
+                                        {
+                                          "Polynomial": {
+                                            "poly": 19,
+                                            "rotation": 0
+                                          }
+                                        },
+                                        {
+                                          "Product": [
+                                            { "Challenge": 1 },
+                                            {
+                                              "Polynomial": {
+                                                "poly": 16,
+                                                "rotation": 0
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    { "Challenge": 2 }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Sum": [
+                                {
+                                  "Sum": [
+                                    {
+                                      "Polynomial": { "poly": 0, "rotation": 0 }
+                                    },
+                                    {
+                                      "Product": [
+                                        { "Challenge": 1 },
+                                        {
+                                          "Polynomial": {
+                                            "poly": 17,
+                                            "rotation": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                { "Challenge": 2 }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Product": [
+                          { "Polynomial": { "poly": 30, "rotation": 0 } },
+                          {
+                            "Product": [
+                              {
+                                "Product": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Sum": [
+                                          {
+                                            "Polynomial": {
+                                              "poly": 18,
+                                              "rotation": 0
+                                            }
+                                          },
+                                          {
+                                            "Product": [
+                                              {
+                                                "Product": [
+                                                  { "Challenge": 1 },
+                                                  {
+                                                    "Constant": [
+                                                      6393076176221150738,
+                                                      7283021187728417300,
+                                                      15472188617747294665,
+                                                      3366061389777165561
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              { "CommonPolynomial": "Identity" }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      { "Challenge": 2 }
+                                    ]
+                                  },
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Sum": [
+                                          {
+                                            "Polynomial": {
+                                              "poly": 19,
+                                              "rotation": 0
+                                            }
+                                          },
+                                          {
+                                            "Product": [
+                                              {
+                                                "Product": [
+                                                  { "Challenge": 1 },
+                                                  {
+                                                    "Constant": [
+                                                      5185504448716010194,
+                                                      13473122879869045206,
+                                                      7110214824824105482,
+                                                      296185565312886903
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              { "CommonPolynomial": "Identity" }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      { "Challenge": 2 }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Polynomial": {
+                                          "poly": 0,
+                                          "rotation": 0
+                                        }
+                                      },
+                                      {
+                                        "Product": [
+                                          {
+                                            "Product": [
+                                              { "Challenge": 1 },
+                                              {
+                                                "Constant": [
+                                                  3788189710366593638,
+                                                  12364756977029776224,
+                                                  17445039711624853376,
+                                                  2145282486335891750
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          { "CommonPolynomial": "Identity" }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  { "Challenge": 2 }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": 0 } },
+                {
+                  "Sum": [
+                    {
+                      "Constant": [
+                        12436184717236109307, 3962172157175319849,
+                        7381016538464732718, 1011752739694698287
+                      ]
+                    },
+                    {
+                      "Negated": { "Polynomial": { "poly": 31, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": -6 } },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 31, "rotation": 0 } },
+                        { "Polynomial": { "poly": 31, "rotation": 0 } }
+                      ]
+                    },
+                    {
+                      "Negated": { "Polynomial": { "poly": 31, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Sum": [
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            12436184717236109307, 3962172157175319849,
+                            7381016538464732718, 1011752739694698287
+                          ]
+                        },
+                        {
+                          "Negated": { "CommonPolynomial": { "Lagrange": -6 } }
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          {
+                            "Sum": [
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "CommonPolynomial": { "Lagrange": -5 }
+                                      },
+                                      { "CommonPolynomial": { "Lagrange": -4 } }
+                                    ]
+                                  },
+                                  { "CommonPolynomial": { "Lagrange": -3 } }
+                                ]
+                              },
+                              { "CommonPolynomial": { "Lagrange": -2 } }
+                            ]
+                          },
+                          { "CommonPolynomial": { "Lagrange": -1 } }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        {
+                          "Product": [
+                            { "Polynomial": { "poly": 31, "rotation": 1 } },
+                            {
+                              "Sum": [
+                                { "Polynomial": { "poly": 23, "rotation": 0 } },
+                                { "Challenge": 1 }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "Sum": [
+                            { "Polynomial": { "poly": 24, "rotation": 0 } },
+                            { "Challenge": 2 }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Product": [
+                          {
+                            "Product": [
+                              { "Polynomial": { "poly": 31, "rotation": 0 } },
+                              {
+                                "Sum": [
+                                  {
+                                    "DistributePowers": [
+                                      [
+                                        {
+                                          "Sum": [
+                                            {
+                                              "Product": [
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 5,
+                                                    "rotation": 0
+                                                  }
+                                                },
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 20,
+                                                    "rotation": 0
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Scaled": [
+                                                {
+                                                  "Sum": [
+                                                    {
+                                                      "Constant": [
+                                                        12436184717236109307,
+                                                        3962172157175319849,
+                                                        7381016538464732718,
+                                                        1011752739694698287
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Negated": {
+                                                        "Polynomial": {
+                                                          "poly": 5,
+                                                          "rotation": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                [0, 0, 0, 0]
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Sum": [
+                                            {
+                                              "Product": [
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 5,
+                                                    "rotation": 0
+                                                  }
+                                                },
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 21,
+                                                    "rotation": 0
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Scaled": [
+                                                {
+                                                  "Sum": [
+                                                    {
+                                                      "Constant": [
+                                                        12436184717236109307,
+                                                        3962172157175319849,
+                                                        7381016538464732718,
+                                                        1011752739694698287
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Negated": {
+                                                        "Polynomial": {
+                                                          "poly": 5,
+                                                          "rotation": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                [0, 0, 0, 0]
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      { "Challenge": 0 }
+                                    ]
+                                  },
+                                  { "Challenge": 1 }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "Sum": [
+                              {
+                                "DistributePowers": [
+                                  [
+                                    {
+                                      "Polynomial": { "poly": 1, "rotation": 0 }
+                                    },
+                                    {
+                                      "Polynomial": { "poly": 2, "rotation": 0 }
+                                    }
+                                  ],
+                                  { "Challenge": 0 }
+                                ]
+                              },
+                              { "Challenge": 2 }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": 0 } },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 23, "rotation": 0 } },
+                    {
+                      "Negated": { "Polynomial": { "poly": 24, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Sum": [
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "CommonPolynomial": { "Lagrange": -6 }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Sum": [
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Sum": [
+                                          {
+                                            "CommonPolynomial": {
+                                              "Lagrange": -5
+                                            }
+                                          },
+                                          {
+                                            "CommonPolynomial": {
+                                              "Lagrange": -4
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      { "CommonPolynomial": { "Lagrange": -3 } }
+                                    ]
+                                  },
+                                  { "CommonPolynomial": { "Lagrange": -2 } }
+                                ]
+                              },
+                              { "CommonPolynomial": { "Lagrange": -1 } }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        { "Polynomial": { "poly": 23, "rotation": 0 } },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 24, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 23, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Polynomial": { "poly": 23, "rotation": -1 }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": 0 } },
+                {
+                  "Sum": [
+                    {
+                      "Constant": [
+                        12436184717236109307, 3962172157175319849,
+                        7381016538464732718, 1011752739694698287
+                      ]
+                    },
+                    {
+                      "Negated": { "Polynomial": { "poly": 32, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": -6 } },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 32, "rotation": 0 } },
+                        { "Polynomial": { "poly": 32, "rotation": 0 } }
+                      ]
+                    },
+                    {
+                      "Negated": { "Polynomial": { "poly": 32, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Sum": [
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            12436184717236109307, 3962172157175319849,
+                            7381016538464732718, 1011752739694698287
+                          ]
+                        },
+                        {
+                          "Negated": { "CommonPolynomial": { "Lagrange": -6 } }
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          {
+                            "Sum": [
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "CommonPolynomial": { "Lagrange": -5 }
+                                      },
+                                      { "CommonPolynomial": { "Lagrange": -4 } }
+                                    ]
+                                  },
+                                  { "CommonPolynomial": { "Lagrange": -3 } }
+                                ]
+                              },
+                              { "CommonPolynomial": { "Lagrange": -2 } }
+                            ]
+                          },
+                          { "CommonPolynomial": { "Lagrange": -1 } }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        {
+                          "Product": [
+                            { "Polynomial": { "poly": 32, "rotation": 1 } },
+                            {
+                              "Sum": [
+                                { "Polynomial": { "poly": 25, "rotation": 0 } },
+                                { "Challenge": 1 }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "Sum": [
+                            { "Polynomial": { "poly": 26, "rotation": 0 } },
+                            { "Challenge": 2 }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Product": [
+                          {
+                            "Product": [
+                              { "Polynomial": { "poly": 32, "rotation": 0 } },
+                              {
+                                "Sum": [
+                                  {
+                                    "DistributePowers": [
+                                      [
+                                        {
+                                          "Sum": [
+                                            {
+                                              "Product": [
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 6,
+                                                    "rotation": 0
+                                                  }
+                                                },
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 20,
+                                                    "rotation": 0
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Scaled": [
+                                                {
+                                                  "Sum": [
+                                                    {
+                                                      "Constant": [
+                                                        12436184717236109307,
+                                                        3962172157175319849,
+                                                        7381016538464732718,
+                                                        1011752739694698287
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Negated": {
+                                                        "Polynomial": {
+                                                          "poly": 6,
+                                                          "rotation": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                [0, 0, 0, 0]
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Sum": [
+                                            {
+                                              "Product": [
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 6,
+                                                    "rotation": 0
+                                                  }
+                                                },
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 21,
+                                                    "rotation": 0
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Scaled": [
+                                                {
+                                                  "Sum": [
+                                                    {
+                                                      "Constant": [
+                                                        12436184717236109307,
+                                                        3962172157175319849,
+                                                        7381016538464732718,
+                                                        1011752739694698287
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Negated": {
+                                                        "Polynomial": {
+                                                          "poly": 6,
+                                                          "rotation": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                [
+                                                  5590572349914513250,
+                                                  3537035400559677925,
+                                                  10312040203731289534,
+                                                  869881250604696084
+                                                ]
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      { "Challenge": 0 }
+                                    ]
+                                  },
+                                  { "Challenge": 1 }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "Sum": [
+                              {
+                                "DistributePowers": [
+                                  [
+                                    {
+                                      "Polynomial": { "poly": 1, "rotation": 0 }
+                                    },
+                                    {
+                                      "Polynomial": { "poly": 3, "rotation": 0 }
+                                    }
+                                  ],
+                                  { "Challenge": 0 }
+                                ]
+                              },
+                              { "Challenge": 2 }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": 0 } },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 25, "rotation": 0 } },
+                    {
+                      "Negated": { "Polynomial": { "poly": 26, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Sum": [
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "CommonPolynomial": { "Lagrange": -6 }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Sum": [
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Sum": [
+                                          {
+                                            "CommonPolynomial": {
+                                              "Lagrange": -5
+                                            }
+                                          },
+                                          {
+                                            "CommonPolynomial": {
+                                              "Lagrange": -4
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      { "CommonPolynomial": { "Lagrange": -3 } }
+                                    ]
+                                  },
+                                  { "CommonPolynomial": { "Lagrange": -2 } }
+                                ]
+                              },
+                              { "CommonPolynomial": { "Lagrange": -1 } }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        { "Polynomial": { "poly": 25, "rotation": 0 } },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 26, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 25, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Polynomial": { "poly": 25, "rotation": -1 }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": 0 } },
+                {
+                  "Sum": [
+                    {
+                      "Constant": [
+                        12436184717236109307, 3962172157175319849,
+                        7381016538464732718, 1011752739694698287
+                      ]
+                    },
+                    {
+                      "Negated": { "Polynomial": { "poly": 33, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": -6 } },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        { "Polynomial": { "poly": 33, "rotation": 0 } },
+                        { "Polynomial": { "poly": 33, "rotation": 0 } }
+                      ]
+                    },
+                    {
+                      "Negated": { "Polynomial": { "poly": 33, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Sum": [
+                    {
+                      "Sum": [
+                        {
+                          "Constant": [
+                            12436184717236109307, 3962172157175319849,
+                            7381016538464732718, 1011752739694698287
+                          ]
+                        },
+                        {
+                          "Negated": { "CommonPolynomial": { "Lagrange": -6 } }
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Sum": [
+                          {
+                            "Sum": [
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "CommonPolynomial": { "Lagrange": -5 }
+                                      },
+                                      { "CommonPolynomial": { "Lagrange": -4 } }
+                                    ]
+                                  },
+                                  { "CommonPolynomial": { "Lagrange": -3 } }
+                                ]
+                              },
+                              { "CommonPolynomial": { "Lagrange": -2 } }
+                            ]
+                          },
+                          { "CommonPolynomial": { "Lagrange": -1 } }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    {
+                      "Product": [
+                        {
+                          "Product": [
+                            { "Polynomial": { "poly": 33, "rotation": 1 } },
+                            {
+                              "Sum": [
+                                { "Polynomial": { "poly": 27, "rotation": 0 } },
+                                { "Challenge": 1 }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "Sum": [
+                            { "Polynomial": { "poly": 28, "rotation": 0 } },
+                            { "Challenge": 2 }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Negated": {
+                        "Product": [
+                          {
+                            "Product": [
+                              { "Polynomial": { "poly": 33, "rotation": 0 } },
+                              {
+                                "Sum": [
+                                  {
+                                    "DistributePowers": [
+                                      [
+                                        {
+                                          "Sum": [
+                                            {
+                                              "Product": [
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 7,
+                                                    "rotation": 0
+                                                  }
+                                                },
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 20,
+                                                    "rotation": 0
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Scaled": [
+                                                {
+                                                  "Sum": [
+                                                    {
+                                                      "Constant": [
+                                                        12436184717236109307,
+                                                        3962172157175319849,
+                                                        7381016538464732718,
+                                                        1011752739694698287
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Negated": {
+                                                        "Polynomial": {
+                                                          "poly": 7,
+                                                          "rotation": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                [0, 0, 0, 0]
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Sum": [
+                                            {
+                                              "Product": [
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 7,
+                                                    "rotation": 0
+                                                  }
+                                                },
+                                                {
+                                                  "Polynomial": {
+                                                    "poly": 21,
+                                                    "rotation": 0
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "Scaled": [
+                                                {
+                                                  "Sum": [
+                                                    {
+                                                      "Constant": [
+                                                        12436184717236109307,
+                                                        3962172157175319849,
+                                                        7381016538464732718,
+                                                        1011752739694698287
+                                                      ]
+                                                    },
+                                                    {
+                                                      "Negated": {
+                                                        "Polynomial": {
+                                                          "poly": 7,
+                                                          "rotation": 0
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                [
+                                                  13392416068245389228,
+                                                  14913608834158628949,
+                                                  9631264589208289646,
+                                                  2240050767903289935
+                                                ]
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      { "Challenge": 0 }
+                                    ]
+                                  },
+                                  { "Challenge": 1 }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "Sum": [
+                              {
+                                "DistributePowers": [
+                                  [
+                                    {
+                                      "Polynomial": { "poly": 1, "rotation": 0 }
+                                    },
+                                    {
+                                      "Polynomial": { "poly": 4, "rotation": 0 }
+                                    }
+                                  ],
+                                  { "Challenge": 0 }
+                                ]
+                              },
+                              { "Challenge": 2 }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                { "CommonPolynomial": { "Lagrange": 0 } },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 27, "rotation": 0 } },
+                    {
+                      "Negated": { "Polynomial": { "poly": 28, "rotation": 0 } }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Product": [
+                {
+                  "Product": [
+                    {
+                      "Sum": [
+                        {
+                          "Sum": [
+                            {
+                              "Constant": [
+                                12436184717236109307, 3962172157175319849,
+                                7381016538464732718, 1011752739694698287
+                              ]
+                            },
+                            {
+                              "Negated": {
+                                "CommonPolynomial": { "Lagrange": -6 }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "Negated": {
+                            "Sum": [
+                              {
+                                "Sum": [
+                                  {
+                                    "Sum": [
+                                      {
+                                        "Sum": [
+                                          {
+                                            "CommonPolynomial": {
+                                              "Lagrange": -5
+                                            }
+                                          },
+                                          {
+                                            "CommonPolynomial": {
+                                              "Lagrange": -4
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      { "CommonPolynomial": { "Lagrange": -3 } }
+                                    ]
+                                  },
+                                  { "CommonPolynomial": { "Lagrange": -2 } }
+                                ]
+                              },
+                              { "CommonPolynomial": { "Lagrange": -1 } }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "Sum": [
+                        { "Polynomial": { "poly": 27, "rotation": 0 } },
+                        {
+                          "Negated": {
+                            "Polynomial": { "poly": 28, "rotation": 0 }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Sum": [
+                    { "Polynomial": { "poly": 27, "rotation": 0 } },
+                    {
+                      "Negated": {
+                        "Polynomial": { "poly": 27, "rotation": -1 }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          { "Challenge": 3 }
+        ]
+      }
+    },
+    "transcript_initial_state": [
+      14175404558096024942, 16262501692067160450, 3056332909318860795,
+      1893078000342653233
+    ],
+    "instance_committing_key": null,
+    "linearization": null,
+    "accumulator_indices": []
+  }
+}

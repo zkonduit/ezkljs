@@ -115,9 +115,9 @@ If your application requires the use of a model not currently on EZKL Hub, you'l
 
 In order to upload an artifact you'll need to provide the following:
 
-1. `model.(ezkl|onnx)`: The model you wish to upload in either compiled `.ezkl` format or in `.onnx` format.
+1. `model.ezkl`: The model you wish to upload in either compiled `.ezkl` format.
 2. `settings.json`: The settings for your model in JSON format.
-3. `pk.key`: The private key for your model.
+3. `pk.key`: The proving key for your model.
 
 This will work with either in a browser client (`File`) or a Node.js (`Buffer`) environent.
 

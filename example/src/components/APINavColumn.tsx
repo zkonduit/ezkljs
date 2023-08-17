@@ -73,7 +73,7 @@ function NavList() {
   return (
     <ul className='fixed h-full pt-8 lg:pl-10 pl-6 '>
       <li className='h-14 text-slate-500'>
-        <Link href='/hub'>What is EZKL Hub?</Link>
+        <Link href='/'>What is EZKL Hub?</Link>
       </li>
       <li className='h-14 text-slate-500'>
         <Link href='/health-check'>Health Check</Link>
