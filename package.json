@@ -1,6 +1,9 @@
 {
   "name": "@ezkljs/hub",
-  "version": "0.0.3",
+  "version": "0.0.4",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "The EZKL library is a set of tools to make integrating the [EZKL](https://github.com/zkonduit/ezkl) engine into your application easier than ever.",
   "main": "dist/bundle.cjs",
   "module": "dist/bundle.mjs",
@@ -11,6 +14,7 @@
     "README.md"
   ],
   "scripts": {
+    "test:w": "jest --config jest.config.ts --watch",
     "test": "jest --config jest.config.ts",
     "clean": "rm -r dist || true",
     "bundle": "webpack --config webpack.config.js --mode production",

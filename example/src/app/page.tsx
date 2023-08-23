@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className=''>
+    <main className='h-56 flex flex-col justify-between pt-8'>
       <p>
         Standing up your own EZKL enginer server can be a headache and resource
         intesive...
@@ -13,12 +13,6 @@ export default function Home() {
         Create and interact with your own EZKL engine server in the cloud with a
         simple API.
       </p>
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
     </main>
   )
 }

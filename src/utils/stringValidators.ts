@@ -1,3 +1,10 @@
+export function isValidProof(test: string) {
+  const head = test.substring(0, 2)
+  const testHex = test.substring(2)
+
+  return head === '0x' && isValidHexString(testHex)
+}
+
 export function isValidHexString(test: string) {
   return /^[0-9A-Fa-f]+$/.test(test)
 }

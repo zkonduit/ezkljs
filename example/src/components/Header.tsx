@@ -1,10 +1,11 @@
 'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 import TopNav from './TopNav'
 
 import { useAPINavColumnStore } from '@/components/APINavColumn'
+import Link from 'next/link'
 
 // const { open, setOpen } = useAPINavColumnStore.getState()
 
@@ -24,7 +25,9 @@ export default function Header() {
               }}
               className='w-4 mr-2 md:hidden'
             />
-            <h1>EZKL Hub</h1>
+            <Link href='/'>
+              <h1>EZKL Hub</h1>
+            </Link>
           </>
         )}
       </div>
