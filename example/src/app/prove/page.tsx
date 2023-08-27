@@ -10,44 +10,13 @@ import {
 } from 'flowbite-react'
 import hub from '@ezkljs/hub'
 import { useState } from 'react'
-import { z } from 'zod'
-
-const fileSchema = z.custom<File | null>((value) => {
-  if (value === null) return false
-  return value instanceof File && value.name.trim() !== ''
-}, "File name can't be empty")
-
-const formDataSchema = z.object({
-  // artifactId: z.string().uuid(),
-  artifactId: z.string(),
-  inputFile: fileSchema,
-})
-
-const intiateProofSchema = z.object({
-  status: z.literal('PENDING'),
-  taskId: z.string().uuid(),
-})
-
-const fourElementsArray = z.array(z.number().int()).length(4)
-
-const witnessSchema = z.object({
-  inputs: z.array(z.array(fourElementsArray)),
-  outputs: z.array(z.array(fourElementsArray)),
-  maxLookupInputs: z.number().int(),
-})
-
-const getProofSchema = z.object({
-  taskId: z.string().uuid(),
-  status: z.enum(['SUCCESS']),
-  proof: z.string(),
-  instances: z.array(z.number().nonnegative()),
-  transcriptType: z.literal('EVM'),
-  strategy: z.enum(['single', 'aggregate']),
-})
-
-type GetProof = z.infer<typeof getProofSchema>
-
-type InitiateProof = z.infer<typeof intiateProofSchema>
+import {
+  type GetProof,
+  type InitiateProof,
+  formDataSchema,
+  getProofSchema,
+  intiateProofSchema,
+} from './parsers'
 
 function showFirstAndLast(str: string, show: number): string {
   if (str.length <= show * 2) return str // If the string is already 10 characters or fewer, return it as is.
