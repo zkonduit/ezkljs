@@ -18,44 +18,50 @@ import {
   intiateProofSchema,
 } from './parsers'
 
+// Truncate Proof string
 function showFirstAndLast(str: string, show: number): string {
   if (str.length <= show * 2) return str // If the string is already 10 characters or fewer, return it as is.
   return str.slice(0, show) + ' . . . ' + str.slice(-show)
 }
 
 export default function Prove() {
+  // State
   const [fetchingInitiateProof, setFetchingInitiateProof] =
     useState<boolean>(false)
   const [fetchingGetProof, setFetchingGetProof] = useState<boolean>(false)
   const [initiatedProof, setInitiatedProof] = useState<InitiateProof>()
   const [proof, setProof] = useState<GetProof>()
 
+  // Form submit handlers defined in parent scope to manage page alerts
   const handleSubmitInitiateProof = async (
     e: React.FormEvent<HTMLFormElement>,
   ) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const parsedData = {
+
+    const formInputs = {
       artifactId: formData.get('artifactId'),
       inputFile: formData.get('inputFile'),
     }
 
-    const result = formDataSchema.safeParse(parsedData)
+    const validatedFormInputs = formDataSchema.safeParse(formInputs)
 
-    if (!result.success) {
+    if (!validatedFormInputs.success) {
       return
     }
 
-    if (result.data.inputFile === null) {
+    if (validatedFormInputs.data.inputFile === null) {
       return
     }
 
     setFetchingInitiateProof(true)
     try {
+      /* =================== HUB API ==================== */
       const initiatedProofResp = await hub.initiateProof(
-        result.data.artifactId,
-        result.data.inputFile,
+        validatedFormInputs.data.artifactId,
+        validatedFormInputs.data.inputFile,
       )
+      /* ================================================ */
 
       const validInitiatedProof = intiateProofSchema.parse(initiatedProofResp)
 
@@ -70,16 +76,18 @@ export default function Prove() {
   const handleSubmitGetProof = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const parsedData = {
+    const formInputs = {
       taskId: formData.get('taskId'),
     }
-    const { taskId } = parsedData
+    const { taskId } = formInputs
     try {
       if (taskId === null || typeof taskId !== 'string') {
         return
       }
       setFetchingGetProof(true)
+      /* ================= HUB API =================== */
       const getProofResp = await hub.getProof(taskId)
+      /* ============================================= */
       setFetchingGetProof(false)
 
       const validProof = getProofSchema.parse(getProofResp)
