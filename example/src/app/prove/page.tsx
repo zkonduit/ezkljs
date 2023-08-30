@@ -10,83 +10,58 @@ import {
 } from 'flowbite-react'
 import hub from '@ezkljs/hub'
 import { useState } from 'react'
-import { z } from 'zod'
+import {
+  type GetProof,
+  type InitiateProof,
+  formDataSchema,
+  getProofSchema,
+  intiateProofSchema,
+} from './parsers'
 
-const fileSchema = z.custom<File | null>((value) => {
-  if (value === null) return false
-  return value instanceof File && value.name.trim() !== ''
-}, "File name can't be empty")
-
-const formDataSchema = z.object({
-  // artifactId: z.string().uuid(),
-  artifactId: z.string(),
-  inputFile: fileSchema,
-})
-
-const intiateProofSchema = z.object({
-  status: z.literal('PENDING'),
-  taskId: z.string().uuid(),
-})
-
-const fourElementsArray = z.array(z.number().int()).length(4)
-
-const witnessSchema = z.object({
-  inputs: z.array(z.array(fourElementsArray)),
-  outputs: z.array(z.array(fourElementsArray)),
-  maxLookupInputs: z.number().int(),
-})
-
-const getProofSchema = z.object({
-  taskId: z.string().uuid(),
-  status: z.enum(['SUCCESS']),
-  proof: z.string(),
-  instances: z.array(z.number().nonnegative()),
-  transcriptType: z.literal('EVM'),
-  strategy: z.enum(['single', 'aggregate']),
-})
-
-type GetProof = z.infer<typeof getProofSchema>
-
-type InitiateProof = z.infer<typeof intiateProofSchema>
-
+// Truncate Proof string
 function showFirstAndLast(str: string, show: number): string {
   if (str.length <= show * 2) return str // If the string is already 10 characters or fewer, return it as is.
   return str.slice(0, show) + ' . . . ' + str.slice(-show)
 }
 
 export default function Prove() {
+  // State
   const [fetchingInitiateProof, setFetchingInitiateProof] =
     useState<boolean>(false)
   const [fetchingGetProof, setFetchingGetProof] = useState<boolean>(false)
   const [initiatedProof, setInitiatedProof] = useState<InitiateProof>()
   const [proof, setProof] = useState<GetProof>()
 
+  // Form submit handlers defined in parent scope to manage page alerts
   const handleSubmitInitiateProof = async (
     e: React.FormEvent<HTMLFormElement>,
   ) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const parsedData = {
+
+    const formInputs = {
       artifactId: formData.get('artifactId'),
       inputFile: formData.get('inputFile'),
     }
 
-    const result = formDataSchema.safeParse(parsedData)
+    const validatedFormInputs = formDataSchema.safeParse(formInputs)
 
-    if (!result.success) {
+    if (!validatedFormInputs.success) {
       return
     }
 
-    if (result.data.inputFile === null) {
+    if (validatedFormInputs.data.inputFile === null) {
       return
     }
 
     setFetchingInitiateProof(true)
     try {
+      /* =================== HUB API ==================== */
       const initiatedProofResp = await hub.initiateProof(
-        result.data.artifactId,
-        result.data.inputFile,
+        validatedFormInputs.data.artifactId,
+        validatedFormInputs.data.inputFile,
       )
+      /* ================================================ */
 
       const validInitiatedProof = intiateProofSchema.parse(initiatedProofResp)
 
@@ -101,16 +76,18 @@ export default function Prove() {
   const handleSubmitGetProof = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const parsedData = {
+    const formInputs = {
       taskId: formData.get('taskId'),
     }
-    const { taskId } = parsedData
+    const { taskId } = formInputs
     try {
       if (taskId === null || typeof taskId !== 'string') {
         return
       }
       setFetchingGetProof(true)
+      /* ================= HUB API =================== */
       const getProofResp = await hub.getProof(taskId)
+      /* ============================================= */
       setFetchingGetProof(false)
 
       const validProof = getProofSchema.parse(getProofResp)
