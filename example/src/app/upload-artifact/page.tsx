@@ -137,7 +137,7 @@ function UploadArtifactForm({
         <div>
           <Label htmlFor='pk' value='Select PK File' />
           <FileInput
-            helperText='Upload your PK (private key) file'
+            helperText='Upload your PK (proving key) file'
             id='pk'
             name='pk'
             className='my-4'
