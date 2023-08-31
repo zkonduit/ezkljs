@@ -23,7 +23,7 @@ export default function Artifacts() {
 
   const handleClick = async () => {
     setFetching(true)
-    const artifacts = await hub.getArtifacts()
+    const artifacts = await hub.getArtifacts({ first: 20, skip: 0 })
     setFetching(false)
 
     const validatedArtifacts = artifactsSchema.parse(artifacts)

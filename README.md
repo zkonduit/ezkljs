@@ -64,7 +64,7 @@ Output:
 
 In order to query the artifacts currently available on the EZKL Hub you can use the `getArtifacts` method.
 
-This method accepts an options object which allows you to specify the `limit` (the max number of artifacts to return) and `skip` (the number of artifacts to skip). `skip` and `limit` can be used together for effective pagination. If no options are provided, the default values are `skip = 0` and `limit = 20`.
+This method accepts an options object which allows you to specify the `first` (the max number of artifacts to return) and `skip` (the number of artifacts to skip). `skip` and `first` can be used together for effective pagination. If no options are provided, the default values are `skip = 0` and `first = 20`.
 
 ```typescript
 type Artifact = {
@@ -76,13 +76,13 @@ type Artifact = {
 type PageOptions =
   | {
       skip?: number
-      limit?: number
+      first?: number
     }
   | undefined
 
 const pageOptions: PageOptions = {
   skip: 0,
-  limit: 2,
+  first: 2,
 }
 
 const artifacts: Artifact[] = await hub.artifacts(pageOptions)
