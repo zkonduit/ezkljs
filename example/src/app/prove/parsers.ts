@@ -28,7 +28,7 @@ export const getProofSchema = z.object({
   status: z.enum(['SUCCESS']),
   proof: z.string(),
   instances: z.array(z.number().nonnegative()),
-  transcriptType: z.literal('EVM'),
+  transcriptType: z.literal('evm'),
   strategy: z.enum(['single', 'aggregate']),
 })
 
