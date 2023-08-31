@@ -116,7 +116,7 @@ describe('hub', () => {
 
       expect(getProofDetails).toBeDefined()
       expect(getProofDetails?.strategy).toEqual('single')
-      expect(getProofDetails?.transcriptType).toEqual('EVM')
+      expect(getProofDetails?.transcriptType).toEqual('evm')
       expect(getProofDetails?.status).toEqual('SUCCESS')
       expect(typeof getProofDetails?.proof).toEqual('string')
       expect(typeof getProofDetails?.taskId).toEqual('string')
