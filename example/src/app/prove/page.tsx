@@ -32,7 +32,6 @@ export default function Prove() {
   const [initiatedProof, setInitiatedProof] = useState<InitiateProof>()
   const [proof, setProof] = useState<GetProof>()
 
-  // Form submit handlers defined in parent scope to manage page alerts
   const handleSubmitInitiateProof = async (
     e: React.FormEvent<HTMLFormElement>,
   ) => {
