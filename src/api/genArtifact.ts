@@ -19,7 +19,8 @@ export default async function genArtifact(
   uncompiledModelFile: FileOrBuffer,
   inputFile: FileOrBuffer,
 ) {
-  const validatedUncompiledModelFile = fileOrBufferSchema.parse(uncompiledModelFile)
+  const validatedUncompiledModelFile =
+    fileOrBufferSchema.parse(uncompiledModelFile)
   const validatedInputFile = fileOrBufferSchema.parse(inputFile)
 
   const operations = {
@@ -31,12 +32,8 @@ export default async function genArtifact(
   }
 
   const map = {
-    "uncompiledModel": [
-      "variables.uncompiledModel"
-    ],
-    "input": [
-      "variables.input"
-    ]
+    uncompiledModel: ['variables.uncompiledModel'],
+    input: ['variables.input'],
   }
 
   const body = new FormData()
@@ -52,9 +49,8 @@ export default async function genArtifact(
       body,
     })
 
-    const validatedGenArtifactResponse = genArtifactResponseSchema.parse(
-      genArtifactResponse,
-    )
+    const validatedGenArtifactResponse =
+      genArtifactResponseSchema.parse(genArtifactResponse)
 
     return validatedGenArtifactResponse.generateArtifact.artifact.id
   } catch (e) {

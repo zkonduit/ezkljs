@@ -134,11 +134,7 @@ describe('hub', () => {
       'network.onnx',
     )
 
-    const inputPath = path.resolve(
-      __dirname,
-      'proof_artifacts',
-      'input.json',
-    )
+    const inputPath = path.resolve(__dirname, 'proof_artifacts', 'input.json')
     const uncompiledModel = await fs.readFile(uncompiledModelPath)
     const input = await fs.readFile(inputPath)
     const artifactData = await hub.genArtifact(uncompiledModel, input)
@@ -149,5 +145,4 @@ describe('hub', () => {
       console.log(artifactData)
     }
   }, 20000)
-
 })
