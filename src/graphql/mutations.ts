@@ -17,3 +17,19 @@ export const UPLOAD_ARTIFACTE_MUTATION = `mutation UploadArtifact($model: Upload
      id
   }
 }`
+
+export const GEN_ARTIFACT_MUTATION = `mutation GenerateArtifact(
+  $uncompiledModel: Upload!,
+  $input: Upload!,
+) {
+  generateArtifact(
+    name: "test"
+    description: "test"
+    uncompiledModel: $uncompiledModel
+    input: $input
+  ) {
+    artifact {
+      id
+    }
+  }
+}`

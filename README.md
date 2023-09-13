@@ -36,7 +36,6 @@ The router exposes useful APIs for interfacting with the EZKL Hub:
 - [uploadArtifact](#upload-artifact): Upload an artifact to the EZKL Hub.
 - [initiateProof](#initiate-proof): Initiate a proof generation task.
 - [getProof](#get-proof): Get the result of a proof generation task.
-
 ---
 
 ### Health Check

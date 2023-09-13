@@ -86,4 +86,16 @@ export const initiateProofResponseSchema = z.object({
     status: z.string(),
   }),
 })
+
+// Upload Artifact
+export const genArtifactSchema = z.object({
+  artifact: z.object({
+    id: z.string().uuid()
+  })
+})
+
+export const genArtifactResponseSchema = z.object({
+  generateArtifact: genArtifactSchema
+})
+
 export type InitiateProofResponse = z.infer<typeof initiateProofResponseSchema>

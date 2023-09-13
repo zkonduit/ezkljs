@@ -126,4 +126,27 @@ describe('hub', () => {
       })
     }, 10000)
   })
+
+  it('generate artifact', async () => {
+    const uncompiledModelPath = path.resolve(
+      __dirname,
+      'proof_artifacts',
+      'network.onnx',
+    )
+
+    const inputPath = path.resolve(
+      __dirname,
+      'proof_artifacts',
+      'input.json',
+    )
+    const uncompiledModel = await fs.readFile(uncompiledModelPath)
+    const input = await fs.readFile(inputPath)
+    const artifactData = await hub.genArtifact(uncompiledModel, input)
+
+    if (!artifactData) {
+      throw new Error('No initiatedProof returned')
+    } else {
+      throw new Error('No first artifact found')
+    }
+  })
 })
