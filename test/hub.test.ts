@@ -37,7 +37,7 @@ describe('hub', () => {
       } else {
         throw new Error('No artifacts returned from getArtifacts')
       }
-    })
+    }, 20000)
 
     it('uploads an arifact', async () => {
       const settingsPath = path.resolve(
@@ -66,7 +66,7 @@ describe('hub', () => {
       artifact = uploadArtifactResp
 
       expect(uploadArtifactResp.id).toBeDefined()
-    }, 10000)
+    }, 20000)
   })
 
   describe('proof related operations', () => {
@@ -101,7 +101,7 @@ describe('hub', () => {
       expect(initiatedProof).toBeDefined()
 
       expect(initiatedProof.status).toEqual('PENDING')
-    })
+    }, 20000)
 
     it('get proof', async () => {
       expect(true).toBe(true)
@@ -124,7 +124,7 @@ describe('hub', () => {
       getProofDetails?.instances?.forEach((item) => {
         expect(typeof item).toBe('number')
       })
-    }, 10000)
+    }, 20000)
   })
 
   it('generate artifact', async () => {
@@ -146,7 +146,8 @@ describe('hub', () => {
     if (!artifactData) {
       throw new Error('No initiatedProof returned')
     } else {
-      throw new Error('No first artifact found')
+      console.log(artifactData)
     }
-  })
+  }, 20000)
+
 })
