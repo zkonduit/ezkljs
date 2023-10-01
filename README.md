@@ -10,13 +10,13 @@ To install EZKL, simply use your favorite package manager:
 
 ```shell
 # npm
-npm install ezkl
+npm install @ezkljs/hub
 
 # yarn
-yarn add ezkl
+yarn add @ezkljs/hub
 
 # pnpm
-pnpm add ezkl
+pnpm add @ezkljs/hub
 ```
 
 ---
@@ -126,7 +126,7 @@ const modelFile: File | Buffer = fs.readFileSync('/path/model.ezkl')
 const settingsFile: File | Buffer = fs.readFileSync('/path/settings.json')
 const pkFile: File | Buffer = fs.readFileSync('/path/pk.key')
 
-const uploadArtifactResponse = await hub.uploadArtifact(model, settings, pk)
+const uploadArtifactResponse = await hub.uploadArtifact(modelFile, settingsFile, pkFile)
 
 console.log(JSON.stringify(uploadArtifactResponse), null, 2)
 ```
