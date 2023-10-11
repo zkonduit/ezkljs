@@ -85,7 +85,7 @@ const pageOptions: PageOptions = {
   limit: 2,
 }
 
-const artifacts: Artifact[] = await hub.artifacts(pageOptions)
+const artifacts: Artifact[] = await hub.getArtifacts(pageOptions)
 
 console.log(JSON.stringify(artifacts), null, 2)
 ```
