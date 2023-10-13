@@ -1,11 +1,14 @@
 import { UPLOAD_ARTIFACTE_MUTATION } from '@/graphql/mutations'
 import { GQL_URL } from '@/utils/constants'
 import {
+  UUID,
   FileOrBuffer,
   fileOrBufferSchema,
   uploadArtifactSchema,
+  uuidSchema
 } from '@/utils/parsers'
 import request from '@/utils/request'
+import { z } from 'zod'
 
 /**
  * Uploads an artifact, consisting of model, settings, and pk files.
@@ -16,9 +19,12 @@ import request from '@/utils/request'
  * @throws If there is an error in the request or validation process.
  */
 export default async function uploadArtifact(
+  name: string,
+  description: string,
   modelFile: FileOrBuffer,
   settingsFile: FileOrBuffer,
   pkFile: FileOrBuffer,
+  organizationId: string,
 ) {
   const validatedModelFile = fileOrBufferSchema.parse(modelFile)
   const validatedSettingsFile = fileOrBufferSchema.parse(settingsFile)
@@ -27,9 +33,12 @@ export default async function uploadArtifact(
   const operations = {
     query: UPLOAD_ARTIFACTE_MUTATION,
     variables: {
+      name,
+      description,
       validatedModelFile,
       validatedSettingsFile,
       validatedPkFile,
+      organizationId,
     },
   }
 
