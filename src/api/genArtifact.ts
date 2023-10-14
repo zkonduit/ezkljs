@@ -20,7 +20,7 @@ export default async function genArtifact(
   description: string,
   uncompiledModelFile: FileOrBuffer,
   inputFile: FileOrBuffer,
-  organizationId: string
+  organizationId: string,
 ) {
   const validatedUncompiledModelFile =
     fileOrBufferSchema.parse(uncompiledModelFile)

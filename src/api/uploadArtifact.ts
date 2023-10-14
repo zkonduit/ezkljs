@@ -5,7 +5,7 @@ import {
   FileOrBuffer,
   fileOrBufferSchema,
   uploadArtifactSchema,
-  uuidSchema
+  uuidSchema,
 } from '@/utils/parsers'
 import request from '@/utils/request'
 import { z } from 'zod'
