@@ -1,6 +1,6 @@
 export const GET_ARTIFACTS_QUERY = `
-  query Artifacts($first: Int, $skip: Int) {
-    artifacts(first: $first, skip: $skip) {
+  query getArtifacts($first: Int, $skip: Int, $organizationId: String) {
+    artifacts(first: $first, skip: $skip, organizationId: $organizationId) {
       name
       description
       id

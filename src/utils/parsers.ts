@@ -15,6 +15,7 @@ export type HealthyHealthCheckResponse = z.infer<
 export const getArtifactsInputSchema = z.object({
   first: z.number().int().positive().optional(),
   skip: z.number().int().nonnegative().optional(),
+  organizationId: z.string().uuid().optional(),
 })
 export type GetArtifactsInput = z.infer<typeof getArtifactsInputSchema>
 
