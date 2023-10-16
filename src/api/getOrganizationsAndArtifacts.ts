@@ -4,7 +4,6 @@ import {
   GetOrganizationsAndArtifactsInput,
   getOrganizationsAndArtifactsSchema,
   organizationsAndArtifactsResponseSchema,
-
 } from '@/utils/parsers'
 import { GET_ARTIFACTS_QUERY } from '@/graphql/querties'
 
@@ -25,9 +24,12 @@ export default async function getOrganizationsAndArtifacts({
     first,
     skip,
     organizationId,
-
   })
-  const { first: validatedFirst, skip: validatedSkip, organizationId: validatedOrganizationId } = validOrgAndArtifactsInput
+  const {
+    first: validatedFirst,
+    skip: validatedSkip,
+    organizationId: validatedOrganizationId,
+  } = validOrgAndArtifactsInput
   try {
     const response = await request<unknown>(GQL_URL, {
       unwrapData: true,
@@ -40,12 +42,13 @@ export default async function getOrganizationsAndArtifacts({
         variables: {
           first: validatedFirst,
           skip: validatedSkip,
-          organizationId: validatedOrganizationId
+          organizationId: validatedOrganizationId,
         },
       }),
     })
 
-    const validatedOrganizationsAndArtifactsResponse = organizationsAndArtifactsResponseSchema.parse(response)
+    const validatedOrganizationsAndArtifactsResponse =
+      organizationsAndArtifactsResponseSchema.parse(response)
 
     return validatedOrganizationsAndArtifactsResponse.artifacts
   } catch (e) {

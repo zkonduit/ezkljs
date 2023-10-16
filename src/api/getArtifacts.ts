@@ -22,9 +22,13 @@ export default async function getArtifacts({
   const validGetArtifactsInput = getArtifactsInputSchema.parse({
     first,
     skip,
-    organizationId
+    organizationId,
   })
-  const { first: validatedFirst, skip: validatedSkip, organizationId: validatedOrganizationId } = validGetArtifactsInput
+  const {
+    first: validatedFirst,
+    skip: validatedSkip,
+    organizationId: validatedOrganizationId,
+  } = validGetArtifactsInput
   try {
     const response = await request<unknown>(GQL_URL, {
       unwrapData: true,
@@ -37,7 +41,7 @@ export default async function getArtifacts({
         variables: {
           first: validatedFirst,
           skip: validatedSkip,
-          organizationId: validatedOrganizationId
+          organizationId: validatedOrganizationId,
         },
       }),
     })

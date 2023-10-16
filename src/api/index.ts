@@ -23,7 +23,7 @@ const hub: Hub = {
   initiateProof,
   getProof,
   genArtifact,
-  getOrganizationsAndArtifacts
+  getOrganizationsAndArtifacts,
 }
 
 export default hub
