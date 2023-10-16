@@ -1,14 +1,11 @@
 import { UPLOAD_ARTIFACTE_MUTATION } from '@/graphql/mutations'
 import { GQL_URL } from '@/utils/constants'
 import {
-  UUID,
   FileOrBuffer,
   fileOrBufferSchema,
   uploadArtifactSchema,
-  uuidSchema
 } from '@/utils/parsers'
 import request from '@/utils/request'
-import { z } from 'zod'
 
 /**
  * Uploads an artifact, consisting of model, settings, and pk files.

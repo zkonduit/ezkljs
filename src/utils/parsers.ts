@@ -98,3 +98,20 @@ export const genArtifactSchema = z.object({
 export const genArtifactResponseSchema = z.object({
   generateArtifact: genArtifactSchema,
 })
+
+
+// Get organizations and their artifacts
+
+export const getOrganizationsAndArtifactsSchema = z.object({
+  first: z.number().int().positive().optional(),
+  skip: z.number().int().nonnegative().optional(),
+  organizationId: z.string().uuid().optional(),
+})
+export type GetOrganizationsAndArtifactsInput = z.infer<typeof getOrganizationsAndArtifactsSchema>
+
+export const organizationsAndArtifactsResponseSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  artifacts: z.array(artifactSchema),
+})
+export type organizationsAndArtifactsResponse = z.infer<typeof organizationsAndArtifactsResponseSchema>
