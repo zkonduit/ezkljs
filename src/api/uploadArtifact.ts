@@ -4,10 +4,6 @@ import {
   FileOrBuffer,
   fileOrBufferSchema,
   uploadArtifactSchema,
-<<<<<<< HEAD
-=======
-  uuidSchema,
->>>>>>> fe3cdf3b10e3e6d0ba390fdc6cfae5dd939b9635
 } from '@/utils/parsers'
 import request from '@/utils/request'
 
