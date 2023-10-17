@@ -4,13 +4,17 @@ export const GET_ARTIFACTS_QUERY = `
       name
       description
       id
+      organization {
+        id
+        name
+      }
     }
   }
 `
 
-export const GET_PROOF_QUERY = `query GetProof($taskId: String!){
-  getProof(taskId: $taskId) {
-    taskId
+export const GET_PROOF_QUERY = `query GetProof($id: String!){
+  getProof(id: $id) {
+    id
     status
     proof
     instances

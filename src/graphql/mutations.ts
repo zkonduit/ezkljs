@@ -1,6 +1,6 @@
 export const INITIATED_PROOF_MUTATION = `mutation InitiateProof($id: String!, $input: Upload!) {
   initiateProof(id: $id, input: $input) { 
-    taskId 
+    id
     status 
   }
 }`

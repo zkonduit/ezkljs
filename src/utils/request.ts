@@ -12,12 +12,13 @@ export default async function request<TData>(
     const { logs, unwrapData, ...rest } = options
     const response = await fetch(url, rest)
 
-    // console.log(response)
     if (logs) {
       console.log(response)
     }
 
+    console.log('before JOSN')
     const result = await response.json()
+    console.log('after json', result)
     // console.log('result', result)
     if (result.errors) {
       throw new Error(result.errors[0].message)

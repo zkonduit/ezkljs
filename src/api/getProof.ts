@@ -23,7 +23,7 @@ export default async function getProof(taskId: UUID) {
       body: JSON.stringify({
         query: GET_PROOF_QUERY,
         variables: {
-          taskId: validTaskId,
+          id: validTaskId,
         },
       }),
     })

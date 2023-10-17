@@ -23,6 +23,12 @@ export const artifactSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   id: z.string(),
+  organization: z
+    .object({
+      id: z.string(),
+      name: z.string(),
+    })
+    .nullable(),
 })
 export type Artifact = z.infer<typeof artifactSchema>
 
