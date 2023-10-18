@@ -28,6 +28,8 @@ export default async function getProof(taskId: UUID) {
       }),
     })
 
+    console.log('888888888888888888888')
+    console.log('response', response)
     const validatedProofResponse = getProofResponseSchema.parse(response)
 
     if (!isValidProof(validatedProofResponse.getProof.proof)) {

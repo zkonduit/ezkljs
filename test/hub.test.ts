@@ -1,5 +1,5 @@
-import hub from '../dist/bundle.cjs'
-// import hub from '../src/'
+// import hub from '../dist/bundle.cjs'
+import hub from '../src/'
 
 import path from 'path'
 import fs from 'node:fs/promises'
@@ -58,9 +58,12 @@ describe('hub', () => {
       const pkFile = await fs.readFile(pkPath)
 
       const uploadArtifactResp = await hub.uploadArtifact(
+        `Best New Artifact ${Date.now()}`,
+        `Super cool artifact ${Date.now()}`,
         modelFile,
         settingsFile,
         pkFile,
+        '10f565e2-803b-4fe8-b70e-387de38b4cf5',
       )
 
       artifact = uploadArtifactResp
@@ -83,6 +86,8 @@ describe('hub', () => {
         )
         const file = await fs.readFile(filePath)
         initiatedProof = await hub.initiateProof(artifactId, file)
+        console.log('==================================')
+        console.log('initiatedProof', initiatedProof)
 
         if (!initiatedProof) {
           throw new Error('No initiatedProof returned')
@@ -111,7 +116,8 @@ describe('hub', () => {
 
       await new Promise((resolve) => setTimeout(resolve, 5000)) // wait for 5 seconds
       const getProofDetails: GetProofDetails | undefined = await hub.getProof(
-        initiatedProof.taskId,
+        // initiatedProof.taskId,
+        initiatedProof.id,
       )
 
       expect(getProofDetails).toBeDefined()
@@ -119,10 +125,18 @@ describe('hub', () => {
       expect(getProofDetails?.transcriptType).toEqual('evm')
       expect(getProofDetails?.status).toEqual('SUCCESS')
       expect(typeof getProofDetails?.proof).toEqual('string')
-      expect(typeof getProofDetails?.taskId).toEqual('string')
+      expect(typeof getProofDetails?.id).toEqual('string')
       expect(Array.isArray(getProofDetails?.instances)).toBe(true)
+      // getProofDetails?.instances?.forEach((item) => {
+      //   expect(typeof item).toBe('number')
+      // })
       getProofDetails?.instances?.forEach((item) => {
-        expect(typeof item).toBe('number')
+        // Check if item is a string
+        expect(typeof item).toBe('string')
+
+        // Check if item can be converted to a non-negative integer
+        const num = parseFloat(item)
+        expect(!isNaN(num) && num >= 0 && Math.floor(num) === num).toBeTruthy()
       })
     }, 10000)
   })
