@@ -26,8 +26,6 @@ export default async function genArtifact(
     fileOrBufferSchema.parse(uncompiledModelFile)
   const validatedInputFile = fileOrBufferSchema.parse(inputFile)
 
-  console.log('0000000000000000000000000000')
-  console.log('organizationId', organizationId)
   const operations = {
     query: GEN_ARTIFACT_MUTATION,
     variables: {

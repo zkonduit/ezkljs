@@ -86,8 +86,6 @@ describe('hub', () => {
         )
         const file = await fs.readFile(filePath)
         initiatedProof = await hub.initiateProof(artifactId, file)
-        console.log('==================================')
-        console.log('initiatedProof', initiatedProof)
 
         if (!initiatedProof) {
           throw new Error('No initiatedProof returned')

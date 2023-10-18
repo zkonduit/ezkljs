@@ -51,8 +51,6 @@ export default async function initiateProof(
       method: 'POST',
       body,
     })
-    console.log('9999999999999999999')
-    console.log('initiateProofResponse', initiateProofResponse)
 
     const validatedInitiateProof = initiateProofResponseSchema.parse(
       initiateProofResponse,
