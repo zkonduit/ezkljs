@@ -1,5 +1,5 @@
-// import hub from '../dist/bundle.cjs'
-import hub from '../src/'
+import hub from '../dist/bundle.cjs'
+// import hub from '../src/'
 
 import path from 'path'
 import fs from 'node:fs/promises'
@@ -39,7 +39,7 @@ describe('hub', () => {
       }
     })
 
-    it('uploads an arifact', async () => {
+    it('uploads a compiled arifact', async () => {
       const settingsPath = path.resolve(
         __dirname,
         'proof_artifacts',
@@ -69,6 +69,30 @@ describe('hub', () => {
       artifact = uploadArtifactResp
 
       expect(uploadArtifactResp.id).toBeDefined()
+    }, 10000)
+
+    it('uploads a onnx (not compiled) arifact', async () => {
+      const modelPath = path.resolve(
+        __dirname,
+        'proof_artifacts',
+        'network.onnx',
+      )
+      const modelFile = await fs.readFile(modelPath)
+
+      const inputPath = path.resolve(__dirname, 'proof_artifacts', 'input.json')
+      const inputFile = await fs.readFile(inputPath)
+
+      const genArtifactResp = await hub.genArtifact(
+        `Best New ONNX Artifact ${Date.now()}`,
+        `Super cool artifact ${Date.now()}`,
+        modelFile,
+        inputFile,
+        '10f565e2-803b-4fe8-b70e-387de38b4cf5',
+      )
+
+      expect(genArtifactResp).toBeDefined()
+      expect(typeof genArtifactResp).toEqual('string')
+      expect(true).toBe(true)
     }, 10000)
   })
 
