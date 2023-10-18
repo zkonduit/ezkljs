@@ -16,9 +16,12 @@ import request from '@/utils/request'
  * @throws If there is an error in the request or validation process.
  */
 export default async function uploadArtifact(
+  name: string,
+  description: string,
   modelFile: FileOrBuffer,
   settingsFile: FileOrBuffer,
   pkFile: FileOrBuffer,
+  organizationId: string,
 ) {
   const validatedModelFile = fileOrBufferSchema.parse(modelFile)
   const validatedSettingsFile = fileOrBufferSchema.parse(settingsFile)
@@ -27,9 +30,12 @@ export default async function uploadArtifact(
   const operations = {
     query: UPLOAD_ARTIFACTE_MUTATION,
     variables: {
+      name,
+      description,
       validatedModelFile,
       validatedSettingsFile,
       validatedPkFile,
+      organizationId,
     },
   }
 

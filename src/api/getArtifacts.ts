@@ -15,7 +15,7 @@ import { GET_ARTIFACTS_QUERY } from '@/graphql/querties'
  * @throws If there is an error in the request or validation process.
  */
 export default async function getArtifacts({
-  first = 20,
+  first = 200,
   skip = 0,
 }: GetArtifactsInput = {}) {
   const validGetArtifactsInput = getArtifactsInputSchema.parse({

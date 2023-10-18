@@ -23,6 +23,12 @@ export const artifactSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   id: z.string(),
+  organization: z
+    .object({
+      id: z.string(),
+      name: z.string(),
+    })
+    .nullable(),
 })
 export type Artifact = z.infer<typeof artifactSchema>
 
@@ -47,12 +53,21 @@ export const fourElementsArray = z
 //   maxLookupInputs: z.number().int().nonnegative(),
 // })
 
+const nonNegativeStringNumber = z.string().refine(
+  (value) => {
+    const num = parseFloat(value)
+    return !isNaN(num) && num >= 0 && Math.floor(num) === num
+  },
+  {
+    message: 'String must represent a non-negative integer.',
+  },
+)
 // Get Proof Details
 export const getProofDetailsSchema = z.object({
-  taskId: z.string().uuid(),
+  id: z.string().uuid(),
   status: z.enum(['SUCCESS']),
   proof: z.string(),
-  instances: z.array(z.number().nonnegative()),
+  instances: z.array(nonNegativeStringNumber),
   transcriptType: z.literal('evm'),
   strategy: z.enum(['single', 'aggregate']),
 })
@@ -82,8 +97,20 @@ export const initiateProofInputSchema = z.object({
 // Initiate Proof Response
 export const initiateProofResponseSchema = z.object({
   initiateProof: z.object({
-    taskId: z.string().uuid(),
+    // taskId: z.string().uuid(),
+    id: z.string().uuid(),
     status: z.string(),
   }),
 })
 export type InitiateProofResponse = z.infer<typeof initiateProofResponseSchema>
+
+// Upload Artifact
+export const genArtifactSchema = z.object({
+  artifact: z.object({
+    id: z.string().uuid(),
+  }),
+})
+
+export const genArtifactResponseSchema = z.object({
+  generateArtifact: genArtifactSchema,
+})

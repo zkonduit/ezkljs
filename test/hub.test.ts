@@ -39,7 +39,7 @@ describe('hub', () => {
       }
     })
 
-    it('uploads an arifact', async () => {
+    it('uploads a compiled arifact', async () => {
       const settingsPath = path.resolve(
         __dirname,
         'proof_artifacts',
@@ -58,14 +58,41 @@ describe('hub', () => {
       const pkFile = await fs.readFile(pkPath)
 
       const uploadArtifactResp = await hub.uploadArtifact(
+        `Best New Artifact ${Date.now()}`,
+        `Super cool artifact ${Date.now()}`,
         modelFile,
         settingsFile,
         pkFile,
+        '10f565e2-803b-4fe8-b70e-387de38b4cf5',
       )
 
       artifact = uploadArtifactResp
 
       expect(uploadArtifactResp.id).toBeDefined()
+    }, 10000)
+
+    it('uploads a onnx (not compiled) arifact', async () => {
+      const modelPath = path.resolve(
+        __dirname,
+        'proof_artifacts',
+        'network.onnx',
+      )
+      const modelFile = await fs.readFile(modelPath)
+
+      const inputPath = path.resolve(__dirname, 'proof_artifacts', 'input.json')
+      const inputFile = await fs.readFile(inputPath)
+
+      const genArtifactResp = await hub.genArtifact(
+        `Best New ONNX Artifact ${Date.now()}`,
+        `Super cool artifact ${Date.now()}`,
+        modelFile,
+        inputFile,
+        '10f565e2-803b-4fe8-b70e-387de38b4cf5',
+      )
+
+      expect(genArtifactResp).toBeDefined()
+      expect(typeof genArtifactResp).toEqual('string')
+      expect(true).toBe(true)
     }, 10000)
   })
 
@@ -111,7 +138,8 @@ describe('hub', () => {
 
       await new Promise((resolve) => setTimeout(resolve, 5000)) // wait for 5 seconds
       const getProofDetails: GetProofDetails | undefined = await hub.getProof(
-        initiatedProof.taskId,
+        // initiatedProof.taskId,
+        initiatedProof.id,
       )
 
       expect(getProofDetails).toBeDefined()
@@ -119,10 +147,18 @@ describe('hub', () => {
       expect(getProofDetails?.transcriptType).toEqual('evm')
       expect(getProofDetails?.status).toEqual('SUCCESS')
       expect(typeof getProofDetails?.proof).toEqual('string')
-      expect(typeof getProofDetails?.taskId).toEqual('string')
+      expect(typeof getProofDetails?.id).toEqual('string')
       expect(Array.isArray(getProofDetails?.instances)).toBe(true)
+      // getProofDetails?.instances?.forEach((item) => {
+      //   expect(typeof item).toBe('number')
+      // })
       getProofDetails?.instances?.forEach((item) => {
-        expect(typeof item).toBe('number')
+        // Check if item is a string
+        expect(typeof item).toBe('string')
+
+        // Check if item can be converted to a non-negative integer
+        const num = parseFloat(item)
+        expect(!isNaN(num) && num >= 0 && Math.floor(num) === num).toBeTruthy()
       })
     }, 10000)
   })
