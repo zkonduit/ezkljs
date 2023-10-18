@@ -16,10 +16,7 @@ export default async function request<TData>(
       console.log(response)
     }
 
-    console.log('before JOSN')
     const result = await response.json()
-    console.log('after json', result)
-    // console.log('result', result)
     if (result.errors) {
       throw new Error(result.errors[0].message)
     }
