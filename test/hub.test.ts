@@ -1,5 +1,5 @@
-import hub from '../dist/bundle.cjs'
-// import hub from '../src/'
+// import hub from '../dist/bundle.cjs'
+import hub from '../src/'
 
 import path from 'path'
 import fs from 'node:fs/promises'
@@ -8,8 +8,6 @@ import {
   GetProofDetails,
   InitiateProofResponse,
 } from '../dist/utils/parsers'
-
-const { getArtifacts } = hub
 
 let artifact: Artifact | undefined
 let initiatedProof: InitiateProofResponse['initiateProof'] | undefined
@@ -23,8 +21,8 @@ describe('hub', () => {
   })
   describe('artifact related', () => {
     it('get artifacts', async () => {
-      expect(getArtifacts).toBeDefined()
-      const artifacts = await getArtifacts()
+      expect(hub.getArtifacts).toBeDefined()
+      const artifacts = await hub.getArtifacts()
       if (artifacts && artifacts.length > 0) {
         const firstArtifact = artifacts[0]
         if (firstArtifact) {
@@ -57,14 +55,14 @@ describe('hub', () => {
       const pkPath = path.resolve(__dirname, 'proof_artifacts', 'pk.key')
       const pkFile = await fs.readFile(pkPath)
 
-      const uploadArtifactResp = await hub.uploadArtifact(
-        `Best New Artifact ${Date.now()}`,
-        `Super cool artifact ${Date.now()}`,
-        modelFile,
-        settingsFile,
-        pkFile,
-        '10f565e2-803b-4fe8-b70e-387de38b4cf5',
-      )
+      const uploadArtifactResp = await hub.uploadArtifact({
+        name: `Best New Artifact ${Date.now()}`,
+        description: `Super cool artifact ${Date.now()}`,
+        modelFile: modelFile,
+        settingsFile: settingsFile,
+        pkFile: pkFile,
+        organizationId: '10f565e2-803b-4fe8-b70e-387de38b4cf5',
+      })
 
       artifact = uploadArtifactResp
 
@@ -82,13 +80,13 @@ describe('hub', () => {
       const inputPath = path.resolve(__dirname, 'proof_artifacts', 'input.json')
       const inputFile = await fs.readFile(inputPath)
 
-      const genArtifactResp = await hub.genArtifact(
-        `Best New ONNX Artifact ${Date.now()}`,
-        `Super cool artifact ${Date.now()}`,
-        modelFile,
-        inputFile,
-        '10f565e2-803b-4fe8-b70e-387de38b4cf5',
-      )
+      const genArtifactResp = await hub.genArtifact({
+        name: `Best New ONNX Artifact ${Date.now()}`,
+        description: `Super cool artifact ${Date.now()}`,
+        uncompiledModelFile: modelFile,
+        inputFile: inputFile,
+        organizationId: '10f565e2-803b-4fe8-b70e-387de38b4cf5',
+      })
 
       expect(genArtifactResp).toBeDefined()
       expect(typeof genArtifactResp).toEqual('string')
@@ -109,7 +107,10 @@ describe('hub', () => {
           'input.json',
         )
         const file = await fs.readFile(filePath)
-        initiatedProof = await hub.initiateProof(artifactId, file)
+        initiatedProof = await hub.initiateProof({
+          artifactId: artifactId,
+          inputFile: file,
+        })
 
         if (!initiatedProof) {
           throw new Error('No initiatedProof returned')
@@ -137,11 +138,9 @@ describe('hub', () => {
       }
 
       await new Promise((resolve) => setTimeout(resolve, 5000)) // wait for 5 seconds
-      const getProofDetails: GetProofDetails | undefined = await hub.getProof(
-        // initiatedProof.taskId,
-        initiatedProof.id,
-      )
-
+      const getProofDetails: GetProofDetails | undefined = await hub.getProof({
+        id: initiatedProof.id,
+      })
       expect(getProofDetails).toBeDefined()
       expect(getProofDetails?.strategy).toEqual('single')
       expect(getProofDetails?.transcriptType).toEqual('evm')

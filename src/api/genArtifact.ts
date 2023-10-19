@@ -7,21 +7,35 @@ import {
 } from '@/utils/parsers'
 import request from '@/utils/request'
 
+type GenArtifactOptions = {
+  name: string
+  description: string
+  uncompiledModelFile: FileOrBuffer
+  inputFile: FileOrBuffer
+  organizationId: string
+  url?: string
+}
+
 /**
- * Uploads an artifact, consisting of model, settings, and pk files.
- * @param modelFile The model file as a Buffer or File.
- * @param settingsFile The settings file as a Buffer or File.
- * @param pkFile The pk file as a Buffer or File.
- * @returns An object containing the id of the uploaded artifact.
+ * Generates an artifact using the given model, settings, and input files.
+ * @param options - The options object containing:
+ *   - `name` The name of the artifact.
+ *   - `description` A description of the artifact.
+ *   - `uncompiledModelFile` The uncompiled model file as a Buffer or File.
+ *   - `inputFile` The input file as a Buffer or File.
+ *   - `organizationId` The ID of the organization.
+ *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
+ * @returns The response from the artifact generation process.
  * @throws If there is an error in the request or validation process.
  */
-export default async function genArtifact(
-  name: string,
-  description: string,
-  uncompiledModelFile: FileOrBuffer,
-  inputFile: FileOrBuffer,
-  organizationId: string,
-) {
+export default async function genArtifact({
+  name,
+  description,
+  uncompiledModelFile,
+  inputFile,
+  organizationId,
+  url = GQL_URL,
+}: GenArtifactOptions) {
   const validatedUncompiledModelFile =
     fileOrBufferSchema.parse(uncompiledModelFile)
   const validatedInputFile = fileOrBufferSchema.parse(inputFile)
@@ -49,7 +63,7 @@ export default async function genArtifact(
   body.append('input', new Blob([validatedInputFile]))
 
   try {
-    const genArtifactResponse = await request<unknown>(GQL_URL, {
+    const genArtifactResponse = await request<unknown>(url, {
       unwrapData: true,
       method: 'POST',
       body,
