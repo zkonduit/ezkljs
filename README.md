@@ -33,7 +33,8 @@ The router exposes useful APIs for interfacting with the EZKL Hub:
 
 - [healthCheck](#health-check): Check the health of the EZKL Hub.
 - [getArtifacts](#get-artifacts): Get a list of artifacts currently on the EZKL Hub.
-- [uploadArtifact](#upload-artifact): Upload an artifact to the EZKL Hub.
+- [Upload Compiled Circuit (uploadArtifact)](#upload-compiled-circuit): Upload a compiled ezkl circuit to create an artifact on EZLL Hub.
+- [Upload ONNX Model (genArtifact)](#upload-onnx-model): Upload a onnx model to create an artifact on the EZKL Hub.
 - [initiateProof](#initiate-proof): Initiate a proof generation task.
 - [getProof](#get-proof): Get the result of a proof generation task.
 
@@ -42,9 +43,10 @@ The router exposes useful APIs for interfacting with the EZKL Hub:
 ### Health Check
 
 You can preform a health check on the EZKL Hub by using the `healthCheck` method.
+You can provide an optional url if you're using a custom EZKL Hub instance.
 
 ```typescript
-const healthStatus = await hub.healthCheck()
+const healthStatus = await hub.healthCheck({ url: 'https://hub.ezkl.xyz' })
 
 console.log(JSON.stringify(healthStatus, null, 2))
 ```
@@ -83,6 +85,7 @@ type PageOptions =
 const pageOptions: PageOptions = {
   skip: 0,
   limit: 2,
+  url: 'https://hub.ezkl.xyz',
 }
 
 const artifacts: Artifact[] = await hub.getArtifacts(pageOptions)
@@ -109,30 +112,89 @@ Output:
 
 ---
 
-### Upload Artifact
+### Upload Compiled Circuit
 
 If your application requires the use of a model not currently on EZKL Hub, you'll want to upload your own artifact. You can do this by using the `uploadArtifact` method.
 
 In order to upload an artifact you'll need to provide the following:
 
-1. `model.ezkl`: The model you wish to upload in either compiled `.ezkl` format.
-2. `settings.json`: The settings for your model in JSON format.
-3. `pk.key`: The proving key for your model.
+1. `name`: The name of your artifact.
+2. `description`: A description of your artifact.
+3. `organizationId`: The organization you wish to upload your artifact to.
+4. `modelFile`: The model you wish to upload in compiled `.ezkl` format.
+5. `settingsFile`: The settings for your model in JSON format.
+6. `pkFile`: The proving key for your model.
+7. `url` you can provide an optional url if you're using a custom EZKL Hub instance
 
 This will work with either in a browser client (`File`) or a Node.js (`Buffer`) environent.
 
 ```typescript
+const name: string = 'My Artifact Name'
+const description: string = 'My Artifact Description'
+const organizationId: string = 'b7000626-ed7a-418c-bcf1-ccd10661855a' // uuid
 const modelFile: File | Buffer = fs.readFileSync('/path/model.ezkl')
 const settingsFile: File | Buffer = fs.readFileSync('/path/settings.json')
 const pkFile: File | Buffer = fs.readFileSync('/path/pk.key')
+const url: string = 'https://hub.ezkl.xyz'
 
-const uploadArtifactResponse = await hub.uploadArtifact(
+const uploadArtifactResponse = await hub.uploadArtifact({
+  name,
+  description,
+  organizationId,
+  url,
   modelFile,
   settingsFile,
   pkFile,
-)
+  url,
+})
 
 console.log(JSON.stringify(uploadArtifactResponse), null, 2)
+```
+
+Output:
+
+```json
+{
+  "id": "6017cb49-cdb8-4648-9422-c8568de9a2f5"
+}
+```
+
+---
+
+### Upload ONNX Model
+
+Another option is to upload an uncompiled `ONNX` model and let Hub compile your circuit with default settings. You can do this by using the `genArtifact` method.
+
+In order to upload an artifact you'll need to provide the following:
+
+1. `name`: The name of your artifact.
+2. `description`: A description of your artifact.
+3. `organizationId`: The organization you wish to upload your artifact to.
+4. `modelFile`: The model you wish to upload in `.onnx` format.
+5. `inputFile`: A representative input file in JSON format.
+6. `url` you can provide an optional url if you're using a custom EZKL Hub instance
+
+This will work with either in a browser client (`File`) or a Node.js (`Buffer`) environent.
+
+```typescript
+const name: string = 'My Artifact Name'
+const description: string = 'My Artifact Description'
+const organizationId: string = 'b7000626-ed7a-418c-bcf1-ccd10661855a' // uuid
+const modelFile: File | Buffer = fs.readFileSync('/path/model.onnx')
+const inputFile: File | Buffer = fs.readFileSync('/path/input.json')
+const url: string = 'https://hub.ezkl.xyz'
+
+const genArtifactResponse = await hub.genArtifact({
+  name,
+  description,
+  organizationId,
+  url,
+  modelFile,
+  inputFile,
+  url,
+})
+
+console.log(JSON.stringify(genArtifactResponse), null, 2)
 ```
 
 Output:
@@ -154,10 +216,12 @@ Once the artifact is on Hub and you have it's `id` and a dataset (`input.json`) 
 ### Initiate Proof
 
 ```typescript
-const artifactId: string = '6017cb49-cdb8-4648-9422-c8568de9a2f5' // uuid
-const input: File | Buffer = fs.readFileSync('/path/input.json')
+const id: string = '6017cb49-cdb8-4648-9422-c8568de9a2f5' // uuid
+const inputFile: File | Buffer = fs.readFileSync('/path/input.json')
+// you can provide an optional url if you're using a custom EZKL Hub instance
+const url: string = 'https://hub.ezkl.xyz'
 
-const initiateProofResponse = await hub.initiateProof(artifactId, input)
+const initiateProofResponse = await hub.initiateProof({ id, inputFile, url })
 
 console.log(JSON.stringify(initiateProofResponse), null, 2)
 ```
@@ -166,7 +230,7 @@ Output:
 
 ```json
 {
-  "taskId": "37cce354-34ba-4d1d-8437-bef8044671e8",
+  "id": "37cce354-34ba-4d1d-8437-bef8044671e8",
   "status": "PENDING"
 }
 ```
@@ -178,9 +242,11 @@ Output:
 Once the Hub as finished building your proof you'll be able to retreive it for use:
 
 ```typescript
-const taskId: string = 'c4b049c3-9770-45cf-b8ec-1bee0efc8347' // uuid
+const id: string = 'c4b049c3-9770-45cf-b8ec-1bee0efc8347' // uuid
+// you can provide an optional url if you're using a custom EZKL Hub instance
+const url: string = 'https://hub.ezkl.xyz'
 
-const getProofResponse = await hub.getProof(taskId)
+const getProofResponse = await hub.getProof({ id, url })
 
 console.log(JSON.stringify(getProofResponse), null, 2)
 ```
