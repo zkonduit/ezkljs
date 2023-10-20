@@ -12,7 +12,7 @@ export const formDataSchema = z.object({
 
 export const intiateProofSchema = z.object({
   status: z.literal('PENDING'),
-  taskId: z.string().uuid(),
+  id: z.string().uuid(),
 })
 
 const fourElementsArray = z.array(z.number().int()).length(4)
@@ -24,7 +24,7 @@ export const witnessSchema = z.object({
 })
 
 export const getProofSchema = z.object({
-  taskId: z.string().uuid(),
+  id: z.string().uuid(),
   status: z.enum(['SUCCESS']),
   proof: z.string(),
   instances: z.array(z.number().nonnegative()),

@@ -10,6 +10,7 @@ import {
 import { useState } from 'react'
 import hub from '@ezkljs/hub'
 import { formDataSchema, uploadArtifactSchema } from './parsers'
+import { GQL_URL } from '@/constants'
 
 export default function UploadArtifact() {
   // State
@@ -52,11 +53,15 @@ export default function UploadArtifact() {
 
     setFetching(true)
     /* ================== HUB API ====================== */
-    const uploadArtifactResp = await hub.uploadArtifact(
-      validatedFormInputs.data.model,
-      validatedFormInputs.data.settings,
-      validatedFormInputs.data.pk,
-    )
+    const uploadArtifactResp = await hub.uploadArtifact({
+      modelFile: validatedFormInputs.data.model,
+      settingsFile: validatedFormInputs.data.settings,
+      pkFile: validatedFormInputs.data.pk,
+      url: GQL_URL,
+      name: 'test',
+      description: 'test',
+      organizationId: '10f565e2-803b-4fe8-b70e-387de38b4cf5',
+    })
     /* ================================================= */
     setFetching(false)
 

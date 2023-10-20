@@ -6,6 +6,7 @@ import hub from '@ezkljs/hub'
 import { useState } from 'react'
 import { z } from 'zod'
 import CodePresenter from '@/components/CodePresenter'
+import { GQL_URL } from '@/constants'
 
 const artifactsSchema = z.array(
   z.object({
@@ -23,7 +24,7 @@ export default function Artifacts() {
 
   const handleClick = async () => {
     setFetching(true)
-    const artifacts = await hub.getArtifacts()
+    const artifacts = await hub.getArtifacts({ url: GQL_URL })
     setFetching(false)
 
     const validatedArtifacts = artifactsSchema.parse(artifacts)

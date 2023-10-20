@@ -6,6 +6,7 @@ import hub from '@ezkljs/hub'
 import Title from '@/components/PageTitle'
 import Paragraph from '@/components/Paragraph'
 import Button from '@/components/Button'
+import { BASE_URL } from '@/constants'
 
 const healthCheckSnippet = `import hub from '@ezkljs/hub'
 
@@ -40,7 +41,9 @@ function TryLive() {
   const handleCheckStatus = async () => {
     handleSpin()
 
-    const healthStatus = await hub.healthCheck()
+    const healthStatus = await hub.healthCheck({
+      url: BASE_URL,
+    })
 
     if (
       healthStatus?.res === "Welcome to the ezkl hub's backend!" &&
