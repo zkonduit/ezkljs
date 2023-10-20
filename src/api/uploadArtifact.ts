@@ -4,8 +4,11 @@ import {
   FileOrBuffer,
   fileOrBufferSchema,
   uploadArtifactSchema,
+  urlSchema,
+  uuidSchema,
 } from '@/utils/parsers'
 import request from '@/utils/request'
+import { z } from 'zod'
 
 type UploadArtifactOptions = {
   name: string
@@ -40,19 +43,23 @@ export default async function uploadArtifact({
   organizationId,
   url = GQL_URL,
 }: UploadArtifactOptions) {
+  const validatedName = z.string().parse(name)
+  const validatedDescription = z.string().parse(description)
   const validatedModelFile = fileOrBufferSchema.parse(modelFile)
   const validatedSettingsFile = fileOrBufferSchema.parse(settingsFile)
   const validatedPkFile = fileOrBufferSchema.parse(pkFile)
+  const validatedOrganizationId = uuidSchema.parse(organizationId)
+  const validatedUrl = urlSchema.parse(url)
 
   const operations = {
     query: UPLOAD_ARTIFACTE_MUTATION,
     variables: {
-      name,
-      description,
+      name: validatedName,
+      description: validatedDescription,
+      organizationId: validatedOrganizationId,
       validatedModelFile,
       validatedSettingsFile,
       validatedPkFile,
-      organizationId,
     },
   }
 
@@ -70,7 +77,7 @@ export default async function uploadArtifact({
   body.append('pk', new Blob([validatedPkFile]))
 
   try {
-    const uploadArtifactResponse = await request<unknown>(url, {
+    const uploadArtifactResponse = await request<unknown>(validatedUrl, {
       unwrapData: true,
       method: 'POST',
       body,

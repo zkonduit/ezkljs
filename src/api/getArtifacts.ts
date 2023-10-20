@@ -17,14 +17,20 @@ import { GET_ARTIFACTS_QUERY } from '@/graphql/querties'
 export default async function getArtifacts({
   first = 200,
   skip = 0,
+  url = GQL_URL,
 }: GetArtifactsInput = {}) {
   const validGetArtifactsInput = getArtifactsInputSchema.parse({
     first,
     skip,
+    url,
   })
-  const { first: validatedFirst, skip: validatedSkip } = validGetArtifactsInput
+  const {
+    first: validatedFirst,
+    skip: validatedSkip,
+    url: validatedUrl,
+  } = validGetArtifactsInput
   try {
-    const response = await request<unknown>(GQL_URL, {
+    const response = await request<unknown>(validatedUrl, {
       unwrapData: true,
       method: 'POST',
       headers: {

@@ -12,17 +12,21 @@ import {
 let artifact: Artifact | undefined
 let initiatedProof: InitiateProofResponse['initiateProof'] | undefined
 
+const baseUrl = 'https://hub-staging.ezkl.xyz/'
+const gqlUrl = `${baseUrl}graphql`
+const organizationId = '10f565e2-803b-4fe8-b70e-387de38b4cf5'
+
 describe('hub', () => {
   it('checks health', async () => {
     expect(hub.healthCheck).toBeDefined()
-    const health = await hub.healthCheck()
+    const health = await hub.healthCheck({ url: baseUrl })
     expect(health?.status).toEqual('ok')
     expect(health?.res).toEqual("Welcome to the ezkl hub's backend!")
   })
   describe('artifact related', () => {
     it('get artifacts', async () => {
       expect(hub.getArtifacts).toBeDefined()
-      const artifacts = await hub.getArtifacts()
+      const artifacts = await hub.getArtifacts({ url: gqlUrl })
       if (artifacts && artifacts.length > 0) {
         const firstArtifact = artifacts[0]
         if (firstArtifact) {
@@ -61,7 +65,8 @@ describe('hub', () => {
         modelFile: modelFile,
         settingsFile: settingsFile,
         pkFile: pkFile,
-        organizationId: '10f565e2-803b-4fe8-b70e-387de38b4cf5',
+        organizationId,
+        url: gqlUrl,
       })
 
       artifact = uploadArtifactResp
