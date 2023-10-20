@@ -4,8 +4,10 @@ import {
   FileOrBuffer,
   fileOrBufferSchema,
   genArtifactResponseSchema,
+  uuidSchema,
 } from '@/utils/parsers'
 import request from '@/utils/request'
+import { z } from 'zod'
 
 type GenArtifactOptions = {
   name: string
@@ -36,6 +38,10 @@ export default async function genArtifact({
   organizationId,
   url = GQL_URL,
 }: GenArtifactOptions) {
+  const validatedName = z.string().parse(name)
+  const validatedDescription = z.string().parse(description)
+  const validatedOrganizationId = uuidSchema.parse(organizationId)
+
   const validatedUncompiledModelFile =
     fileOrBufferSchema.parse(uncompiledModelFile)
   const validatedInputFile = fileOrBufferSchema.parse(inputFile)
@@ -43,11 +49,11 @@ export default async function genArtifact({
   const operations = {
     query: GEN_ARTIFACT_MUTATION,
     variables: {
-      name,
-      description,
+      name: validatedName,
+      description: validatedDescription,
+      organizationId: validatedOrganizationId,
       validatedUncompiledModelFile,
       validatedInputFile,
-      organizationId,
     },
   }
 

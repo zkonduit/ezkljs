@@ -90,7 +90,8 @@ describe('hub', () => {
         description: `Super cool artifact ${Date.now()}`,
         uncompiledModelFile: modelFile,
         inputFile: inputFile,
-        organizationId: '10f565e2-803b-4fe8-b70e-387de38b4cf5',
+        organizationId,
+        url: gqlUrl,
       })
 
       expect(genArtifactResp).toBeDefined()
