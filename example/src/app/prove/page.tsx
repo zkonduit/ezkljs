@@ -17,6 +17,7 @@ import {
   getProofSchema,
   intiateProofSchema,
 } from './parsers'
+import { GQL_URL } from '@/constants'
 
 // Truncate Proof string
 function showFirstAndLast(str: string, show: number): string {
@@ -57,10 +58,11 @@ export default function Prove() {
     setFetchingInitiateProof(true)
     try {
       /* =================== HUB API ==================== */
-      const initiatedProofResp = await hub.initiateProof(
-        validatedFormInputs.data.artifactId,
-        validatedFormInputs.data.inputFile,
-      )
+      const initiatedProofResp = await hub.initiateProof({
+        artifactId: validatedFormInputs.data.artifactId,
+        inputFile: validatedFormInputs.data.inputFile,
+        url: GQL_URL,
+      })
       /* ================================================ */
 
       const validInitiatedProof = intiateProofSchema.parse(initiatedProofResp)
@@ -86,7 +88,10 @@ export default function Prove() {
       }
       setFetchingGetProof(true)
       /* ================= HUB API =================== */
-      const getProofResp = await hub.getProof(taskId)
+      const getProofResp = await hub.getProof({
+        id: taskId,
+        url: GQL_URL,
+      })
       /* ============================================= */
       setFetchingGetProof(false)
 
@@ -117,7 +122,7 @@ export default function Prove() {
           </Paragraph>
           <GetProof
             fetching={fetchingGetProof}
-            defaultTaskId={initiatedProof?.taskId}
+            defaultTaskId={initiatedProof?.id}
             proof={proof}
             handleSubmit={handleSubmitGetProof}
           />
@@ -164,7 +169,7 @@ function InitiateProof({
         <div className='text-sm h-24 flex flex-col justify-between mt-8'>
           <h1 className='text-xl'>Initiated Proof</h1>
           <p>Status: {initiatedProof.status}</p>
-          <p>Task ID: {initiatedProof.taskId}</p>
+          <p>Task ID: {initiatedProof.id}</p>
         </div>
       )}
     </>
@@ -198,7 +203,7 @@ function GetProof({
       {proof?.status === 'SUCCESS' && (
         <div className='text-sm h-24 flex flex-col justify-between mt-8'>
           <h1 className='text-xl'>Proof</h1>
-          <p>Task ID: {proof.taskId}</p>
+          <p>Task ID: {proof.id}</p>
           <p>Status: {proof.status}</p>
           <p className='break-words'>
             Proof: {showFirstAndLast(proof.proof, 10)}

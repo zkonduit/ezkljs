@@ -4,38 +4,62 @@ import {
   FileOrBuffer,
   fileOrBufferSchema,
   uploadArtifactSchema,
+  urlSchema,
+  uuidSchema,
 } from '@/utils/parsers'
 import request from '@/utils/request'
+import { z } from 'zod'
+
+type UploadArtifactOptions = {
+  name: string
+  description: string
+  modelFile: FileOrBuffer
+  settingsFile: FileOrBuffer
+  pkFile: FileOrBuffer
+  organizationId: string
+  url?: string // Making url optional
+}
 
 /**
  * Uploads an artifact, consisting of model, settings, and pk files.
- * @param modelFile The model file as a Buffer or File.
- * @param settingsFile The settings file as a Buffer or File.
- * @param pkFile The pk file as a Buffer or File.
+ * @param options - The options object containing:
+ *   - `name` The name of the artifact.
+ *   - `description` A description of the artifact.
+ *   - `modelFile` The model file as a Buffer or File.
+ *   - `settingsFile` The settings file as a Buffer or File.
+ *   - `pkFile` The pk file as a Buffer or File.
+ *   - `organizationId` The ID of the organization.
+ *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
  * @returns An object containing the id of the uploaded artifact.
  * @throws If there is an error in the request or validation process.
  */
-export default async function uploadArtifact(
-  name: string,
-  description: string,
-  modelFile: FileOrBuffer,
-  settingsFile: FileOrBuffer,
-  pkFile: FileOrBuffer,
-  organizationId: string,
-) {
+
+export default async function uploadArtifact({
+  name,
+  description,
+  modelFile,
+  settingsFile,
+  pkFile,
+  organizationId,
+  url = GQL_URL,
+}: UploadArtifactOptions) {
+  const validatedName = z.string().parse(name)
+  const validatedDescription = z.string().parse(description)
   const validatedModelFile = fileOrBufferSchema.parse(modelFile)
   const validatedSettingsFile = fileOrBufferSchema.parse(settingsFile)
   const validatedPkFile = fileOrBufferSchema.parse(pkFile)
+  const validatedOrganizationId = uuidSchema.parse(organizationId)
+  const validatedUrl = urlSchema.parse(url)
 
   const operations = {
     query: UPLOAD_ARTIFACTE_MUTATION,
     variables: {
-      name,
-      description,
+      name: validatedName,
+      description: validatedDescription,
+      organizationId: validatedOrganizationId,
       validatedModelFile,
       validatedSettingsFile,
       validatedPkFile,
-      organizationId,
     },
   }
 
@@ -53,7 +77,7 @@ export default async function uploadArtifact(
   body.append('pk', new Blob([validatedPkFile]))
 
   try {
-    const uploadArtifactResponse = await request<unknown>(GQL_URL, {
+    const uploadArtifactResponse = await request<unknown>(validatedUrl, {
       unwrapData: true,
       method: 'POST',
       body,

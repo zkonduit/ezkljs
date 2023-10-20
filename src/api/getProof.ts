@@ -1,20 +1,33 @@
 import { GET_PROOF_QUERY } from '@/graphql/querties'
 import { GQL_URL } from '@/utils/constants'
-import { UUID, getProofResponseSchema, uuidSchema } from '@/utils/parsers'
+import {
+  UUID,
+  getProofResponseSchema,
+  urlSchema,
+  uuidSchema,
+} from '@/utils/parsers'
 import request from '@/utils/request'
 import { isValidProof } from '@/utils/stringValidators'
 
+type GetProofOptions = {
+  id: UUID
+  url?: string
+}
+
 /**
  * Fetches the proof details for a given task ID.
- * @param taskId The UUID of Hub proof task.
+ * @param options - The options object containing:
+ *   - `id` The UUID of Hub proof task.
+ *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
  * @returns The proof details.
  * @throws If the task ID is invalid, the proof is invalid, or a request error occurs.
  */
-export default async function getProof(taskId: UUID) {
-  const validTaskId = uuidSchema.parse(taskId)
+export default async function getProof({ id, url = GQL_URL }: GetProofOptions) {
+  const validatedId = uuidSchema.parse(id)
+  const validatedUrl = urlSchema.parse(url)
 
   try {
-    const response = await request<unknown>(GQL_URL, {
+    const response = await request<unknown>(validatedUrl, {
       unwrapData: true,
       method: 'POST',
       headers: {
@@ -23,7 +36,7 @@ export default async function getProof(taskId: UUID) {
       body: JSON.stringify({
         query: GET_PROOF_QUERY,
         variables: {
-          id: validTaskId,
+          id: validatedId,
         },
       }),
     })

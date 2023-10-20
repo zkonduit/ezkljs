@@ -5,21 +5,32 @@ import {
   UUID,
   initiateProofInputSchema,
   initiateProofResponseSchema,
+  urlSchema,
 } from '@/utils/parsers'
+
 import request from '@/utils/request'
+type InitiateProofOptions = {
+  artifactId: UUID
+  inputFile: FileOrBuffer
+  url?: string
+}
 
 /**
  * Initiates a proof for a given artifact and input file (dataset).
- * @param artifactId The UUID of the artifact.
- * @param inputFile The file or buffer containing the data to that will
- * be run through the circuit.
+ * @param options - The options object containing:
+ *   - `artifactId` The UUID of the artifact.
+ *   - `inputFile` The file or buffer containing the data that will
+ *     be run through the circuit.
+ *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
  * @returns The initiated proof details with the taskId and status.
  * @throws If there is an error in the request or validation process.
  */
-export default async function initiateProof(
-  artifactId: UUID,
-  inputFile: FileOrBuffer,
-) {
+export default async function initiateProof({
+  artifactId,
+  inputFile,
+  url = GQL_URL,
+}: InitiateProofOptions) {
+  const validatedUrl = urlSchema.parse(url)
   const validatedInput = initiateProofInputSchema.parse({
     artifactId,
     inputFile,
@@ -46,7 +57,7 @@ export default async function initiateProof(
   body.append('input', new Blob([inputFile]))
 
   try {
-    const initiateProofResponse = await request<unknown>(GQL_URL, {
+    const initiateProofResponse = await request<unknown>(validatedUrl, {
       unwrapData: true,
       method: 'POST',
       body,

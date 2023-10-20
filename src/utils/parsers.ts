@@ -11,10 +11,13 @@ export type HealthyHealthCheckResponse = z.infer<
   typeof healthyHealthCheckResponseSchema
 >
 
+export const urlSchema = z.string().url()
+
 // Get Artifacts Input
 export const getArtifactsInputSchema = z.object({
   first: z.number().int().positive().optional(),
   skip: z.number().int().nonnegative().optional(),
+  url: urlSchema.optional(),
 })
 export type GetArtifactsInput = z.infer<typeof getArtifactsInputSchema>
 
