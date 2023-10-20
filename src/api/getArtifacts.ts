@@ -9,8 +9,10 @@ import { GET_ARTIFACTS_QUERY } from '@/graphql/querties'
 
 /**
  * Fetches a list of artifacts with optional pagination parameters.
- * @param first The number of artifacts to retrieve (default is 20).
- * @param skip The number of artifacts to skip (default is 0).
+ * @param options - The options object containing:
+ *   - `first` The number of artifacts to retrieve. Defaults to 200.
+ *   - `skip` The number of artifacts to skip. Defaults to 0.
+ *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
  * @returns An array of retrieved artifacts.
  * @throws If there is an error in the request or validation process.
  */
