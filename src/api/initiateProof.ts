@@ -5,6 +5,7 @@ import {
   UUID,
   initiateProofInputSchema,
   initiateProofResponseSchema,
+  urlSchema,
 } from '@/utils/parsers'
 
 import request from '@/utils/request'
@@ -29,6 +30,7 @@ export default async function initiateProof({
   inputFile,
   url = GQL_URL,
 }: InitiateProofOptions) {
+  const validatedUrl = urlSchema.parse(url)
   const validatedInput = initiateProofInputSchema.parse({
     artifactId,
     inputFile,
@@ -55,7 +57,7 @@ export default async function initiateProof({
   body.append('input', new Blob([inputFile]))
 
   try {
-    const initiateProofResponse = await request<unknown>(url, {
+    const initiateProofResponse = await request<unknown>(validatedUrl, {
       unwrapData: true,
       method: 'POST',
       body,

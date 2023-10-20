@@ -114,6 +114,7 @@ describe('hub', () => {
         )
         const file = await fs.readFile(filePath)
         initiatedProof = await hub.initiateProof({
+          url: gqlUrl,
           artifactId: artifactId,
           inputFile: file,
         })
