@@ -1,6 +1,11 @@
 import { GET_PROOF_QUERY } from '@/graphql/querties'
 import { GQL_URL } from '@/utils/constants'
-import { UUID, getProofResponseSchema, uuidSchema } from '@/utils/parsers'
+import {
+  UUID,
+  getProofResponseSchema,
+  urlSchema,
+  uuidSchema,
+} from '@/utils/parsers'
 import request from '@/utils/request'
 import { isValidProof } from '@/utils/stringValidators'
 
@@ -18,10 +23,11 @@ type GetProofOptions = {
  * @throws If the task ID is invalid, the proof is invalid, or a request error occurs.
  */
 export default async function getProof({ id, url = GQL_URL }: GetProofOptions) {
-  const validTaskId = uuidSchema.parse(id)
+  const validatedId = uuidSchema.parse(id)
+  const validatedUrl = urlSchema.parse(url)
 
   try {
-    const response = await request<unknown>(url, {
+    const response = await request<unknown>(validatedUrl, {
       unwrapData: true,
       method: 'POST',
       headers: {
@@ -30,7 +36,7 @@ export default async function getProof({ id, url = GQL_URL }: GetProofOptions) {
       body: JSON.stringify({
         query: GET_PROOF_QUERY,
         variables: {
-          id: validTaskId,
+          id: validatedId,
         },
       }),
     })

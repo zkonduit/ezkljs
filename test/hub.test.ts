@@ -12,8 +12,8 @@ import {
 let artifact: Artifact | undefined
 let initiatedProof: InitiateProofResponse['initiateProof'] | undefined
 
-const baseUrl = 'https://hub-staging.ezkl.xyz/'
-const gqlUrl = `${baseUrl}graphql`
+const baseUrl = 'https://hub-staging.ezkl.xyz' as const
+const gqlUrl = `${baseUrl}/graphql` as const
 const organizationId = '10f565e2-803b-4fe8-b70e-387de38b4cf5'
 
 describe('hub', () => {
@@ -144,8 +144,10 @@ describe('hub', () => {
       }
 
       await new Promise((resolve) => setTimeout(resolve, 5000)) // wait for 5 seconds
+      console.log(gqlUrl)
       const getProofDetails: GetProofDetails | undefined = await hub.getProof({
         id: initiatedProof.id,
+        url: gqlUrl,
       })
       expect(getProofDetails).toBeDefined()
       expect(getProofDetails?.strategy).toEqual('single')
@@ -154,11 +156,8 @@ describe('hub', () => {
       expect(typeof getProofDetails?.proof).toEqual('string')
       expect(typeof getProofDetails?.id).toEqual('string')
       expect(Array.isArray(getProofDetails?.instances)).toBe(true)
-      // getProofDetails?.instances?.forEach((item) => {
-      //   expect(typeof item).toBe('number')
-      // })
+
       getProofDetails?.instances?.forEach((item) => {
-        // Check if item is a string
         expect(typeof item).toBe('string')
 
         // Check if item can be converted to a non-negative integer
