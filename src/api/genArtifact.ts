@@ -78,7 +78,7 @@ export default async function genArtifact({
     const validatedGenArtifactResponse =
       genArtifactResponseSchema.parse(genArtifactResponse)
 
-    return validatedGenArtifactResponse.generateArtifact.artifact.id
+    return validatedGenArtifactResponse.generateArtifact.id
   } catch (e) {
     console.error(e)
     throw e

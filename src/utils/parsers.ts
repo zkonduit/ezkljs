@@ -109,9 +109,7 @@ export type InitiateProofResponse = z.infer<typeof initiateProofResponseSchema>
 
 // Upload Artifact
 export const genArtifactSchema = z.object({
-  artifact: z.object({
-    id: z.string().uuid(),
-  }),
+  id: z.string().uuid(),
 })
 
 export const genArtifactResponseSchema = z.object({
