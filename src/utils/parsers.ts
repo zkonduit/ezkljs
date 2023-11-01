@@ -70,7 +70,7 @@ export const getProofDetailsSchema = z.object({
   id: z.string().uuid(),
   status: z.enum(['SUCCESS']),
   proof: z.string(),
-  instances: z.array(nonNegativeStringNumber),
+  instances: z.array(z.string()),
   transcriptType: z.literal('evm'),
   strategy: z.enum(['single', 'aggregate']),
 })
@@ -100,7 +100,6 @@ export const initiateProofInputSchema = z.object({
 // Initiate Proof Response
 export const initiateProofResponseSchema = z.object({
   initiateProof: z.object({
-    // taskId: z.string().uuid(),
     id: z.string().uuid(),
     status: z.string(),
   }),
