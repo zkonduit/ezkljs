@@ -144,7 +144,6 @@ describe('hub', () => {
         throw new Error('initiatedProof undefined')
       }
 
-
       await new Promise((resolve) => setTimeout(resolve, 15000)) // wait for 15 seconds
       console.log(initiatedProof.id)
       console.log(gqlUrl)
