@@ -56,15 +56,15 @@ export const fourElementsArray = z
 //   maxLookupInputs: z.number().int().nonnegative(),
 // })
 
-const nonNegativeStringNumber = z.string().refine(
-  (value) => {
-    const num = parseFloat(value)
-    return !isNaN(num) && num >= 0 && Math.floor(num) === num
-  },
-  {
-    message: 'String must represent a non-negative integer.',
-  },
-)
+// const nonNegativeStringNumber = z.string().refine(
+//   (value) => {
+//     const num = parseFloat(value)
+//     return !isNaN(num) && num >= 0 && Math.floor(num) === num
+//   },
+//   {
+//     message: 'String must represent a non-negative integer.',
+//   },
+// )
 // Get Proof Details
 export const getProofDetailsSchema = z.object({
   id: z.string().uuid(),
