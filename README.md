@@ -21,6 +21,19 @@ pnpm add @ezkljs/hub
 
 ---
 
+## Development
+
+To test and develop the library you will need to run the following
+
+```shell
+# pnpm
+pnpm i
+pnpm build
+pnpm test
+```
+
+---
+
 ## Hub ([example usage in Next.js](https://github.com/zkonduit/ezkljs/tree/main/examples/router))
 
 To get started using EZKL Hub in your appplication you'll want to use the `router` submodule.

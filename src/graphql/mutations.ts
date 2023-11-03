@@ -33,8 +33,6 @@ export const GEN_ARTIFACT_MUTATION = `mutation GenerateArtifact(
     input: $input
     organizationId: $organizationId
   ) {
-    artifact {
-      id
-    }
+    id
   }
 }`

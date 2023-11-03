@@ -144,7 +144,8 @@ describe('hub', () => {
         throw new Error('initiatedProof undefined')
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 5000)) // wait for 5 seconds
+      await new Promise((resolve) => setTimeout(resolve, 15000)) // wait for 15 seconds
+      console.log(initiatedProof.id)
       console.log(gqlUrl)
       const getProofDetails: GetProofDetails | undefined = await hub.getProof({
         id: initiatedProof.id,
@@ -165,6 +166,6 @@ describe('hub', () => {
         const num = parseFloat(item)
         expect(!isNaN(num) && num >= 0 && Math.floor(num) === num).toBeTruthy()
       })
-    }, 10000)
+    }, 20000)
   })
 })

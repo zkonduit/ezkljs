@@ -56,21 +56,21 @@ export const fourElementsArray = z
 //   maxLookupInputs: z.number().int().nonnegative(),
 // })
 
-const nonNegativeStringNumber = z.string().refine(
+export const hexString = z.string().refine(
   (value) => {
-    const num = parseFloat(value)
-    return !isNaN(num) && num >= 0 && Math.floor(num) === num
+    return value.startsWith('0x') && /^[0-9A-Fa-f]+$/.test(value.slice(2))
   },
   {
-    message: 'String must represent a non-negative integer.',
+    message: 'String must represent a hexadecimal number and start with 0x.',
   },
 )
+
 // Get Proof Details
 export const getProofDetailsSchema = z.object({
   id: z.string().uuid(),
   status: z.enum(['SUCCESS']),
   proof: z.string(),
-  instances: z.array(nonNegativeStringNumber),
+  instances: z.array(hexString),
   transcriptType: z.literal('evm'),
   strategy: z.enum(['single', 'aggregate']),
 })
@@ -100,7 +100,6 @@ export const initiateProofInputSchema = z.object({
 // Initiate Proof Response
 export const initiateProofResponseSchema = z.object({
   initiateProof: z.object({
-    // taskId: z.string().uuid(),
     id: z.string().uuid(),
     status: z.string(),
   }),
@@ -109,9 +108,7 @@ export type InitiateProofResponse = z.infer<typeof initiateProofResponseSchema>
 
 // Upload Artifact
 export const genArtifactSchema = z.object({
-  artifact: z.object({
-    id: z.string().uuid(),
-  }),
+  id: z.string().uuid(),
 })
 
 export const genArtifactResponseSchema = z.object({
