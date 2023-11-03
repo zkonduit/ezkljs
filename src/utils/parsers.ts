@@ -56,21 +56,21 @@ export const fourElementsArray = z
 //   maxLookupInputs: z.number().int().nonnegative(),
 // })
 
-// const nonNegativeStringNumber = z.string().refine(
-//   (value) => {
-//     const num = parseFloat(value)
-//     return !isNaN(num) && num >= 0 && Math.floor(num) === num
-//   },
-//   {
-//     message: 'String must represent a non-negative integer.',
-//   },
-// )
+export const hexString = z.string().refine(
+  (value) => {
+    return value.startsWith('0x') && /^[0-9A-Fa-f]+$/.test(value.slice(2))
+  },
+  {
+    message: 'String must represent a hexadecimal number and start with 0x.',
+  },
+)
+
 // Get Proof Details
 export const getProofDetailsSchema = z.object({
   id: z.string().uuid(),
   status: z.enum(['SUCCESS']),
   proof: z.string(),
-  instances: z.array(z.string()),
+  instances: z.array(hexString),
   transcriptType: z.literal('evm'),
   strategy: z.enum(['single', 'aggregate']),
 })
