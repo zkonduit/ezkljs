@@ -8,6 +8,7 @@ import {
 } from '@/utils/parsers'
 import request from '@/utils/request'
 import { z } from 'zod'
+import authHeaders from '@/utils/authHeaders'
 
 type GenArtifactOptions = {
   name: string
@@ -47,8 +48,6 @@ export default async function genArtifact({
   const validatedName = z.string().parse(name)
   const validatedDescription = z.string().parse(description)
   const validatedOrganizationId = uuidSchema.parse(organizationId)
-  let validatedAccessToken = null
-  let validatedApiKey = null
 
   const validatedUncompiledModelFile =
     fileOrBufferSchema.parse(uncompiledModelFile)
@@ -76,16 +75,7 @@ export default async function genArtifact({
   body.append('uncompiledModel', new Blob([validatedUncompiledModelFile]))
   body.append('input', new Blob([validatedInputFile]))
 
-  const headers = new Headers()
-
-  if (accessToken) {
-    validatedAccessToken = z.string().parse(accessToken)
-    headers.append('Authorization', `Bearer ${validatedAccessToken}`)
-  }
-  if (apiKey) {
-    validatedApiKey = z.string().parse(apiKey)
-    headers.append('API-Key', validatedApiKey)
-  }
+  const headers = authHeaders(apiKey, accessToken)
 
   try {
     const genArtifactResponse = await request<unknown>(url, {

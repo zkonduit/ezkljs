@@ -9,6 +9,7 @@ import {
 } from '@/utils/parsers'
 import request from '@/utils/request'
 import { z } from 'zod'
+import authHeaders from '@/utils/authHeaders'
 
 type UploadArtifactOptions = {
   name: string
@@ -56,8 +57,6 @@ export default async function uploadArtifact({
   const validatedPkFile = fileOrBufferSchema.parse(pkFile)
   const validatedOrganizationId = uuidSchema.parse(organizationId)
   const validatedUrl = urlSchema.parse(url)
-  let validatedAccessToken = null
-  let validatedApiKey = null
 
   const operations = {
     query: UPLOAD_ARTIFACTE_MUTATION,
@@ -84,16 +83,7 @@ export default async function uploadArtifact({
   body.append('settings', new Blob([validatedSettingsFile]))
   body.append('pk', new Blob([validatedPkFile]))
 
-  const headers = new Headers()
-
-  if (accessToken) {
-    validatedAccessToken = z.string().parse(accessToken)
-    headers.append('Authorization', `Bearer ${validatedAccessToken}`)
-  }
-  if (apiKey) {
-    validatedApiKey = z.string().parse(apiKey)
-    headers.append('API-Key', validatedApiKey)
-  }
+  const headers = authHeaders(apiKey, accessToken)
 
   try {
     const uploadArtifactResponse = await request<unknown>(validatedUrl, {
