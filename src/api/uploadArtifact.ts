@@ -9,6 +9,7 @@ import {
 } from '@/utils/parsers'
 import request from '@/utils/request'
 import { z } from 'zod'
+import authHeaders from '@/utils/authHeaders'
 
 type UploadArtifactOptions = {
   name: string
@@ -17,6 +18,8 @@ type UploadArtifactOptions = {
   settingsFile: FileOrBuffer
   pkFile: FileOrBuffer
   organizationId: string
+  accessToken?: string
+  apiKey?: string
   url?: string // Making url optional
 }
 
@@ -29,6 +32,8 @@ type UploadArtifactOptions = {
  *   - `settingsFile` The settings file as a Buffer or File.
  *   - `pkFile` The pk file as a Buffer or File.
  *   - `organizationId` The ID of the organization.
+ *   - `accessToken` (optional) The access token obtained after the oauth2 authorization flow
+ *   - `apiKey` (optional) The API Key created by a user
  *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
  * @returns An object containing the id of the uploaded artifact.
  * @throws If there is an error in the request or validation process.
@@ -41,6 +46,8 @@ export default async function uploadArtifact({
   settingsFile,
   pkFile,
   organizationId,
+  accessToken,
+  apiKey,
   url = GQL_URL,
 }: UploadArtifactOptions) {
   const validatedName = z.string().parse(name)
@@ -76,11 +83,14 @@ export default async function uploadArtifact({
   body.append('settings', new Blob([validatedSettingsFile]))
   body.append('pk', new Blob([validatedPkFile]))
 
+  const headers = authHeaders(apiKey, accessToken)
+
   try {
     const uploadArtifactResponse = await request<unknown>(validatedUrl, {
       unwrapData: true,
       method: 'POST',
       body,
+      headers,
     })
 
     const validatedUploadArtifactResponse = uploadArtifactSchema.parse(

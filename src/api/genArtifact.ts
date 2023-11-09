@@ -8,6 +8,7 @@ import {
 } from '@/utils/parsers'
 import request from '@/utils/request'
 import { z } from 'zod'
+import authHeaders from '@/utils/authHeaders'
 
 type GenArtifactOptions = {
   name: string
@@ -15,6 +16,8 @@ type GenArtifactOptions = {
   uncompiledModelFile: FileOrBuffer
   inputFile: FileOrBuffer
   organizationId: string
+  accessToken?: string
+  apiKey?: string
   url?: string
 }
 
@@ -26,6 +29,8 @@ type GenArtifactOptions = {
  *   - `uncompiledModelFile` The uncompiled model file as a Buffer or File.
  *   - `inputFile` The input file as a Buffer or File.
  *   - `organizationId` The ID of the organization.
+ *   - `accessToken` (optional) The access token obtained after the oauth2 authorization flow
+ *   - `apiKey` (optional) The API Key created by a user
  *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
  * @returns The response from the artifact generation process.
  * @throws If there is an error in the request or validation process.
@@ -36,6 +41,8 @@ export default async function genArtifact({
   uncompiledModelFile,
   inputFile,
   organizationId,
+  accessToken,
+  apiKey,
   url = GQL_URL,
 }: GenArtifactOptions) {
   const validatedName = z.string().parse(name)
@@ -68,11 +75,14 @@ export default async function genArtifact({
   body.append('uncompiledModel', new Blob([validatedUncompiledModelFile]))
   body.append('input', new Blob([validatedInputFile]))
 
+  const headers = authHeaders(apiKey, accessToken)
+
   try {
     const genArtifactResponse = await request<unknown>(url, {
       unwrapData: true,
       method: 'POST',
       body,
+      headers,
     })
 
     const validatedGenArtifactResponse =
