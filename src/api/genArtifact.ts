@@ -10,6 +10,8 @@ import request from '@/utils/request'
 import { z } from 'zod'
 import authHeaders from '@/utils/authHeaders'
 
+type Visibility = 'private' | 'public' | 'fixed'
+
 type GenArtifactOptions = {
   name: string
   description: string
@@ -19,6 +21,9 @@ type GenArtifactOptions = {
   accessToken?: string
   apiKey?: string
   url?: string
+  inputVisibility: Visibility
+  outputVisibility: Visibility
+  paramVisibility: Visibility
 }
 
 /**
@@ -29,6 +34,9 @@ type GenArtifactOptions = {
  *   - `uncompiledModelFile` The uncompiled model file as a Buffer or File.
  *   - `inputFile` The input file as a Buffer or File.
  *   - `organizationId` The ID of the organization.
+ *   - `inputVisbility`
+ *   - `outputVisibility`
+ *   - `paramVisibility`
  *   - `accessToken` (optional) The access token obtained after the oauth2 authorization flow
  *   - `apiKey` (optional) The API Key created by a user
  *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
@@ -43,6 +51,9 @@ export default async function genArtifact({
   organizationId,
   accessToken,
   apiKey,
+  inputVisibility = 'private',
+  outputVisibility = 'private',
+  paramVisibility = 'private',
   url = GQL_URL,
 }: GenArtifactOptions) {
   const validatedName = z.string().parse(name)
@@ -59,6 +70,9 @@ export default async function genArtifact({
       name: validatedName,
       description: validatedDescription,
       organizationId: validatedOrganizationId,
+      inputVisibility,
+      outputVisibility,
+      paramVisibility,
       validatedUncompiledModelFile,
       validatedInputFile,
     },

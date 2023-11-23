@@ -71,8 +71,9 @@ export const getProofDetailsSchema = z.object({
   status: z.enum(['SUCCESS']),
   proof: z.string(),
   instances: z.array(hexString),
-  transcriptType: z.literal('evm'),
-  strategy: z.enum(['single', 'aggregate']),
+  // transcriptType: z.literal('evm'),
+  transcriptType: z.union([z.literal('evm'), z.literal('EVM')]),
+  // strategy: z.enum(['single', 'aggregate']),
 })
 export type GetProofDetails = z.infer<typeof getProofDetailsSchema>
 

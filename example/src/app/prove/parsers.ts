@@ -29,7 +29,7 @@ export const getProofSchema = z.object({
   proof: z.string(),
   instances: z.array(z.number().nonnegative()),
   transcriptType: z.literal('evm'),
-  strategy: z.enum(['single', 'aggregate']),
+  // strategy: z.enum(['single', 'aggregate']),
 })
 
 export type GetProof = z.infer<typeof getProofSchema>

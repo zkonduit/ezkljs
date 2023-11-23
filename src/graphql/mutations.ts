@@ -25,6 +25,9 @@ export const GEN_ARTIFACT_MUTATION = `mutation GenerateArtifact(
   $uncompiledModel: Upload!,
   $input: Upload!,
   $organizationId: String!,
+  $inputVisibility: String!,
+  $outputVisibility: String!,
+  $paramVisibility: String!,
 ) {
   generateArtifact(
     name: $name
@@ -32,6 +35,9 @@ export const GEN_ARTIFACT_MUTATION = `mutation GenerateArtifact(
     uncompiledModel: $uncompiledModel
     input: $input
     organizationId: $organizationId
+    inputVisibility: $inputVisibility
+    outputVisibility: $outputVisibility
+    paramVisibility: $paramVisibility
   ) {
     id
   }

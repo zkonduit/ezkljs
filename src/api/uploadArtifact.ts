@@ -99,7 +99,7 @@ export default async function uploadArtifact({
 
     return validatedUploadArtifactResponse.uploadArtifactLegacy
   } catch (e) {
-    console.error(e)
+    console.error('ERROR:', e)
     throw e
   }
 }
