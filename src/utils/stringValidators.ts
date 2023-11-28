@@ -1,6 +1,6 @@
 export function isValidProof(test: string) {
-  const head = test.substring(0, 2)
-  const testHex = test.substring(2)
+  const head = test?.substring(0, 2)
+  const testHex = test?.substring(2)
 
   return head === '0x' && isValidHexString(testHex)
 }

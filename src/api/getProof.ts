@@ -43,7 +43,10 @@ export default async function getProof({ id, url = GQL_URL }: GetProofOptions) {
 
     const validatedProofResponse = getProofResponseSchema.parse(response)
 
-    if (!isValidProof(validatedProofResponse.getProof.proof)) {
+    if (
+      validatedProofResponse.getProof.proof &&
+      !isValidProof(validatedProofResponse.getProof.proof)
+    ) {
       throw new Error('Invalid proof')
     }
 
