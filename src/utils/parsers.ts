@@ -68,12 +68,10 @@ export const hexString = z.string().refine(
 // Get Proof Details
 export const getProofDetailsSchema = z.object({
   id: z.string().uuid(),
-  status: z.enum(['SUCCESS']),
+  status: z.enum(['SUCCESS', 'FAILURE', 'PENDING']),
   proof: z.string(),
   instances: z.array(hexString),
-  // transcriptType: z.literal('evm'),
   transcriptType: z.union([z.literal('evm'), z.literal('EVM')]),
-  // strategy: z.enum(['single', 'aggregate']),
 })
 export type GetProofDetails = z.infer<typeof getProofDetailsSchema>
 
