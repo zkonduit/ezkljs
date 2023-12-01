@@ -83,7 +83,13 @@ export default async function uploadArtifact({
   body.append('settings', new Blob([validatedSettingsFile]))
   body.append('pk', new Blob([validatedPkFile]))
 
-  const headers = authHeaders(apiKey, accessToken)
+  // const headers = authHeaders(apiKey, accessToken)
+
+  let headers
+
+  if (apiKey && accessToken) {
+    headers = authHeaders(apiKey, accessToken)
+  }
 
   try {
     const uploadArtifactResponse = await request<unknown>(validatedUrl, {

@@ -89,7 +89,12 @@ export default async function genArtifact({
   body.append('uncompiledModel', new Blob([validatedUncompiledModelFile]))
   body.append('input', new Blob([validatedInputFile]))
 
-  const headers = authHeaders(apiKey, accessToken)
+  // const headers = authHeaders(apiKey, accessToken)
+  let headers
+
+  if (apiKey && accessToken) {
+    headers = authHeaders(apiKey, accessToken)
+  }
 
   try {
     const genArtifactResponse = await request<unknown>(url, {

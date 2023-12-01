@@ -75,6 +75,8 @@ export const getProofDetailsSchema = z.object({
 })
 export type GetProofDetails = z.infer<typeof getProofDetailsSchema>
 
+export type Proof = GetProofDetails
+
 export const getProofResponseSchema = z.object({
   getProof: getProofDetailsSchema,
 })
