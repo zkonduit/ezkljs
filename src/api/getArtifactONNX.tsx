@@ -34,8 +34,6 @@ export default async function getArtifactONNX(
     const modelResp = await fetch(requestURL)
     const modelBlob = await modelResp.blob()
 
-    console.log('============', modelBlob)
-
     return modelBlob
   } catch (e) {
     throw new Error(`Error fetching ONNX: ${e}`)
