@@ -93,15 +93,15 @@ type Organization = {
 }
 ```
 
-````typescript
+```typescript
 const organization: Organization = await hub.getOrganization({
-  id: 'b7000626-ed7a-418c-bcf1-ccd10661855a'
+  id: 'b7000626-ed7a-418c-bcf1-ccd10661855a',
 })
 
 // or
 
 const organization: Organization = await hub.getOrganization({
-  name: 'test'
+  name: 'test',
 })
 
 console.log(JSON.stringify(organization, null, 2))
@@ -114,7 +114,7 @@ Output:
   "id": "b7000626-ed7a-418c-bcf1-ccd10661855a",
   "name": "test"
 }
-````
+```
 
 ---
 
