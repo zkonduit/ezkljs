@@ -45,6 +45,8 @@ import hub from '@ezkljs/hub'
 The router exposes useful APIs for interfacting with the EZKL Hub:
 
 - [healthCheck](#health-check): Check the health of the EZKL Hub.
+- [getOrganization](#get-organization): Get an organization, by id or by name.
+- [getArtifact](#get-artifact): Get a artifact, by id or by name and organization-name.
 - [getArtifacts](#get-artifacts): Get a list of artifacts currently on the EZKL Hub.
 - [Upload Compiled Circuit (uploadArtifact)](#upload-compiled-circuit): Upload a compiled ezkl circuit to create an artifact on EZLL Hub.
 - [Upload ONNX Model (genArtifact)](#upload-onnx-model): Upload a onnx model to create an artifact on the EZKL Hub.
@@ -116,6 +118,24 @@ Output:
 
 ---
 
+### Get Artifact
+
+To get a single artifact you can use the `getArtifact` method. All artifacts have unique `id`. An artifact is also uniquly queried by a combination of `name` and `organization-name`.
+
+````typescript
+const artifact = await hub.getArtifact({
+  id: 'b7000626-ed7a-418c-bcf1-ccd10661855a',
+})
+
+// or
+
+const artifact = await hub.getArtifact({
+  name: 'test',
+  organizationName: 'test',
+})
+
+```
+
 ### Get Artifacts
 
 In order to query the artifacts currently available on the EZKL Hub you can use the `getArtifacts` method.
@@ -145,7 +165,7 @@ const pageOptions: PageOptions = {
 const artifacts: Artifact[] = await hub.getArtifacts(pageOptions)
 
 console.log(JSON.stringify(artifacts), null, 2)
-```
+````
 
 Output:
 

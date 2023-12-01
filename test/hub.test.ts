@@ -70,11 +70,6 @@ describe('hub', () => {
         url: gqlUrl,
       })
 
-      console.log('==================')
-      console.log('==================')
-      console.log('==================')
-      console.log('==================')
-      console.log('uploadArtifactResp', uploadArtifactResp)
       artifact = uploadArtifactResp
 
       expect(uploadArtifactResp.id).toBeDefined()
