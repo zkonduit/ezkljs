@@ -21,9 +21,9 @@ type GenArtifactOptions = {
   accessToken?: string
   apiKey?: string
   url?: string
-  inputVisibility: Visibility
-  outputVisibility: Visibility
-  paramVisibility: Visibility
+  inputVisibility?: Visibility
+  outputVisibility?: Visibility
+  paramVisibility?: Visibility
 }
 
 /**
@@ -34,9 +34,9 @@ type GenArtifactOptions = {
  *   - `uncompiledModelFile` The uncompiled model file as a Buffer or File.
  *   - `inputFile` The input file as a Buffer or File.
  *   - `organizationId` The ID of the organization.
- *   - `inputVisbility`
- *   - `outputVisibility`
- *   - `paramVisibility`
+ *   - `inputVisbility` (optional)
+ *   - `outputVisibility` (optional)
+ *   - `paramVisibility` (optional)
  *   - `accessToken` (optional) The access token obtained after the oauth2 authorization flow
  *   - `apiKey` (optional) The API Key created by a user
  *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.

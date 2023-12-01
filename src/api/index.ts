@@ -6,12 +6,14 @@ import initiateProof from './initiateProof'
 import uploadArtifact from './uploadArtifact'
 import genArtifact from './genArtifact'
 import getOrganization from './getOrganization'
+import getArtifactSettings from './getArtifactSettings'
 
 export type Hub = {
   healthCheck: typeof healthCheck
   uploadArtifact: typeof uploadArtifact
   getArtifact: typeof getArtifact
   getArtifacts: typeof getArtifacts
+  getArtifactSettings: typeof getArtifactSettings
   initiateProof: typeof initiateProof
   getProof: typeof getProof
   genArtifact: typeof genArtifact
@@ -23,6 +25,7 @@ const hub: Hub = {
   uploadArtifact,
   getArtifact,
   getArtifacts,
+  getArtifactSettings,
   initiateProof,
   getProof,
   genArtifact,
