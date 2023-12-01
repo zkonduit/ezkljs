@@ -1,5 +1,4 @@
 // import hub from '../dist/bundle.cjs'
-import { z } from 'zod'
 import hub from '../src'
 
 const baseUrl = 'https://hub-staging.ezkl.xyz' as const
