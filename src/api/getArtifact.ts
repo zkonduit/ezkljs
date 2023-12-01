@@ -18,7 +18,7 @@ const artifactSchema = z.object({
   name: z.string(),
   description: z.string(),
   createdAt: z.string(),
-  uncompiledModel: z.string().optional(),
+  uncompiledModel: z.string().nullable(),
   solidityArtifacts: z.array(
     z.object({
       solidityCode: z.string(),
@@ -29,8 +29,8 @@ const artifactSchema = z.object({
       status: z.string(),
       id: z.string(),
       proof: z.string(),
-      instances: z.string(),
-      timeTaken: z.string(),
+      instances: z.array(z.string()),
+      timeTaken: z.number(),
       createdAt: z.string(),
     }),
   ),
