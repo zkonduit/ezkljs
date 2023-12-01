@@ -122,7 +122,7 @@ Output:
 
 To get a single artifact you can use the `getArtifact` method. All artifacts have unique `id`. An artifact is also uniquly queried by a combination of `name` and `organization-name`.
 
-````typescript
+```typescript
 const artifact = await hub.getArtifact({
   id: 'b7000626-ed7a-418c-bcf1-ccd10661855a',
 })
@@ -133,7 +133,6 @@ const artifact = await hub.getArtifact({
   name: 'test',
   organizationName: 'test',
 })
-
 ```
 
 ### Get Artifacts
@@ -165,7 +164,7 @@ const pageOptions: PageOptions = {
 const artifacts: Artifact[] = await hub.getArtifacts(pageOptions)
 
 console.log(JSON.stringify(artifacts), null, 2)
-````
+```
 
 Output:
 
