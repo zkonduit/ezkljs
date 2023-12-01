@@ -55,7 +55,7 @@ export default async function genArtifact({
   outputVisibility = 'private',
   paramVisibility = 'private',
   url = GQL_URL,
-}: GenArtifactOptions) {
+}: GenArtifactOptions): Promise<string | undefined> {
   const validatedName = z.string().parse(name)
   const validatedDescription = z.string().parse(description)
   const validatedOrganizationId = uuidSchema.parse(organizationId)
