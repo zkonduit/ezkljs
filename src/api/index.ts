@@ -7,6 +7,7 @@ import uploadArtifact from './uploadArtifact'
 import genArtifact from './genArtifact'
 import getOrganization from './getOrganization'
 import getArtifactSettings from './getArtifactSettings'
+import getArtifactONNX from './getArtifactONNX'
 
 export type Hub = {
   healthCheck: typeof healthCheck
@@ -18,6 +19,7 @@ export type Hub = {
   getProof: typeof getProof
   genArtifact: typeof genArtifact
   getOrganization: typeof getOrganization
+  getArtifactONNX: typeof getArtifactONNX
 }
 
 const hub: Hub = {
@@ -26,6 +28,7 @@ const hub: Hub = {
   getArtifact,
   getArtifacts,
   getArtifactSettings,
+  getArtifactONNX,
   initiateProof,
   getProof,
   genArtifact,
