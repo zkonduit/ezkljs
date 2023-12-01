@@ -50,6 +50,7 @@ The router exposes useful APIs for interfacting with the EZKL Hub:
 - [getArtifacts](#get-artifacts): Get a list of artifacts currently on the EZKL Hub.
 - [Upload Compiled Circuit (uploadArtifact)](#upload-compiled-circuit): Upload a compiled ezkl circuit to create an artifact on EZLL Hub.
 - [Upload ONNX Model (genArtifact)](#upload-onnx-model): Upload a onnx model to create an artifact on the EZKL Hub.
+- [getArtifactSettings](#get-artifact-settings): Get the settings for an artifact.
 - [initiateProof](#initiate-proof): Initiate a proof generation task.
 - [getProof](#get-proof): Get the result of a proof generation task.
 
@@ -181,6 +182,18 @@ Output:
     "id": "e7e92ecf-f020-4603-a908-4b40b7846874"
   }
 ]
+```
+
+### Artifact Settings.json
+
+Get an artifacts `settings.json` configutation file with `getArtifactSettings`.
+
+`genArtifactSettings` takes an artifact `id` and an optional `url`.
+
+```typescript
+const settings = await hub.getArtifactSettings({
+  id: 'b7000626-ed7a-418c-bcf1-ccd10661855a',
+})
 ```
 
 ---

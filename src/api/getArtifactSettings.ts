@@ -9,6 +9,15 @@ const artifactSettingsInputSchema = z.object({
 
 type ArtifactSettingsInput = z.infer<typeof artifactSettingsInputSchema>
 
+/**
+ * Fetches the settings.json file for a given artifact.
+ * @param options - The options object containing:
+ * - `id` The id of the artifact.
+ * - `url` (optional) The endpoint URL. Defaults to BASE_URL if not provided.
+ * @returns The settings (obj) file for the given artifact.
+ * @throws If there is an error in the request or validation process.
+ */
+
 export default async function getArtifactSettings(
   options: ArtifactSettingsInput,
 ): Promise<unknown> {
