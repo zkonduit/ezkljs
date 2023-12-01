@@ -3,13 +3,11 @@ import hub from '../src'
 import { GQL_URL, ORG_ID } from '../src/utils/constants'
 
 import fs from 'node:fs'
-import exp from 'node:constants'
 
 describe('delete artifact', () => {
   let id: string | undefined
 
   const artifactName = 'test delete artifact 4'
-  // const organizationName = 'currenthandle'
   beforeAll(async () => {
     const modelFile = fs.readFileSync(
       path.resolve(__dirname, 'proof_artifacts', 'network.onnx'),
