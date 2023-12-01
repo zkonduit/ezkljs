@@ -3,9 +3,10 @@ import { GQL_URL } from '@/utils/constants'
 import {
   artifactsResponseSchema,
   GetArtifactsInput,
-  getArtifactsInputSchema,
+  // getArtifactsInputSchema,
 } from '@/utils/parsers'
 import { GET_ARTIFACTS_QUERY } from '@/graphql/querties'
+import { z } from 'zod'
 
 /**
  * Fetches a list of artifacts with optional pagination parameters.
@@ -20,19 +21,9 @@ export default async function getArtifacts({
   first = 200,
   skip = 0,
   url = GQL_URL,
-}: GetArtifactsInput = {}) {
-  const validGetArtifactsInput = getArtifactsInputSchema.parse({
-    first,
-    skip,
-    url,
-  })
-  const {
-    first: validatedFirst,
-    skip: validatedSkip,
-    url: validatedUrl,
-  } = validGetArtifactsInput
+}: GetArtifactsInput) {
   try {
-    const response = await request<unknown>(validatedUrl, {
+    const response = await request<unknown>(z.string().url().parse(url), {
       unwrapData: true,
       method: 'POST',
       headers: {
@@ -41,8 +32,8 @@ export default async function getArtifacts({
       body: JSON.stringify({
         query: GET_ARTIFACTS_QUERY,
         variables: {
-          first: validatedFirst,
-          skip: validatedSkip,
+          first,
+          skip,
         },
       }),
     })

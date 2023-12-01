@@ -4,12 +4,13 @@ import hub from '../src/'
 import path from 'path'
 import fs from 'node:fs/promises'
 import {
-  Artifact,
+  // Artifact,
   GetProofDetails,
   InitiateProofResponse,
 } from '../dist/utils/parsers'
 
-let artifact: Artifact | undefined
+// let artifact: Artifact | undefined
+let artifact: { id: string } | undefined
 let initiatedProof: InitiateProofResponse['initiateProof'] | undefined
 
 const baseUrl = 'https://hub-staging.ezkl.xyz' as const
@@ -69,6 +70,11 @@ describe('hub', () => {
         url: gqlUrl,
       })
 
+      console.log('==================')
+      console.log('==================')
+      console.log('==================')
+      console.log('==================')
+      console.log('uploadArtifactResp', uploadArtifactResp)
       artifact = uploadArtifactResp
 
       expect(uploadArtifactResp.id).toBeDefined()
@@ -148,7 +154,7 @@ describe('hub', () => {
       }
 
       await new Promise((resolve) => setTimeout(resolve, 15000)) // wait for 15 seconds
-      const getProofDetails: GetProofDetails | undefined = await hub.getProof({
+      const getProofDetails: GetProofDetails = await hub.getProof({
         id: initiatedProof.id,
         url: gqlUrl,
       })

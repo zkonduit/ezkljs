@@ -75,6 +75,47 @@ Output:
 
 ---
 
+### Get Organination
+
+To get an organization you can use the `getOrganization` method. All users accounts have their own organization as well. All organizations have unique `id` and `name` properties.
+
+You can query an organization by `id` or `name`.
+
+You can also provide an optional url to specifiy an EZKL Hub backend.
+
+```typescript
+type Organization = {
+  id: string
+  name: string
+  url?: string
+}
+```
+
+````typescript
+const organization: Organization = await hub.getOrganization({
+  id: 'b7000626-ed7a-418c-bcf1-ccd10661855a'
+})
+
+// or
+
+const organization: Organization = await hub.getOrganization({
+  name: 'test'
+})
+
+console.log(JSON.stringify(organization, null, 2))
+```
+
+Output:
+
+```json
+{
+  "id": "b7000626-ed7a-418c-bcf1-ccd10661855a",
+  "name": "test"
+}
+````
+
+---
+
 ### Get Artifacts
 
 In order to query the artifacts currently available on the EZKL Hub you can use the `getArtifacts` method.
