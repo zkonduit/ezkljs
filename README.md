@@ -139,50 +139,17 @@ const artifact = await hub.getArtifact({
 
 ### Get Artifacts
 
-In order to query the artifacts currently available on the EZKL Hub you can use the `getArtifacts` method.
-
-This method accepts an options object which allows you to specify the `limit` (the max number of artifacts to return) and `skip` (the number of artifacts to skip). `skip` and `limit` can be used together for effective pagination. If no options are provided, the default values are `skip = 0` and `limit = 20`.
+To query the artifacts for and organization you can use the `getArtifacts` method. You can also provide an optional url to specifiy an EZKL Hub backend. `getArtifacts` also accepts `first` and `skip` options to paginate the results.
 
 ```typescript
-type Artifact = {
-  name: string
-  description: string
-  id: string
-}
-
-type PageOptions =
-  | {
-      skip?: number
-      limit?: number
-    }
-  | undefined
-
 const pageOptions: PageOptions = {
+  organizationName: 'test',
   skip: 0,
-  limit: 2,
+  limit: 200,
   url: 'https://hub.ezkl.xyz',
 }
 
 const artifacts: Artifact[] = await hub.getArtifacts(pageOptions)
-
-console.log(JSON.stringify(artifacts), null, 2)
-```
-
-Output:
-
-```json
-[
-  {
-    "name": "test",
-    "description": "test",
-    "id": "b7000626-ed7a-418c-bcf1-ccd10661855a"
-  },
-  {
-    "name": "test",
-    "description": "test",
-    "id": "e7e92ecf-f020-4603-a908-4b40b7846874"
-  }
-]
 ```
 
 ### Artifact Settings.json
