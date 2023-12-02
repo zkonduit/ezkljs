@@ -7,7 +7,7 @@ import {
   // Artifact,
   GetProofDetails,
   InitiateProofResponse,
-} from '../dist/utils/parsers'
+} from '../src/utils/parsers'
 
 // let artifact: Artifact | undefined
 let artifact: { id: string } | undefined
