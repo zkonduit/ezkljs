@@ -57,7 +57,6 @@ describe('get proofs', () => {
       organizationName: 'currenthandle',
     })
 
-    console.log('proofs', proofs)
     expect(proofs).toBeDefined()
     expect(proofs?.length).toBe(0)
   })

@@ -53,7 +53,6 @@ describe('get artifacts settings', () => {
       throw new Error('id not found')
     }
     try {
-      console.log('id', id)
       const settingsResp = await hub.getArtifactSettings({
         url: baseUrl,
         id,
@@ -64,6 +63,8 @@ describe('get artifacts settings', () => {
 
       const typedSettingsResp = settingsResp as ArtifactSettingsResponse
       console.log('typedSettingsResp', typedSettingsResp)
+
+      expect(typedSettingsResp.num_rows).toBeDefined()
     } catch (e) {
       console.log('error', e)
     }
