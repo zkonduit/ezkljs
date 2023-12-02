@@ -45,22 +45,9 @@ describe('get proofs', () => {
         id,
       })
 
-      console.log('status', artifact.status)
-
       await setTimeout(3_000)
     } while (artifact.status === 'PENDING')
-
-    // const newProof = await hub.initiateProof({
-    //   url: GQL_URL,
-    //   artifactId: id,
-    //   inputFile,
-    // })
-    // console.log('newProof', newProof)
   }, 40_000)
-
-  // it('expect true', () => {
-  //   expect(true).toBe(true)
-  // })
 
   it('gets proofs', async () => {
     expect(true).toBe(true)
@@ -106,7 +93,6 @@ describe('get proofs', () => {
         organizationName: 'currenthandle',
       })
 
-      console.log('proofs', proofs)
       expect(proofs).toBeDefined()
       expect(proofs?.length).toBe(numProofs)
     })

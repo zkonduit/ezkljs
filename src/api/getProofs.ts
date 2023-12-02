@@ -17,8 +17,6 @@ type GetProofsOptionsWithDefaults = Required<UserProvidedGetProofsOptions>
 
 type Proofs = z.infer<typeof getProofDetailsSchema>
 
-type Error = any
-
 const proofsSchema = z.array(getProofDetailsSchema)
 const proofsResponseSchema = z.object({
   getProofs: proofsSchema,
@@ -26,7 +24,7 @@ const proofsResponseSchema = z.object({
 
 export default async function getProofs(
   options: UserProvidedGetProofsOptions,
-): Promise<Proofs[] | Error> {
+): Promise<Proofs[]> {
   const validOptions = userProvidedGetProofsOptions.parse(options)
 
   const config: GetProofsOptionsWithDefaults = {
@@ -35,8 +33,6 @@ export default async function getProofs(
     skip: 0,
     ...validOptions,
   }
-
-  // console.log('getProofDetailsSchema.shape,', getProofDetailsSchema.shape)
 
   const proofDetailsFields = `
     id
