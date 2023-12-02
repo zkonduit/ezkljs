@@ -53,6 +53,7 @@ The router exposes useful APIs for interfacting with the EZKL Hub:
 - [getArtifactSettings](#get-artifact-settings): Get the settings for an artifact.
 - [initiateProof](#initiate-proof): Initiate a proof generation task.
 - [getProof](#get-proof): Get the result of a proof generation task.
+- [getProofs](#get-proofs): Get the proofs assocaited with an artifact.
 
 ---
 
@@ -363,4 +364,18 @@ Output:
     "maxLookupInputs": 362
   }
 }
+```
+
+### Get Proofs
+
+To get a link of proofs associated with an artifact you can use the `getProofs` method. To get the proofs you pass in the `artifactName` and `organizationName` of the artifact you want to get the proofs for. You can also provide an optional url to specifiy an EZKL Hub backend. `getProofs` also accepts `first` and `skip` options to paginate the results.
+
+```typescript
+await hub.getProofs({
+  artifactName: 'test',
+  organizationName: 'test',
+  first: 10,
+  skip: 0,
+  url: 'https://hub.ezkl.xyz',
+})
 ```
