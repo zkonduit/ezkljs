@@ -9,7 +9,8 @@ import {
 import { z } from 'zod'
 
 const userProvidedGetArtifactsOptions = z.object({
-  organizationName: z.string(),
+  organizationName: z.string().optional(),
+  organizationId: z.string().uuid().optional(),
   first: z.number().int().optional(),
   skip: z.number().int().optional(),
   url: z.string().url().optional(),
@@ -22,6 +23,7 @@ type UserProvidedGetArtifactsOptions = z.infer<
  * Fetches a list of artifacts with optional pagination parameters.
  * @param options - The options object containing:
  *   - `organizationName` The name of the organization.
+ *   - `organizationId` The id of the organization.
  *   - `first` The number of artifacts to retrieve. Defaults to 200.
  *   - `skip` The number of artifacts to skip. Defaults to 0.
  *   - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
@@ -32,11 +34,19 @@ export default async function getArtifacts(
   options: UserProvidedGetArtifactsOptions,
 ) {
   const config = { first: 200, skip: 0, url: GQL_URL, ...options }
-  const query = buildArtifactsQuery(
-    config.organizationName,
-    config.skip,
-    config.first,
-  )
+
+  const orgIdentifier = (() => {
+    if (config.organizationName) {
+      return `organizationName: "${config.organizationName}"`
+    } else if (config.organizationId) {
+      return `organizationId: "${config.organizationId}"`
+    } else {
+      throw new Error(
+        'Must provide either organizationName or organizationId to get artifacts',
+      )
+    }
+  })()
+  const query = buildArtifactsQuery(orgIdentifier, config.skip, config.first)
 
   try {
     const response = await request<unknown>(
@@ -67,10 +77,14 @@ export default async function getArtifacts(
   }
 }
 
-function buildArtifactsQuery(orgName: string, skip: number, first: number) {
+function buildArtifactsQuery(
+  orgIdentifier: string,
+  skip: number,
+  first: number,
+) {
   return `query Artifacts  {
       artifacts (
-        organizationName: "${orgName}", skip: ${skip}, first: ${first}
+        ${orgIdentifier}, skip: ${skip}, first: ${first}
         orderBy: {field: "createdAt", order: ASC}
       ) {
         id
