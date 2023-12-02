@@ -59,11 +59,7 @@ describe('get artifacts settings', () => {
       })
 
       expect(settingsResp).toBeDefined()
-      console.log('settingsResp!!!', settingsResp)
-
       const typedSettingsResp = settingsResp as ArtifactSettingsResponse
-      console.log('typedSettingsResp', typedSettingsResp)
-
       expect(typedSettingsResp.num_rows).toBeDefined()
     } catch (e) {
       console.log('error', e)
