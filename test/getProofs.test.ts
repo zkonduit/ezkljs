@@ -100,7 +100,15 @@ describe('get proofs', () => {
     }, 40_000)
 
     it('gets proofs', async () => {
-      expect(true).toBe(true)
+      const proofs = await hub.getProofs({
+        url: GQL_URL,
+        artifactName,
+        organizationName: 'currenthandle',
+      })
+
+      console.log('proofs', proofs)
+      expect(proofs).toBeDefined()
+      expect(proofs?.length).toBe(numProofs)
     })
   })
   afterAll(async () => {
