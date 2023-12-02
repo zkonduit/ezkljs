@@ -14,6 +14,11 @@ const getArtifactInputSchema = z.object({
 type GetArtifactsInput = z.infer<typeof getArtifactInputSchema>
 
 const artifactSchema = z.object({
+  status: z.union([
+    z.literal('FAILURE'),
+    z.literal('SUCCESS'),
+    z.literal('PENDING'),
+  ]),
   id: z.string().uuid(),
   name: z.string(),
   description: z.string(),
@@ -75,6 +80,7 @@ export default async function getArtifact(
   const query = `query artifact {
       artifact(${queryParams}) {
         id
+        status
         name
         description
         createdAt

@@ -2,6 +2,7 @@
 import getArtifact from './getArtifact'
 import getArtifacts from './getArtifacts'
 import getProof from './getProof'
+import getProofs from './getProofs'
 import initiateProof from './initiateProof'
 import uploadArtifact from './uploadArtifact'
 import genArtifact from './genArtifact'
@@ -19,6 +20,7 @@ export type Hub = {
   deleteArtifact: typeof deleteArtifact
   initiateProof: typeof initiateProof
   getProof: typeof getProof
+  getProofs: typeof getProofs
   genArtifact: typeof genArtifact
   getOrganization: typeof getOrganization
   getArtifactONNX: typeof getArtifactONNX
@@ -34,6 +36,7 @@ const hub: Hub = {
   deleteArtifact,
   initiateProof,
   getProof,
+  getProofs,
   genArtifact,
   getOrganization,
 }
