@@ -10,6 +10,7 @@ import getOrganization from './getOrganization'
 import getArtifactSettings from './getArtifactSettings'
 import getArtifactONNX from './getArtifactONNX'
 import deleteArtifact from './deleteArtifact'
+import deleteProof from './deleteProof'
 
 export type Hub = {
   // healthCheck: typeof healthCheck
@@ -21,6 +22,7 @@ export type Hub = {
   initiateProof: typeof initiateProof
   getProof: typeof getProof
   getProofs: typeof getProofs
+  deleteProof: typeof deleteProof
   genArtifact: typeof genArtifact
   getOrganization: typeof getOrganization
   getArtifactONNX: typeof getArtifactONNX
@@ -35,6 +37,7 @@ const hub: Hub = {
   getArtifactONNX,
   deleteArtifact,
   initiateProof,
+  deleteProof,
   getProof,
   getProofs,
   genArtifact,
