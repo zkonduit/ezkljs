@@ -75,8 +75,6 @@ describe('get artifacts', () => {
     expect(artifact?.createdAt).toBeDefined()
     expect(artifact?.status).toBeDefined()
     expect(artifact?.uncompiledModel).toBeDefined()
-
-    console.log('artifacts', artifacts)
   })
 
   afterAll(async () => {
