@@ -139,11 +139,13 @@ const artifact = await hub.getArtifact({
 
 ### Get Artifacts
 
-To query the artifacts for and organization you can use the `getArtifacts` method. You can also provide an optional url to specifiy an EZKL Hub backend. `getArtifacts` also accepts `first` and `skip` options to paginate the results.
+To query the artifacts for an organization you can use the `getArtifacts` method. An organization is uniquly identified by either `organizationId` or `organizationName`. You can choose to provide either.
+
+You can also provide an optional url to specifiy an EZKL Hub backend. `getArtifacts` also accepts `first` and `skip` options to paginate the results.
 
 ```typescript
 const pageOptions: PageOptions = {
-  organizationName: 'test',
+  organizationName: 'test', // or organizationId
   skip: 0,
   limit: 200,
   url: 'https://hub.ezkl.xyz',
