@@ -26,11 +26,15 @@ const artifactSchema = z.object({
   ),
   proofs: z.array(
     z.object({
-      status: z.string(),
+      status: z.union([
+        z.literal('FAILURE'),
+        z.literal('SUCCESS'),
+        z.literal('PENDING'),
+      ]),
       id: z.string(),
-      proof: z.string(),
-      instances: z.array(z.string()),
-      timeTaken: z.number(),
+      proof: z.string().nullable(),
+      instances: z.array(z.string()).nullable(),
+      timeTaken: z.number().nullable(),
       createdAt: z.string(),
     }),
   ),
