@@ -22,6 +22,17 @@ const proofsResponseSchema = z.object({
   getProofs: proofsSchema,
 })
 
+/**
+ * Fetches a list of proofs with optional pagination parameters.
+ * @param options - The options object containing:
+ *  - `organizationName` The name of the organization.
+ * - `artifactName` The name of the artifact.
+ * - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
+ * - `first` (optional) The number of proofs to retrieve. Defaults to 500.
+ * - `skip` (optional) The number of proofs to skip. Defaults to 0.
+ * @returns An array of retrieved proofs.
+ * @throws If there is an error in the request or validation process.
+ */
 export default async function getProofs(
   options: UserProvidedGetProofsOptions,
 ): Promise<Proofs[]> {
