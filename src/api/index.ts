@@ -1,7 +1,7 @@
+// import healthCheck from './healthCheck'
 import getArtifact from './getArtifact'
 import getArtifacts from './getArtifacts'
 import getProof from './getProof'
-import healthCheck from './healthCheck'
 import initiateProof from './initiateProof'
 import uploadArtifact from './uploadArtifact'
 import genArtifact from './genArtifact'
@@ -11,7 +11,7 @@ import getArtifactONNX from './getArtifactONNX'
 import deleteArtifact from './deleteArtifact'
 
 export type Hub = {
-  healthCheck: typeof healthCheck
+  // healthCheck: typeof healthCheck
   uploadArtifact: typeof uploadArtifact
   getArtifact: typeof getArtifact
   getArtifacts: typeof getArtifacts
@@ -25,7 +25,7 @@ export type Hub = {
 }
 
 const hub: Hub = {
-  healthCheck,
+  // healthCheck,
   uploadArtifact,
   getArtifact,
   getArtifacts,
