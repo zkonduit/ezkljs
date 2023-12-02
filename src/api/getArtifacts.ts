@@ -1,12 +1,30 @@
 import request from '@/utils/request'
 import { GQL_URL } from '@/utils/constants'
-import {
-  artifactsResponseSchema,
-  // GetArtifactsInput,
-  // getArtifactsInputSchema,
-} from '@/utils/parsers'
+// import {
+// artifactsResponseSchema,
+// GetArtifactsInput,
+// getArtifactsInputSchema,
+// } from '@/utils/parsers'
 // import { GET_ARTIFACTS_QUERY } from '@/graphql/querties'
+
 import { z } from 'zod'
+
+const artifactsResponseSchema = z.object({
+  artifacts: z.array(
+    z.object({
+      id: z.string().uuid(),
+      name: z.string(),
+      createdAt: z.string(),
+      status: z.string(),
+      uncompiledModel: z.any(),
+      description: z.string(),
+      organization: z.object({
+        id: z.string().uuid(),
+        name: z.string(),
+      }),
+    }),
+  ),
+})
 
 const userProvidedGetArtifactsOptions = z.object({
   organizationName: z.string().optional(),
