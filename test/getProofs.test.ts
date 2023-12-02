@@ -50,14 +50,12 @@ describe('get proofs', () => {
       await setTimeout(3_000)
     } while (artifact.status === 'PENDING')
 
-    console.log('arer loop')
-
-    const newProof = await hub.initiateProof({
-      url: GQL_URL,
-      artifactId: id,
-      inputFile,
-    })
-    console.log('newProof', newProof)
+    // const newProof = await hub.initiateProof({
+    //   url: GQL_URL,
+    //   artifactId: id,
+    //   inputFile,
+    // })
+    // console.log('newProof', newProof)
   }, 40_000)
 
   // it('expect true', () => {
@@ -73,23 +71,52 @@ describe('get proofs', () => {
     })
 
     console.log('proofs', proofs)
-    // expect(proofs).toBeDefined()
-    // expect(proofs?.length).toBe(0)
+    expect(proofs).toBeDefined()
+    expect(proofs?.length).toBe(0)
   })
-  // afterAll(async () => {
-  //   if (!id) {
-  //     throw new Error('id not found')
-  //   }
-  //   try {
-  //     const deletedArtifact = await hub.deleteArtifact({
-  //       name: artifactName,
-  //       organizationName: 'currenthandle',
-  //       url: GQL_URL,
-  //     })
-  //     expect(deletedArtifact).toBeDefined()
-  //     expect(deletedArtifact).toEqual(id)
-  //   } catch (e) {
-  //     console.log('error', e)
-  //   }
-  // })
+
+  describe('test after adding proofs', () => {
+    const numProofs = 3
+    beforeAll(async () => {
+      const inputFile = fs.readFileSync(
+        path.resolve(__dirname, 'proof_artifacts', 'input.json'),
+      )
+      if (!inputFile) {
+        throw new Error('inputFile not found')
+      }
+
+      if (!id) {
+        throw new Error('id not found')
+      }
+
+      for (let i = 0; i < numProofs; i++) {
+        await hub.initiateProof({
+          url: GQL_URL,
+          artifactId: id,
+          inputFile,
+        })
+        await setTimeout(3_000)
+      }
+    }, 40_000)
+
+    it('gets proofs', async () => {
+      expect(true).toBe(true)
+    })
+  })
+  afterAll(async () => {
+    if (!id) {
+      throw new Error('id not found')
+    }
+    try {
+      const deletedArtifact = await hub.deleteArtifact({
+        name: artifactName,
+        organizationName: 'currenthandle',
+        url: GQL_URL,
+      })
+      expect(deletedArtifact).toBeDefined()
+      expect(deletedArtifact).toEqual(id)
+    } catch (e) {
+      console.log('error', e)
+    }
+  })
 })

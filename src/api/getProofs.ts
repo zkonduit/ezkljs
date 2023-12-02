@@ -70,10 +70,4 @@ export default async function getProofs(
   const { getProofs: proofs } = validResp
 
   return proofs
-  // type ValidResponse = z.infer<typeof proofsResponseSchema>
-
-  // const ans = (resp as ValidResponse).getProofs as Proofs[]
-
-  // console.log('ans', ans)
-  // return ans
 }
