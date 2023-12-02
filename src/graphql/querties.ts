@@ -19,5 +19,7 @@ export const GET_PROOF_QUERY = `query GetProof($id: String!){
     proof
     instances
     transcriptType
+    createdAt
+    timeTaken
   }
 }`
