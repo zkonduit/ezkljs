@@ -51,9 +51,9 @@ export default async function genArtifact({
   organizationId,
   accessToken,
   apiKey,
-  inputVisibility = 'private',
-  outputVisibility = 'private',
-  paramVisibility = 'private',
+  inputVisibility = 'public',
+  outputVisibility = 'public',
+  paramVisibility = 'public',
   url = GQL_URL,
 }: GenArtifactOptions): Promise<string | undefined> {
   const validatedName = z.string().parse(name)
