@@ -27,7 +27,10 @@ describe('hub', () => {
   describe('artifact related', () => {
     it('get artifacts', async () => {
       expect(hub.getArtifacts).toBeDefined()
-      const artifacts = await hub.getArtifacts({ url: gqlUrl })
+      const artifacts = await hub.getArtifacts({
+        organizationName: 'currenthandle',
+        url: gqlUrl,
+      })
       if (artifacts && artifacts.length > 0) {
         const firstArtifact = artifacts[0]
         if (firstArtifact) {

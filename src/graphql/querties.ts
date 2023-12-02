@@ -1,9 +1,12 @@
 export const GET_ARTIFACTS_QUERY = `
   query Artifacts($first: Int, $skip: Int) {
     artifacts(first: $first, skip: $skip) {
-      name
-      description
       id
+      name
+      createdAt
+      status
+      uncompiledModel
+      description
       organization {
         id
         name
