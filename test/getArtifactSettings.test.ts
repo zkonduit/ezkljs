@@ -58,8 +58,8 @@ describe('get artifacts settings', () => {
     })
 
     expect(settingsResp).toBeDefined()
-    // const typedSettingsResp = settingsResp as ArtifactSettingsResponse
-    // expect(typedSettingsResp.num_rows).toBeDefined()
+    const typedSettingsResp = settingsResp as ArtifactSettingsResponse
+    expect(typedSettingsResp.num_rows).toBeDefined()
   }, 10_000)
 
   afterAll(async () => {
