@@ -11,9 +11,12 @@ type UserProvidedDeleteProofOptions = z.infer<
   typeof userProvidedDeleteProofOptions
 >
 
+const deleteProofResponseSchema = z.object({
+  deleteProof: z.array(z.string().uuid()),
+})
 export default async function deleteProof(
   options: UserProvidedDeleteProofOptions,
-) {
+): Promise<string | undefined> {
   const validOptions = userProvidedDeleteProofOptions.parse(options)
 
   const config = {
@@ -37,6 +40,11 @@ export default async function deleteProof(
     }),
   })
 
-  console.log('deleteProof resp', resp)
-  return resp
+  const validResp = deleteProofResponseSchema.parse(resp)
+
+  if (validResp.deleteProof && validResp.deleteProof.length > 0) {
+    return validResp.deleteProof[0]
+  } else {
+    return undefined
+  }
 }

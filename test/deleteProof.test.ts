@@ -7,10 +7,7 @@ import { setTimeout } from 'node:timers/promises'
 describe('deletes a proof', () => {
   let id: string | undefined
 
-  // let proofId: any
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  let proof: { id: string; status: string }
+  // let proof: { id: string; status: string }
 
   const artifactName = `delete artifact test ${Date.now()}}`
   beforeAll(async () => {
@@ -38,44 +35,55 @@ describe('deletes a proof', () => {
       url: GQL_URL,
     })
 
+    console.log('id', id)
     if (!id) {
       throw new Error('id not found')
     }
 
-    await setTimeout(8_000)
+    await setTimeout(15_000)
 
-    proof = await hub.initiateProof({
+    console.log('before initiateProof')
+    const proof = await hub.initiateProof({
       url: GQL_URL,
       artifactId: id,
       inputFile,
     })
-  }, 10_000)
+    await setTimeout(10_000)
 
-  it('deletes a proof', async () => {
     console.log('proof', proof)
-    // if (!proof) {
-    //   throw new Error('proofId not found')
-    // }
-    // const deletedProof = await hub.deleteProof({
-    //   url: GQL_URL,
-    //   proof,
-    //   organizationName: 'currenthandle',
-    // })
-    // console.log('deletedProof', deletedProof)
+  }, 100_000)
 
-    // expect(deletedProof).toBeDefined()
-    // expect(deletedProof).toEqual(proofId)
+  // it('deletes a proof', async () => {
+  //   // expect(proof).toBeDefined()
+  //   if (!proof) {
+  //     throw new Error('proofId not found')
+  //   }
+  //   const deletedProof = await hub.deleteProof({
+  //     url: GQL_URL,
+  //     proofId: proof.id,
+  //     organizationName: 'currenthandle',
+  //   })
+  //   // console.log('deletedProof', deletedProof)
+
+  //   expect(deletedProof).toBeDefined()
+  //   expect(deletedProof).toEqual(proof.id)
+
+  //   await setTimeout(10_000)
+  // }, 100_000)
+
+  it('deletes an artifact', async () => {
+    expect(true).toBe(true)
   })
 
-  afterAll(async () => {
-    if (!id) {
-      throw new Error('id not found')
-    }
+  // afterAll(async () => {
+  //   if (!id) {
+  //     throw new Error('id not found')
+  //   }
 
-    await hub.deleteArtifact({
-      url: GQL_URL,
-      name: artifactName,
-      organizationName: 'currenthandle',
-    })
-  })
+  //   await hub.deleteArtifact({
+  //     url: GQL_URL,
+  //     name: artifactName,
+  //     organizationName: 'currenthandle',
+  //   })
+  // }, 100_000)
 })

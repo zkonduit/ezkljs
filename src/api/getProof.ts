@@ -8,11 +8,14 @@ import {
 } from '@/utils/parsers'
 import request from '@/utils/request'
 import { isValidProof } from '@/utils/stringValidators'
+import { z } from 'zod'
 
 type GetProofOptions = {
   id: UUID
   url?: string
 }
+
+type Proof = z.infer<typeof getProofResponseSchema>['getProof']
 
 /**
  * Fetches the proof details for a given task ID.
@@ -22,7 +25,10 @@ type GetProofOptions = {
  * @returns The proof details.
  * @throws If the task ID is invalid, the proof is invalid, or a request error occurs.
  */
-export default async function getProof({ id, url = GQL_URL }: GetProofOptions) {
+export default async function getProof({
+  id,
+  url = GQL_URL,
+}: GetProofOptions): Promise<Proof | null> {
   const validatedId = uuidSchema.parse(id)
   const validatedUrl = urlSchema.parse(url)
 
@@ -40,6 +46,10 @@ export default async function getProof({ id, url = GQL_URL }: GetProofOptions) {
         },
       }),
     })
+
+    if (!response) {
+      return null
+    }
 
     const validatedProofResponse = getProofResponseSchema.parse(response)
 
