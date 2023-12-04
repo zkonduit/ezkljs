@@ -7,9 +7,9 @@ import { GQL_URL, ORG_ID } from '../src/utils/constants'
 
 const baseUrl = 'https://hub-staging.ezkl.xyz' as const
 
-// interface ArtifactSettingsResponse {
-//   num_rows: number
-// }
+interface ArtifactSettingsResponse {
+  num_rows: number
+}
 
 const artifactName = `test Artifact settings ${Date.now()}`
 
@@ -58,8 +58,8 @@ describe('get artifacts settings', () => {
     })
 
     expect(settingsResp).toBeDefined()
-    // const typedSettingsResp = settingsResp as ArtifactSettingsResponse
-    // expect(typedSettingsResp.num_rows).toBeDefined()
+    const typedSettingsResp = settingsResp as ArtifactSettingsResponse
+    expect(typedSettingsResp.num_rows).toBeDefined()
   }, 10_000)
 
   afterAll(async () => {
