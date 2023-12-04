@@ -100,7 +100,7 @@ export async function createProof(artifactId: string) {
   } while (proof.status !== 'SUCCESS')
 
   return {
-    proof,
+    proofId: proof.id,
     // cleanup: async () => {
     //   await hub.deleteProof({
     //     url: GQL_URL,
