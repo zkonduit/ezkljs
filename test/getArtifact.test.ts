@@ -5,20 +5,17 @@ import { GQL_URL } from '../src/utils/constants'
 
 describe('getArtifact', () => {
   const artifactName = `test getArtifact ${Date.now()}`
-  // const artifactName = `sample1234`
   let deleteArtifact: () => Promise<void>
   let artifactId: string
 
   beforeAll(async () => {
     const { cleanup, id } = await createArtifact(artifactName)
-    // const { id } = await createArtifact(artifactName)
 
     deleteArtifact = cleanup
     artifactId = id
   }, 40_000)
 
   it('gets an artifact by name', async () => {
-    console.log('artifactName', artifactName)
     const artifact = await hub.getArtifact({
       url: GQL_URL,
       name: artifactName,
