@@ -8,11 +8,14 @@ import {
 } from '@/utils/parsers'
 import request from '@/utils/request'
 import { isValidProof } from '@/utils/stringValidators'
+import { z } from 'zod'
 
 type GetProofOptions = {
   id: UUID
   url?: string
 }
+
+type Proof = z.infer<typeof getProofResponseSchema>['getProof']
 
 /**
  * Fetches the proof details for a given task ID.
@@ -22,7 +25,10 @@ type GetProofOptions = {
  * @returns The proof details.
  * @throws If the task ID is invalid, the proof is invalid, or a request error occurs.
  */
-export default async function getProof({ id, url = GQL_URL }: GetProofOptions) {
+export default async function getProof({
+  id,
+  url = GQL_URL,
+}: GetProofOptions): Promise<Proof | null> {
   const validatedId = uuidSchema.parse(id)
   const validatedUrl = urlSchema.parse(url)
 
@@ -41,16 +47,32 @@ export default async function getProof({ id, url = GQL_URL }: GetProofOptions) {
       }),
     })
 
-    const validatedProofResponse = getProofResponseSchema.parse(response)
+    // Directly handle the case where response is null
+    if (response === null) {
+      return null
+    }
 
+    // Validate the response against the getProofResponseSchema
+    const validatedProofResponse = getProofResponseSchema.safeParse(response)
+
+    // If the response does not match the schema, return null or handle the error
+    if (!validatedProofResponse.success) {
+      console.error(
+        'Response does not match the expected schema',
+        validatedProofResponse.error,
+      )
+      return null
+    }
+
+    // Check the validity of the proof
     if (
-      validatedProofResponse.getProof.proof &&
-      !isValidProof(validatedProofResponse.getProof.proof)
+      validatedProofResponse.data.getProof.proof &&
+      !isValidProof(validatedProofResponse.data.getProof.proof)
     ) {
       throw new Error('Invalid proof')
     }
 
-    return validatedProofResponse.getProof
+    return validatedProofResponse.data.getProof
   } catch (e) {
     console.error(e)
     throw e

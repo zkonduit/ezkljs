@@ -1,6 +1,6 @@
 {
   "name": "@ezkljs/hub",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publishConfig": {
     "access": "public"
   },
@@ -14,6 +14,7 @@
     "README.md"
   ],
   "scripts": {
+    "cln:w": "watchman watch-del '/Users/casey/Dev/ezkl-work/ezkljs' ; watchman watch-project '/Users/casey/Dev/ezkl-work/ezkljs'",
     "test:w": "jest --config jest.config.ts --watch",
     "test": "jest --config jest.config.ts",
     "clean": "rm -r dist || true",

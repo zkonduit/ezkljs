@@ -57,7 +57,7 @@ describe('delete artifact', () => {
         url: GQL_URL,
       })
 
-      console.log('asdsda', deletedArtifact)
+      expect(deletedArtifact).toBeDefined()
     } catch (e) {
       expect(e.message).toEqual(
         'No artifacts found matching the provided criteria.',

@@ -70,8 +70,13 @@ export const getProofDetailsSchema = z.object({
   id: z.string().uuid(),
   status: z.enum(['SUCCESS', 'FAILURE', 'PENDING']),
   proof: z.string().nullable(),
+  transcriptType: z
+    .union([z.literal('evm'), z.literal('EVM')])
+    .nullable()
+    .optional(),
   instances: z.array(hexString).nullable(),
-  transcriptType: z.union([z.literal('evm'), z.literal('EVM')]).nullable(),
+  timeTaken: z.number().int().nonnegative().nullable(),
+  createdAt: z.string(),
 })
 export type GetProofDetails = z.infer<typeof getProofDetailsSchema>
 

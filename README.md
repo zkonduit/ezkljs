@@ -53,6 +53,8 @@ The router exposes useful APIs for interfacting with the EZKL Hub:
 - [getArtifactSettings](#get-artifact-settings): Get the settings for an artifact.
 - [initiateProof](#initiate-proof): Initiate a proof generation task.
 - [getProof](#get-proof): Get the result of a proof generation task.
+- [getProofs](#get-proofs): Get the proofs assocaited with an artifact.
+- [deleteProof](#delete-proof): Delete a proof.
 
 ---
 
@@ -138,50 +140,19 @@ const artifact = await hub.getArtifact({
 
 ### Get Artifacts
 
-In order to query the artifacts currently available on the EZKL Hub you can use the `getArtifacts` method.
+To query the artifacts for an organization you can use the `getArtifacts` method. An organization is uniquly identified by either `organizationId` or `organizationName`. You can choose to provide either.
 
-This method accepts an options object which allows you to specify the `limit` (the max number of artifacts to return) and `skip` (the number of artifacts to skip). `skip` and `limit` can be used together for effective pagination. If no options are provided, the default values are `skip = 0` and `limit = 20`.
+You can also provide an optional url to specifiy an EZKL Hub backend. `getArtifacts` also accepts `first` and `skip` options to paginate the results.
 
 ```typescript
-type Artifact = {
-  name: string
-  description: string
-  id: string
-}
-
-type PageOptions =
-  | {
-      skip?: number
-      limit?: number
-    }
-  | undefined
-
 const pageOptions: PageOptions = {
+  organizationName: 'test', // or organizationId
   skip: 0,
-  limit: 2,
+  limit: 200,
   url: 'https://hub.ezkl.xyz',
 }
 
 const artifacts: Artifact[] = await hub.getArtifacts(pageOptions)
-
-console.log(JSON.stringify(artifacts), null, 2)
-```
-
-Output:
-
-```json
-[
-  {
-    "name": "test",
-    "description": "test",
-    "id": "b7000626-ed7a-418c-bcf1-ccd10661855a"
-  },
-  {
-    "name": "test",
-    "description": "test",
-    "id": "e7e92ecf-f020-4603-a908-4b40b7846874"
-  }
-]
 ```
 
 ### Artifact Settings.json
@@ -363,4 +334,30 @@ Output:
     "maxLookupInputs": 362
   }
 }
+```
+
+### Get Proofs
+
+To get a link of proofs associated with an artifact you can use the `getProofs` method. To get the proofs you pass in the `artifactName` and `organizationName` of the artifact you want to get the proofs for. You can also provide an optional url to specifiy an EZKL Hub backend. `getProofs` also accepts `first` and `skip` options to paginate the results.
+
+```typescript
+await hub.getProofs({
+  artifactName: 'test',
+  organizationName: 'test',
+  first: 10,
+  skip: 0,
+  url: 'https://hub.ezkl.xyz',
+})
+```
+
+### Delete Proof
+
+To delete a proof use the `deleteProof` method passing in the `proofId` and the `organizationName`. You can provide an optional url to specifiy an EZKL Hub backend.
+
+```typescript
+await hub.deleteProof({
+  proofId: 'c4b049c3-9770-45cf-b8ec-1bee0efc8347',
+  organizationName: 'my-organization',
+  url: 'https://hub.ezkl.xyz',
+})
 ```

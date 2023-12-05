@@ -14,6 +14,11 @@ const getArtifactInputSchema = z.object({
 type GetArtifactsInput = z.infer<typeof getArtifactInputSchema>
 
 const artifactSchema = z.object({
+  status: z.union([
+    z.literal('FAILURE'),
+    z.literal('SUCCESS'),
+    z.literal('PENDING'),
+  ]),
   id: z.string().uuid(),
   name: z.string(),
   description: z.string(),
@@ -26,11 +31,15 @@ const artifactSchema = z.object({
   ),
   proofs: z.array(
     z.object({
-      status: z.string(),
+      status: z.union([
+        z.literal('FAILURE'),
+        z.literal('SUCCESS'),
+        z.literal('PENDING'),
+      ]),
       id: z.string(),
-      proof: z.string(),
-      instances: z.array(z.string()),
-      timeTaken: z.number(),
+      proof: z.string().nullable(),
+      instances: z.array(z.string()).nullable(),
+      timeTaken: z.number().nullable(),
       createdAt: z.string(),
     }),
   ),
@@ -68,9 +77,11 @@ export default async function getArtifact(
   ) {
     queryParams = `organizationName: "${options.organizationName}", name: "${options.name}"`
   }
+
   const query = `query artifact {
       artifact(${queryParams}) {
         id
+        status
         name
         description
         createdAt
