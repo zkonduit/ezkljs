@@ -1,27 +1,21 @@
-import hub from '../src/'
-
-// import path from 'path'
-// import fs from 'node:fs/promises'
-
-const baseUrl = 'https://hub-staging.ezkl.xyz' as const
-const gqlUrl = `${baseUrl}/graphql` as const
-const organizationId = '10f565e2-803b-4fe8-b70e-387de38b4cf5'
+import hub from '../src'
+import { GQL_URL, ORG_ID } from '../src/utils/constants'
 
 describe('organization', () => {
   it('gets an organization by name', async () => {
     const org = await hub.getOrganization({
-      url: gqlUrl,
+      url: GQL_URL,
       name: 'currenthandle',
     })
     expect(org?.name).toEqual('currenthandle')
-    expect(org?.id).toEqual(organizationId)
+    expect(org?.id).toEqual(ORG_ID)
   })
   it('gets an organization by id', async () => {
     const org = await hub.getOrganization({
-      url: gqlUrl,
-      id: organizationId,
+      url: GQL_URL,
+      id: ORG_ID,
     })
     expect(org?.name).toEqual('currenthandle')
-    expect(org?.id).toEqual(organizationId)
+    expect(org?.id).toEqual(ORG_ID)
   })
 })
