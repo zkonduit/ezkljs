@@ -1,6 +1,5 @@
 import hub from '../src'
 import { createArtifact } from './utils'
-
 import { GQL_URL } from '../src/utils/constants'
 
 describe('getArtifact', () => {
@@ -23,6 +22,7 @@ describe('getArtifact', () => {
     })
     expect(artifact?.organization.name).toEqual('currenthandle')
   })
+
   it('gets an artifact by id', async () => {
     const artifact = await hub.getArtifact({
       url: GQL_URL,
