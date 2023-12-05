@@ -15,14 +15,15 @@ beforeAll(async () => {
 
 it('initiates a proof', async () => {
   const inputFile = getInput()
-  const proofId = await hub.initiateProof({
+  const proof = await hub.initiateProof({
     url: GQL_URL,
     artifactId,
     inputFile,
   })
 
-  expect(proofId).toBeDefined()
-  expect(proofId).toBe(proofId)
+  expect(proof).toBeDefined()
+  expect(proof.id).toBeDefined()
+  expect(proof.status).toMatch(/PENDING|SUCCESS/)
 })
 
 afterAll(async () => {
