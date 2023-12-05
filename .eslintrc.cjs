@@ -21,6 +21,12 @@ module.exports = {
         sourceType: 'script',
       },
     },
+    {
+      files: ['**/*.test.ts', '**/*.spec.ts'], // Adjust the pattern to match your test files
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'off', // Disable the rule for test files
+      },
+    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {

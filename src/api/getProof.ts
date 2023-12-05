@@ -47,20 +47,32 @@ export default async function getProof({
       }),
     })
 
-    if (!response) {
+    // Directly handle the case where response is null
+    if (response === null) {
       return null
     }
 
-    const validatedProofResponse = getProofResponseSchema.parse(response)
+    // Validate the response against the getProofResponseSchema
+    const validatedProofResponse = getProofResponseSchema.safeParse(response)
 
+    // If the response does not match the schema, return null or handle the error
+    if (!validatedProofResponse.success) {
+      console.error(
+        'Response does not match the expected schema',
+        validatedProofResponse.error,
+      )
+      return null
+    }
+
+    // Check the validity of the proof
     if (
-      validatedProofResponse.getProof.proof &&
-      !isValidProof(validatedProofResponse.getProof.proof)
+      validatedProofResponse.data.getProof.proof &&
+      !isValidProof(validatedProofResponse.data.getProof.proof)
     ) {
       throw new Error('Invalid proof')
     }
 
-    return validatedProofResponse.getProof
+    return validatedProofResponse.data.getProof
   } catch (e) {
     console.error(e)
     throw e

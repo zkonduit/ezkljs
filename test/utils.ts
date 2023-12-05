@@ -99,14 +99,16 @@ export async function createProof(artifactId: string) {
     proof = newProof
   } while (proof.status !== 'SUCCESS')
 
-  return {
-    proofId: proof.id,
-    // cleanup: async () => {
-    //   await hub.deleteProof({
-    //     url: GQL_URL,
-    //     proofId: proof.taskId,
-    //     organizationName: 'currenthandle',
-    //   })
-    // },
-  }
+  return proof.id
+
+  // return {
+  //   proofId: proof.id,
+  //   // cleanup: async () => {
+  //   //   await hub.deleteProof({
+  //   //     url: GQL_URL,
+  //   //     proofId: proof.taskId,
+  //   //     organizationName: 'currenthandle',
+  //   //   })
+  //   // },
+  // }
 }

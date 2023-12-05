@@ -32,5 +32,7 @@ export const getProofSchema = z.object({
   // strategy: z.enum(['single', 'aggregate']),
 })
 
+export type Proof = z.infer<typeof getProofSchema>
+
 export type GetProof = z.infer<typeof getProofSchema>
 export type InitiateProof = z.infer<typeof intiateProofSchema>
