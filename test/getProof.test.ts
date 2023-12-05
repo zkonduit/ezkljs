@@ -5,7 +5,6 @@ import { createArtifact, createProof } from './utils'
 // import { Proof } from '../src/utils/parsers'
 
 let id: string
-// let proof: Proof | null // Allow 'null' as a possible value
 let proofId: string
 let cleanup: () => Promise<void>
 
@@ -14,7 +13,6 @@ beforeAll(async () => {
   id = resp.id
   cleanup = resp.cleanup
 
-  // proof = await createProof(id)
   proofId = await createProof(id)
 }, 30_000)
 
@@ -29,8 +27,6 @@ it('should return a proof', async () => {
   }
 
   expect(fetchedProof).toBeDefined()
-
-  // console.log('proof', fetchedProof)
 })
 
 it('should not return a proof, after delteing the proof', async () => {
