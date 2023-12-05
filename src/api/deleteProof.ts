@@ -14,6 +14,15 @@ type UserProvidedDeleteProofOptions = z.infer<
 const deleteProofResponseSchema = z.object({
   deleteProof: z.array(z.string().uuid()),
 })
+
+/**
+ * Deletes a proof by id.
+ * @param options - The options object containing:
+ * - `organizationName` The name of the organization.
+ * - `proofId` The id of the proof.
+ * - `url` (optional) The endpoint URL. Defaults to GQL_URL if not provided.
+ * @returns The id of the deleted proof or undefined if the proof does not exist.
+ */
 export default async function deleteProof(
   options: UserProvidedDeleteProofOptions,
 ): Promise<string | undefined> {
