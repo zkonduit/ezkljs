@@ -31,11 +31,11 @@ export function getInput() {
   return inputFile
 }
 
-export async function createArtifact(testName: string) {
+export async function createArtifact(artifactName: string) {
   const modelFile = getModel()
   const inputFile = getInput()
 
-  const artifactName = `${testName} ${Date.now()}`
+  // const artifactName = `${testName} ${Date.now()}`
 
   const id = await hub.genArtifact({
     description: 'test artifact',

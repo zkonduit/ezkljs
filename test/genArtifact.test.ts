@@ -28,8 +28,6 @@ it('successfully creates the artifact', async () => {
   })
 
   while (artifact.status !== 'SUCCESS') {
-    console.log('artifact', artifact)
-    console.log('')
     await setTimeout(3_000)
     artifact = await hub.getArtifact({
       url: GQL_URL,

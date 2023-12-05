@@ -77,6 +77,7 @@ export default async function getArtifact(
   ) {
     queryParams = `organizationName: "${options.organizationName}", name: "${options.name}"`
   }
+
   const query = `query artifact {
       artifact(${queryParams}) {
         id

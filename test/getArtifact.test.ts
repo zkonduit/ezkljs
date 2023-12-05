@@ -1,24 +1,41 @@
 import hub from '../src'
+import { createArtifact } from './utils'
 
-const baseUrl = 'https://hub-staging.ezkl.xyz' as const
-const gqlUrl = `${baseUrl}/graphql` as const
-const artifactId = 'b0b8c895-5dc1-4ebe-93d7-2e19bf2c5b19'
+import { GQL_URL } from '../src/utils/constants'
 
 describe('getArtifact', () => {
+  const artifactName = `test getArtifact ${Date.now()}`
+  // const artifactName = `sample1234`
+  let deleteArtifact: () => Promise<void>
+  let artifactId: string
+
+  beforeAll(async () => {
+    const { cleanup, id } = await createArtifact(artifactName)
+    // const { id } = await createArtifact(artifactName)
+
+    deleteArtifact = cleanup
+    artifactId = id
+  }, 40_000)
+
   it('gets an artifact by name', async () => {
+    console.log('artifactName', artifactName)
     const artifact = await hub.getArtifact({
-      url: gqlUrl,
-      name: 'globe',
+      url: GQL_URL,
+      name: artifactName,
       organizationName: 'currenthandle',
     })
     expect(artifact?.organization.name).toEqual('currenthandle')
   })
   it('gets an artifact by id', async () => {
     const artifact = await hub.getArtifact({
-      url: gqlUrl,
+      url: GQL_URL,
       id: artifactId,
     })
 
     expect(artifact?.organization.name).toEqual('currenthandle')
+  })
+
+  afterAll(async () => {
+    await deleteArtifact()
   })
 })

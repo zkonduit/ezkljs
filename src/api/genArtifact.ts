@@ -53,7 +53,7 @@ export default async function genArtifact({
   apiKey,
   inputVisibility = 'public',
   outputVisibility = 'public',
-  paramVisibility = 'public',
+  paramVisibility = 'private',
   url = GQL_URL,
 }: GenArtifactOptions): Promise<string | undefined> {
   const validatedName = z.string().parse(name)
@@ -89,7 +89,6 @@ export default async function genArtifact({
   body.append('uncompiledModel', new Blob([validatedUncompiledModelFile]))
   body.append('input', new Blob([validatedInputFile]))
 
-  // const headers = authHeaders(apiKey, accessToken)
   let headers
 
   if (apiKey && accessToken) {

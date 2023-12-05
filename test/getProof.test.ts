@@ -9,7 +9,8 @@ let proofId: string
 let cleanup: () => Promise<void>
 
 beforeAll(async () => {
-  const resp = await createArtifact('get proof')
+  // const resp = await createArtifact('get proof')
+  const resp = await createArtifact(`get proof ${Date.now()}`)
   id = resp.id
   cleanup = resp.cleanup
 
