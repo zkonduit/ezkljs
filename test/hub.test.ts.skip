@@ -1,5 +1,5 @@
 // import hub from '../dist/bundle.cjs'
-import hub from '../src/'
+import hub from '../src'
 
 import path from 'path'
 import fs from 'node:fs/promises'

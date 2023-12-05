@@ -5,7 +5,7 @@ import hub from '../src'
 import { GQL_URL, ORG_ID } from '../src/utils/constants'
 import { setTimeout } from 'node:timers/promises'
 
-function getModel() {
+export function getModel() {
   const modelFilePath = path.resolve(
     __dirname,
     'proof_artifacts',
@@ -18,7 +18,7 @@ function getModel() {
   return modelFile
 }
 
-function getInput() {
+export function getInput() {
   const inputFilePath = path.resolve(
     path.resolve(__dirname, 'proof_artifacts', 'input.json'),
   )
