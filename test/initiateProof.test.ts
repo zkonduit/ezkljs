@@ -11,7 +11,7 @@ beforeAll(async () => {
 
   artifactId = id
   deleteArtifact = cleanup
-})
+}, 40_000)
 
 it('initiates a proof', async () => {
   const inputFile = getInput()
