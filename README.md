@@ -54,6 +54,7 @@ The router exposes useful APIs for interfacting with the EZKL Hub:
 - [initiateProof](#initiate-proof): Initiate a proof generation task.
 - [getProof](#get-proof): Get the result of a proof generation task.
 - [getProofs](#get-proofs): Get the proofs assocaited with an artifact.
+- [deleteProof](#delete-proof): Delete a proof.
 
 ---
 
@@ -345,6 +346,18 @@ await hub.getProofs({
   organizationName: 'test',
   first: 10,
   skip: 0,
+  url: 'https://hub.ezkl.xyz',
+})
+```
+
+### Delete Proof
+
+To delete a proof use the `deleteProof` method passing in the `proofId` and the `organizationName`. You can provide an optional url to specifiy an EZKL Hub backend.
+
+```typescript
+await hub.deleteProof({
+  proofId: 'c4b049c3-9770-45cf-b8ec-1bee0efc8347',
+  organizationName: 'my-organization',
   url: 'https://hub.ezkl.xyz',
 })
 ```
