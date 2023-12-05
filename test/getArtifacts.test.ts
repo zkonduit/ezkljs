@@ -7,7 +7,7 @@ import fs from 'node:fs'
 describe('get artifacts', () => {
   let id: string | undefined
 
-  const artifactName = 'test get artifacts 4'
+  const artifactName = `get artifacts ${Date.now()}`
   beforeAll(async () => {
     const modelFile = fs.readFileSync(
       path.resolve(__dirname, 'proof_artifacts', 'network.onnx'),
