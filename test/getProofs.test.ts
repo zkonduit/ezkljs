@@ -1,56 +1,27 @@
 import path from 'node:path'
 import hub from '../src'
-import { GQL_URL, ORG_ID } from '../src/utils/constants'
+import { GQL_URL } from '../src/utils/constants'
 
 import { setTimeout } from 'node:timers/promises'
 import fs from 'node:fs'
+import { createArtifact } from './utils'
 
 describe('get proofs', () => {
-  let id: string | undefined
+  let id: string
+  let cleanup: () => Promise<void>
   const artifactName = `test getProofs ${Date.now()}`
+
   beforeAll(async () => {
-    const modelFile = fs.readFileSync(
-      path.resolve(__dirname, 'proof_artifacts', 'network.onnx'),
-    )
-    const inputFile = fs.readFileSync(
-      path.resolve(__dirname, 'proof_artifacts', 'input.json'),
-    )
-
-    if (!modelFile) {
-      throw new Error('modelFile not found')
-    }
-
-    if (!inputFile) {
-      throw new Error('inputFile not found')
-    }
-
-    id = await hub.genArtifact({
-      description: 'test delete artifact',
-      name: artifactName,
-      organizationId: ORG_ID,
-      uncompiledModelFile: modelFile,
-      inputFile,
-      url: GQL_URL,
-    })
-
-    if (!id) {
-      throw new Error('id not found')
-    }
-
-    let artifact
-
-    do {
-      artifact = await hub.getArtifact({
-        url: GQL_URL,
-        id,
-      })
-
-      await setTimeout(3_000)
-    } while (artifact.status === 'PENDING')
+    const { id: _id, cleanup: _clnup } = await createArtifact(artifactName)
+    id = _id
+    cleanup = _clnup
   }, 40_000)
 
+  afterAll(async () => {
+    await cleanup()
+  })
+
   it('gets proofs', async () => {
-    expect(true).toBe(true)
     const proofs = await hub.getProofs({
       url: GQL_URL,
       artifactName,

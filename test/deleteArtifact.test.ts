@@ -1,42 +1,17 @@
-import path from 'node:path'
 import hub from '../src'
-import { GQL_URL, ORG_ID } from '../src/utils/constants'
+import { GQL_URL } from '../src/utils/constants'
 
-import fs from 'node:fs'
+import { createArtifact } from './utils'
 
 describe('delete artifact', () => {
   let id: string | undefined
 
   const artifactName = `test delete artifact 4 ${Date.now()}`
   beforeAll(async () => {
-    const modelFile = fs.readFileSync(
-      path.resolve(__dirname, 'proof_artifacts', 'network.onnx'),
-    )
-    const inputFile = fs.readFileSync(
-      path.resolve(__dirname, 'proof_artifacts', 'input.json'),
-    )
+    const { id: _id } = await createArtifact(artifactName)
 
-    if (!modelFile) {
-      throw new Error('modelFile not found')
-    }
-
-    if (!inputFile) {
-      throw new Error('inputFile not found')
-    }
-
-    id = await hub.genArtifact({
-      description: 'test delete artifact',
-      name: artifactName,
-      organizationId: ORG_ID,
-      uncompiledModelFile: modelFile,
-      inputFile,
-      url: GQL_URL,
-    })
-
-    if (!id) {
-      throw new Error('id not found')
-    }
-  })
+    id = _id
+  }, 40_000)
 
   it('deletes an artifact', async () => {
     const deletedArtifact = await hub.deleteArtifact({

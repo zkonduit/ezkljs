@@ -3,3 +3,4 @@ dist
 
 example/node_modules/
 example/.next/
+test/getArtifactONNX.test.ts
