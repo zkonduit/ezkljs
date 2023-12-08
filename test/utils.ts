@@ -58,7 +58,7 @@ export async function createArtifact(artifactName: string) {
       url: GQL_URL,
       id,
     })
-  } while (artifact.status !== 'SUCCESS')
+  } while (artifact?.status !== 'SUCCESS')
 
   return {
     id,

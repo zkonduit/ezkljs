@@ -32,6 +32,16 @@ describe('getArtifact', () => {
     expect(artifact?.organization.name).toEqual('currenthandle')
   })
 
+  it('handles the case where the artifact does not exist', async () => {
+    const artifact = await hub.getArtifact({
+      url: GQL_URL,
+      name: 'does not exist',
+      organizationName: 'currenthandle',
+    })
+
+    expect(artifact).toEqual(undefined)
+  })
+
   afterAll(async () => {
     await deleteArtifact()
   })

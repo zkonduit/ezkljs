@@ -49,6 +49,8 @@ const artifactSchema = z.object({
   }),
 })
 
+const artifactResponseSchema = artifactSchema.nullable()
+
 type Artifact = z.infer<typeof artifactSchema>
 
 /**
@@ -63,7 +65,7 @@ type Artifact = z.infer<typeof artifactSchema>
  */
 export default async function getArtifact(
   options: GetArtifactsInput = { url: GQL_URL },
-): Promise<Artifact> {
+): Promise<Artifact | undefined> {
   let queryParams
   // type guards
   if ('id' in options && options.id !== undefined) {
@@ -112,7 +114,14 @@ export default async function getArtifact(
     unwrapData: true,
   })
 
-  const validResp = z.object({ artifact: artifactSchema }).parse(resp)
+  const validResp = z.object({ artifact: artifactResponseSchema }).parse(resp)
+  // const validResp = z.object({ artifact: artifactSchema }).parse(resp)
+  // const validResp = artifactResponseSchema.parse(resp)
+  const artifact = validResp.artifact
 
-  return validResp.artifact
+  if (artifact === null) {
+    return undefined
+  }
+
+  return artifact
 }

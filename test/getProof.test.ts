@@ -2,20 +2,18 @@ import { setTimeout } from 'timers/promises'
 import hub from '../src'
 import { GQL_URL } from '../src/utils/constants'
 import { createArtifact, createProof } from './utils'
-// import { Proof } from '../src/utils/parsers'
 
 let id: string
 let proofId: string
 let cleanup: () => Promise<void>
 
 beforeAll(async () => {
-  // const resp = await createArtifact('get proof')
   const resp = await createArtifact(`get proof ${Date.now()}`)
   id = resp.id
   cleanup = resp.cleanup
 
   proofId = await createProof(id)
-}, 30_000)
+}, 60_000)
 
 it('should return a proof', async () => {
   const fetchedProof = await hub.getProof({

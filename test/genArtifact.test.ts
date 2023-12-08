@@ -27,6 +27,10 @@ it('successfully creates the artifact', async () => {
     organizationName: 'currenthandle',
   })
 
+  if (artifact === undefined) {
+    throw new Error('artifact not found')
+  }
+
   while (artifact.status !== 'SUCCESS') {
     await setTimeout(3_000)
     artifact = await hub.getArtifact({
@@ -34,6 +38,10 @@ it('successfully creates the artifact', async () => {
       name: artifactName,
       organizationName: 'currenthandle',
     })
+
+    if (artifact === undefined) {
+      throw new Error('artifact not found')
+    }
   }
 
   expect(artifact).toBeDefined()
